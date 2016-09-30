@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="HTMLFiles/pmathml.xsl"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0//EN"
+        "HTMLFiles/xhtml-math11-f.dtd">
+
+<!-- Created with the Wolfram Language : www.wolfram.com -->
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+ <title>
+  battery log
+ </title>
+ <link href="HTMLFiles/battery log.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body style="font-size: Floor[150. Inherited]%;">
+
+<p class="Chapter">
+ &#1059;&#1088;&#1086;&#1074;&#1077;&#1085;&#1100; &#1079;&#1072;&#1088;&#1103;&#1076;&#1072; &#1073;&#1072;&#1090;&#1072;&#1088;&#1077;&#1080;
+</p>
+
+
+
+<p class="Text">
+ <span class="SubsubsectionInline">&#1040;&#1085;&#1072;&#1083;&#1080;&#1079; &#1083;&#1086;&#1075;&#1072; &#1079;&#1072;&#1088;&#1103;&#1076;&#1072; &#1073;&#1072;&#1090;&#1072;&#1088;&#1077;&#1080;</span>
+</p>
+
+
+
+<p class="Input">
+ <img src="HTMLFiles/battery log_1.gif" alt="battery log_1.gif" width="1059" height="182" style="vertical-align:middle" />
+</p>
+
+<p class="Print">
+ <math xmlns='http://www.w3.org/1998/Math/MathML'>
+ <mtext>Tue 20 Sep 2016 01:18:39</mtext>
+</math>
+</p>
+
+<p class="Output">
+ <img src="HTMLFiles/battery log_2.gif" alt="battery log_2.gif" width="841" height="529" style="vertical-align:middle" />
+</p>
+
+<p class="Subsubsection">
+ &#1042;&#1090;&#1086;&#1088;&#1086;&#1081; &#1074;&#1072;&#1088;&#1080;&#1072;&#1085;&#1090;
+</p>
+
+
+
+<p class="Input">
+ <img src="HTMLFiles/battery log_3.gif" alt="battery log_3.gif" width="975" height="89" style="vertical-align:middle" />
+</p>
+
+<p class="Input">
+ <math xmlns='http://www.w3.org/1998/Math/MathML'>
+ <mrow>
+  <mtext>&#62371;</mtext>
+  <mrow>
+   <mrow>
+    <mrow>
+     <mi>takeNLevels</mi>
+     <mo>[</mo>
+     <mi>n_</mi>
+     <mo>]</mo>
+    </mrow>
+    <mo>:=</mo>
+    <mrow>
+     <mo>(</mo>
+     <mtext> </mtext>
+     <mrow>
+      <mrow>
+       <mi>log</mi>
+       <mo>=</mo>
+       <mrow>
+        <mo>{</mo>
+        <mo>}</mo>
+       </mrow>
+      </mrow>
+      <mo>;</mo>
+      <mrow>
+       <mi>RunScheduledTask</mi>
+       <mo>[</mo>
+       <mrow>
+        <mrow>
+         <mi>AppendTo</mi>
+         <mo>[</mo>
+         <mrow>
+          <mi>log</mi>
+          <mo>,</mo>
+          <mrow>
+           <mo>{</mo>
+           <mrow>
+            <mi>Now</mi>
+            <mo>,</mo>
+            <mtext> </mtext>
+            <mi>level</mi>
+           </mrow>
+           <mo>}</mo>
+          </mrow>
+         </mrow>
+         <mo>]</mo>
+        </mrow>
+        <mo>,</mo>
+        <mrow>
+         <mo>{</mo>
+         <mrow>
+          <mn>60</mn>
+          <mo>,</mo>
+          <mi>n</mi>
+         </mrow>
+         <mo>}</mo>
+        </mrow>
+       </mrow>
+       <mo>]</mo>
+      </mrow>
+      <mo>;</mo>
+     </mrow>
+     <mo>)</mo>
+    </mrow>
+   </mrow>
+   <mo>&InvisibleTimes;</mo>
+   <mtext>&#62371;</mtext>
+   <mrow>
+    <mi>Row</mi>
+    <mo>[</mo>
+    <mrow>
+     <mo>{</mo>
+     <mtext>&#62371;</mtext>
+     <mrow>
+      <mrow>
+       <mi>Button</mi>
+       <mo>[</mo>
+       <mrow>
+        <ms>Measure 50 times</ms>
+        <mo>,</mo>
+        <mtext> </mtext>
+        <mrow>
+         <mi>takeNLevels</mi>
+         <mo>[</mo>
+         <mn>1000</mn>
+         <mo>]</mo>
+        </mrow>
+       </mrow>
+       <mo>]</mo>
+      </mrow>
+      <mo>,</mo>
+      <mtext>&#62371;</mtext>
+      <mrow>
+       <mi>Button</mi>
+       <mo>[</mo>
+       <mrow>
+        <ms>Stop</ms>
+        <mo>,</mo>
+        <mrow>
+         <mi>RemoveScheduledTask</mi>
+         <mo>[</mo>
+         <mrow>
+          <mi>ScheduledTasks</mi>
+          <mo>[</mo>
+          <mo>]</mo>
+         </mrow>
+         <mo>]</mo>
+        </mrow>
+       </mrow>
+       <mo>]</mo>
+      </mrow>
+     </mrow>
+     <mtext>&#62371;</mtext>
+     <mo>}</mo>
+    </mrow>
+    <mo>]</mo>
+   </mrow>
+  </mrow>
+ </mrow>
+</math>
+</p>
+
+<p class="Output">
+ <math xmlns='http://www.w3.org/1998/Math/MathML'>
+ <mrow>
+  <none />
+ </mrow>
+</math>
+</p>
+
+<p class="Input">
+ <math xmlns='http://www.w3.org/1998/Math/MathML'>
+ <mrow>
+  <mi>Dynamic</mi>
+  <mo>[</mo>
+  <mrow>
+   <mi>DateListPlot</mi>
+   <mo>[</mo>
+   <mrow>
+    <mi>log</mi>
+    <mo>,</mo>
+    <mrow>
+     <mi>Filling</mi>
+     <mo>-&gt;</mo>
+     <mi>Bottom</mi>
+    </mrow>
+    <mo>,</mo>
+    <mtext> </mtext>
+    <mrow>
+     <mi>PlotMarkers</mi>
+     <mo>&rightarrow;</mo>
+     <mrow>
+      <mo>{</mo>
+      <mrow>
+       <mi>Automatic</mi>
+       <mo>,</mo>
+       <mn>1</mn>
+      </mrow>
+      <mo>}</mo>
+     </mrow>
+    </mrow>
+   </mrow>
+   <mo>]</mo>
+  </mrow>
+  <mo>]</mo>
+ </mrow>
+</math>
+</p>
+
+<p class="Output">
+ <img src="HTMLFiles/battery log_4.gif" alt="battery log_4.gif" width="540" height="343" style="vertical-align:middle" />
+</p>
+
+
+
+
+<div style="font-family:Helvetica; font-size:11px; width:100%; border:1px none #999999; border-top-style:solid; padding-top:2px; margin-top:20px;">
+ <a href="http://www.wolfram.com/language/" style="color:#000; text-decoration:none;">
+  <span style="color:#555555">Created with the Wolfram Language</span> 
+ </a>
+</div>
+</body>
+
+</html>

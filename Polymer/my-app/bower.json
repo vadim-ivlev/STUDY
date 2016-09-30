@@ -1,0 +1,21 @@
+{
+  "name": "my-app",
+  "homepage": "https://github.com/vadim-ivlev/STUDY",
+  "authors": [
+    "vadim-ivlev <vadim.ivlev@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.6.1",
+    "google-map": "GoogleWebComponents/google-map#^1.1.12"
+  }
+}
