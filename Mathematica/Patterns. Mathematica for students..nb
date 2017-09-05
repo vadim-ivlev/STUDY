@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     61810,       1250]
-NotebookOptionsPosition[     60504,       1201]
-NotebookOutlinePosition[     60889,       1218]
-CellTagsIndexPosition[     60846,       1215]
+NotebookDataLength[     63066,       1283]
+NotebookOptionsPosition[     61717,       1233]
+NotebookOutlinePosition[     62101,       1250]
+CellTagsIndexPosition[     62058,       1247]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -36,12 +36,15 @@ Cell[TextData[StyleBox[ButtonBox["The book",
 
 Cell[CellGroupData[{
 
-Cell["Mathematica for studentss", "Chapter",
+Cell["Mathematica for students", "Chapter",
  CellChangeTimes->{{3.683859690012477*^9, 3.683859712515305*^9}, {
-   3.683859803431139*^9, 3.683859804309908*^9}, 3.683862981623752*^9}],
+   3.683859803431139*^9, 3.683859804309908*^9}, 3.683862981623752*^9, 
+   3.695481839623481*^9}],
 
 Cell[TextData[{
- "1. Define a function f with a single argument. The function will return \
+ StyleBox["\n1.", "Subchapter",
+  FontWeight->"Bold"],
+ " \nDefine a function f with a single argument. The function will return \
 unevaluated unless\n",
  StyleBox["a.",
   FontWeight->"Bold"],
@@ -55,7 +58,7 @@ case the function returns the string \[OpenCurlyDoubleQuote]success\
 \[CloseCurlyDoubleQuote]."
 }], "Text",
  CellChangeTimes->{{3.6838599197895727`*^9, 3.683859938268836*^9}, 
-   3.683862393386621*^9}],
+   3.683862393386621*^9, 3.699898254903137*^9, 3.699898403088561*^9}],
 
 Cell[CellGroupData[{
 
@@ -128,8 +131,10 @@ Cell[BoxData[
 }, Open  ]],
 
 Cell[TextData[{
- "\n\n",
- StyleBox["3. ",
+ "\n\n\n\n",
+ StyleBox["3. ", "Chapter",
+  FontWeight->"Bold"],
+ StyleBox["\n",
   FontWeight->"Bold"],
  "Find a word that contains the five letters \[OpenCurlyDoubleQuote]angle,\
 \[CloseCurlyDoubleQuote] (contiguous, and in that order) and which begins \
@@ -137,29 +142,47 @@ with the letter \[OpenCurlyDoubleQuote]q\[CloseCurlyDoubleQuote] and ends \
 with the letter \[OpenCurlyDoubleQuote]s.\[CloseCurlyDoubleQuote]"
 }], "Text",
  CellChangeTimes->{{3.6838619095315437`*^9, 3.683861911849968*^9}, {
-  3.683862381921342*^9, 3.683862387967869*^9}}],
+   3.683862381921342*^9, 3.683862387967869*^9}, 3.6998982954304132`*^9, {
+   3.699898376739509*^9, 3.699898395176817*^9}}],
 
 Cell[CellGroupData[{
 
-Cell[BoxData[
+Cell[BoxData[{
  RowBox[{"DictionaryLookup", "[", 
   RowBox[{
-  "\"\<q\>\"", "~~", "___", "~~", "\"\<angle\>\"", "~~", "___", "~~", 
-   "\"\<s\>\""}], "]"}]], "Input",
+  "\"\<q\>\"", "~~", "___", "~~", "\"\<ang\>\"", "~~", "___", "~~", 
+   "\"\<s\>\""}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"DictionaryLookup", "[", " ", 
+  RowBox[{"RegularExpression", "[", "\"\<q.+ang.+s\>\"", "]"}], 
+  "]"}]}], "Input",
  CellChangeTimes->{{3.683862026451371*^9, 3.683862029423038*^9}, {
   3.683862082079595*^9, 3.683862112020256*^9}, {3.683862176284483*^9, 
-  3.683862280734919*^9}}],
+  3.683862280734919*^9}, {3.699897640025695*^9, 3.699897671051334*^9}, {
+  3.6998978100415363`*^9, 3.699897864206102*^9}, {3.699897940791259*^9, 
+  3.699897948780974*^9}, {3.699897999378633*^9, 3.6998980015619183`*^9}}],
 
 Cell[BoxData[
- RowBox[{"{", "\<\"quadrangles\"\>", "}"}]], "Output",
+ RowBox[{"{", 
+  RowBox[{"\<\"quadrangles\"\>", ",", "\<\"quangos\"\>"}], "}"}]], "Output",
  CellChangeTimes->{
-  3.683862089444941*^9, {3.683862177803343*^9, 3.683862282209077*^9}}]
+  3.683862089444941*^9, {3.683862177803343*^9, 3.683862282209077*^9}, 
+   3.6998979697713623`*^9, 3.6998980034009647`*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\<\"quadrangles\"\>", ",", "\<\"quangos\"\>"}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.683862089444941*^9, {3.683862177803343*^9, 3.683862282209077*^9}, 
+   3.6998979697713623`*^9, 3.699898003419306*^9}]
 }, Open  ]],
 
 Cell[TextData[{
- StyleBox["4.",
+ StyleBox["\n\n\n",
   FontWeight->"Bold"],
- " A DNA molecule is comprised of two complementary strands twisted into a \
+ StyleBox["4.", "Subchapter",
+  FontWeight->"Bold"],
+ StyleBox[" ", "Subchapter"],
+ "\nA DNA molecule is comprised of two complementary strands twisted into a \
 double helix, where each strand may be represented as an ordered sequence of \
 the letters A, C, G, and T. \n\nThe complementary strand is built from a \
 given strand by replacing every A by T, every T by A, every G by C, and every \
@@ -176,7 +199,8 @@ As and Ts are switched, and in which all Gs and Cs are switched.\n"
 }], "Text",
  CellChangeTimes->{{3.683862667889983*^9, 3.683862689157967*^9}, {
    3.6838628877261953`*^9, 3.68386289047836*^9}, 3.6838688463238277`*^9, {
-   3.683869574248971*^9, 3.683869585859645*^9}}],
+   3.683869574248971*^9, 3.683869585859645*^9}, {3.6998980144834337`*^9, 
+   3.699898015305099*^9}, 3.699898217569723*^9}],
 
 Cell[CellGroupData[{
 
@@ -271,18 +295,26 @@ Cell[BoxData["\[IndentingNewLine]"], "Input",
  CellChangeTimes->{3.68398336298665*^9}],
 
 Cell[TextData[{
- StyleBox["5. ",
+ StyleBox["5. \n",
   FontWeight->"Bold"],
- "This exercise concerns the Collatz conjecture.\n\n",
+ "This exercise concerns the ",
+ StyleBox["Collatz conjecture",
+  FontSize->18,
+  FontWeight->"Bold"],
+ ".\n\n",
  StyleBox["a. ",
   FontWeight->"Bold"],
- "Write a command collatz, that when given a positive integer will return the \
-orbit of that integer under the iterated Collatz process. The conjecture \
-states that every orbit ends at 1, so use NestWhileList with iterations \
-occurring as long as the iterated function does not return 1.\nTo be safe, \
-put a cap on it so that it will never carry out more than 1000 iterations."
+ "Write a command ",
+ StyleBox["collatz",
+  FontWeight->"Bold"],
+ ", that when given a positive integer will return the orbit of that integer \
+under the iterated Collatz process. The conjecture states that every orbit \
+ends at 1, so use NestWhileList with iterations occurring as long as the \
+iterated function does not return 1.\nTo be safe, put a cap on it so that it \
+will never carry out more than 1000 iterations."
 }], "Text",
- CellChangeTimes->{{3.683983332457006*^9, 3.683983379885634*^9}}],
+ CellChangeTimes->{{3.683983332457006*^9, 3.683983379885634*^9}, 
+   3.699898212121668*^9}],
 
 Cell[CellGroupData[{
 
@@ -1199,9 +1231,9 @@ fQFtAhnb
 }, Open  ]]
 }, Open  ]]
 },
-WindowSize->{1096, 817},
+WindowSize->{1311, 817},
 WindowMargins->{{49, Automatic}, {Automatic, 0}},
-Magnification:>1.25 Inherited,
+Magnification:>1.5 Inherited,
 FrontEndVersion->"11.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (July 28, \
 2016)",
 StyleDefinitions->"Default.nb"
@@ -1218,37 +1250,38 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[580, 22, 144, 2, 114, "Title"],
-Cell[727, 26, 438, 8, 37, "Text"],
+Cell[580, 22, 144, 2, 137, "Title"],
+Cell[727, 26, 438, 8, 46, "Text"],
 Cell[CellGroupData[{
-Cell[1190, 38, 182, 2, 81, "Chapter"],
-Cell[1375, 42, 631, 15, 85, "Text"],
+Cell[1190, 38, 207, 3, 96, "Chapter"],
+Cell[1400, 43, 730, 17, 212, "Text"],
 Cell[CellGroupData[{
-Cell[2031, 61, 1634, 40, 144, "Input"],
-Cell[3668, 103, 458, 11, 39, "Output"],
-Cell[4129, 116, 426, 10, 39, "Output"]
+Cell[2155, 64, 1634, 40, 173, "Input"],
+Cell[3792, 106, 458, 11, 48, "Output"],
+Cell[4253, 119, 426, 10, 48, "Output"]
 }, Open  ]],
-Cell[4570, 129, 488, 10, 109, "Text"],
+Cell[4694, 132, 617, 13, 260, "Text"],
 Cell[CellGroupData[{
-Cell[5083, 143, 329, 7, 39, "Input"],
-Cell[5415, 152, 159, 3, 39, "Output"]
+Cell[5336, 149, 661, 12, 80, "Input"],
+Cell[6000, 163, 248, 5, 48, "Output"],
+Cell[6251, 170, 246, 5, 48, "Output"]
 }, Open  ]],
-Cell[5589, 158, 1173, 20, 251, "Text"],
+Cell[6512, 178, 1335, 24, 454, "Text"],
 Cell[CellGroupData[{
-Cell[6787, 182, 2625, 66, 356, "Input"],
-Cell[9415, 250, 345, 7, 39, "Output"],
-Cell[9763, 259, 343, 7, 39, "Output"]
+Cell[7872, 206, 2625, 66, 417, "Input"],
+Cell[10500, 274, 345, 7, 48, "Output"],
+Cell[10848, 283, 343, 7, 48, "Output"]
 }, Open  ]],
-Cell[10121, 269, 86, 1, 66, "Input"],
-Cell[10210, 272, 610, 12, 156, "Text"],
+Cell[11206, 293, 86, 1, 80, "Input"],
+Cell[11295, 296, 738, 20, 229, "Text"],
 Cell[CellGroupData[{
-Cell[10845, 288, 1525, 34, 118, "Input"],
-Cell[12373, 324, 5478, 99, 296, "Output"]
+Cell[12058, 320, 1525, 34, 142, "Input"],
+Cell[13586, 356, 5478, 99, 355, "Output"]
 }, Open  ]],
-Cell[17866, 426, 482, 9, 109, "Text"],
+Cell[19079, 458, 482, 9, 135, "Text"],
 Cell[CellGroupData[{
-Cell[18373, 439, 1181, 24, 92, "Input"],
-Cell[19557, 465, 40907, 731, 474, "Output"]
+Cell[19586, 471, 1181, 24, 111, "Input"],
+Cell[20770, 497, 40907, 731, 569, "Output"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
