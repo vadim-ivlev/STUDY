@@ -1,5 +1,5 @@
 
-function aaa(){
+function aaa() {
     return 555;
 }
 

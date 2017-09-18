@@ -4,6 +4,19 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "taskName": "Launch Chrome in debug mode",
+            "type": "shell",
+            "command": "/Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome --remote-debugging-port=9222",
+            "windows": {
+                "command": ""
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            }
+        },
+
+        {
             "taskName": "build",
             "type": "process",
             "command": "msbuild",

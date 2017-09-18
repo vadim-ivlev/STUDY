@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    .jump span {
+        display: inline-block;
+        transition: 0.2s; 
+    }
+
+    .jump span:hover {
+        transform: translateY(-20px) rotate(10grad) scale(1.5) 
+    }
+    </style>
+</head>
+<body>
+    <h1 class="jump">Hello spread</h1>
+</body>
+<script>
+    const h = document.querySelector(".jump");
+    h.innerHTML = [...h.textContent].map(l=>`<span>${l}</span>`).join('');
+
+</script>
+</html>
