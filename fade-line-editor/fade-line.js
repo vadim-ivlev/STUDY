@@ -46,7 +46,6 @@ pane.addEventListener('mouseup'     ,(ev)=>{down=false; pushPoint(ev,'up')});
 
 
 
-
 function move_handler(ev){
     if (!down) return;
     pushPoint(ev);
