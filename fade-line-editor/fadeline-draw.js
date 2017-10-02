@@ -1,8 +1,8 @@
 function setup() {
     var myCanvas = createCanvas(600, 400);
     myCanvas.parent('pane');
-    // noFill();
-    // curveTightness(-0.4);
+    noFill();
+    curveTightness(-0.5);
     // frameRate(30);
     // noLoop();
 }
@@ -13,7 +13,7 @@ function draw() {
 }
 
 function redrawLastLines(timeSpan = 5000 ) {
-    for (let i =points.length  - 1; i > 0; i--) {
+    for (let i =points.length  - 1; i > 2; i--) {
         let a = getAlpha(timeSpan, i);
         if (a < 0) {
             //truncate poins?
@@ -22,13 +22,15 @@ function redrawLastLines(timeSpan = 5000 ) {
         }
 
 
-        let coords = getLineCoords(i);
+        // let coords = getLineCoords(i);
+        let coords = getCurveCoords(i);
         if (coords==null) continue;
 
         stroke(0, 0, 0, 256*a);
-        strokeWeight(3);
+        strokeWeight(a*6+1);
         // console.log(`len=${points.length} i=${i} a=${a} coords: ${coords}`);
-        line(...coords);
+        // line(...coords);
+        curve(...coords);
     }
 }
 
