@@ -2,6 +2,7 @@ function setup() {
     var myCanvas = createCanvas(600, 400);
     myCanvas.parent('pane');
     ellipse(width / 2, height / 2, 20, 20);
+    smooth(8)
     // frameRate(5);
 }
 
@@ -23,7 +24,7 @@ function redrawLastLines(timeSpan = 5000.0, startTime = Date.now()) {
         }
 
         stroke(0, 0, 0, 256 * a);
-        strokeWeight(2);
+        strokeWeight(3);
         line(p1.x, p1.y, p2.x, p2.y);
     }
 }
@@ -42,3 +43,4 @@ function getAlpha(timeSpan, startTime, point) {
 // The user can change time before the lines start fading.
 // Make lines smooth
 // Att texture to lines.
+// make color depending on pressure.
