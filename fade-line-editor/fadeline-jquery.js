@@ -31,8 +31,8 @@ function pushPoint(ev, action) {
     let p = {
         action,
         eventType: ev.type,
-        x: ev.offsetX,
-        y: ev.offsetY,
+        x: (ev.offsetX),
+        y: (ev.offsetY),
         pressure: press,
         time: Date.now()
     };
@@ -69,16 +69,16 @@ function force_handler(force, event) {
 }
 
 
-function over_handler(event) {
+function mouseover_handler(event) {
     if (event.buttons)
         pointerDown = true;
-    pushPoint(event, 'over')
+    pushPoint(event, 'mouseover')
 }
 
 
-function out_handler(event) {
+function mouseout_handler(event) {
     pointerDown = false;
-    pushPoint(event, 'movestart')
+    pushPoint(event, 'mouseout')
 }
 
 
@@ -125,8 +125,8 @@ $('#pane').pressure({
 
 
 // mouse events
-pane.on('mouseover', over_handler);
-pane.on('mouseout', out_handler);
+pane.on('mouseover', mouseover_handler);
+pane.on('mouseout', mouseout_handler);
 //pane.on('mousedown', down_handler);
 // pane.on('mouseup', up_handler);
 // pane.on('mousemove', move_handler)

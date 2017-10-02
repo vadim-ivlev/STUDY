@@ -1,39 +1,78 @@
 function setup() {
     var myCanvas = createCanvas(600, 400);
     myCanvas.parent('pane');
-    ellipse(width / 2, height / 2, 20, 20);
-    smooth(8)
-    // frameRate(5);
+    // noFill();
+    // curveTightness(-0.4);
+    // frameRate(30);
+    // noLoop();
 }
 
 function draw() {
-    redrawLastLines(30000);
+    clear();
+    redrawLastLines(5000);
 }
 
-function redrawLastLines(timeSpan = 5000.0, startTime = Date.now()) {
-    clear();
-    for (let i = points.length - 1; i > 0; i--) {
-        let p1 = points[i];
-        if (p1.action != 'move') continue;
-        let p2 = points[i - 1];
-        let a = getAlpha(timeSpan, startTime, p1);
-        //console.log(a);
+function redrawLastLines(timeSpan = 5000 ) {
+    for (let i =points.length  - 1; i > 0; i--) {
+        let a = getAlpha(timeSpan, i);
         if (a < 0) {
-            //truncate poins? 
+            //truncate poins?
+            console.log('alpha <0'); 
             return;
         }
 
-        stroke(0, 0, 0, 256 * a);
+
+        let coords = getLineCoords(i);
+        if (coords==null) continue;
+
+        stroke(0, 0, 0, 256*a);
         strokeWeight(3);
-        line(p1.x, p1.y, p2.x, p2.y);
+        // console.log(`len=${points.length} i=${i} a=${a} coords: ${coords}`);
+        line(...coords);
     }
 }
 
-function getAlpha(timeSpan, startTime, point) {
-    let dt=(Date.now() - point.time);
+function getLineCoords(i){
+        let p1 = points[i];
+        if (p1.action != 'move'){ 
+            // console.log('!=move, ',i, p1);
+            return null;
+        }
+        let p2 = points[i - 1];
+        return [p1.x, p1.y, p2.x, p2.y];
+}
+
+function getCurveCoords(i){
+        var p1 =points[i],p2,p3,p4;    
+
+        p1 = points[i];
+        if (p1.action != 'move'){ 
+            return null;
+        }
+        p2 = points[i - 1];
+        if (p2.action != 'move'){ 
+            return [p1.x, p1.y, p1.x, p1.y, p2.x, p2.y, p2.x, p2.y];
+        }
+        p3 = points[i - 2];
+        if (p3.action != 'move'){ 
+            return [p1.x, p1.y, p2.x, p2.y, p2.x, p2.y, p3.x, p3.y];
+        }
+        p4 = points[i - 3];
+        return [p1.x, p1.y, p2.x, p2.y, p3.x, p3.y, p4.x, p4.y];
+}
+
+    
+
+
+
+function getAlpha(timeSpan, i) {
+    let p1 = points[i];
+    let now=Date.now() ;
+    let dt=(now - p1.time);
     let fading = 1.0 - dt/timeSpan;
-    // console.log(`now:${Date.now()} p.time:${point.time} dt:${dt}`)
-    return fading * point.pressure;
+    let alpha=fading * p1.pressure;
+    // console.log(`now:${now} p.time:${p1.time} dt:${dt} alpha:${alpha}`)
+    return alpha;
 }
 
 // TODO. 
