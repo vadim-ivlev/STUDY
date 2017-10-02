@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/> -->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="./js/jquery.event.move.js"></script>
+    <script src="./node_modules/pressure/dist/jquery.pressure.min.js"></script>
+    <script src="./js/p5.min.js"></script>
+    <script src="./fadeline-jquery.js"  defer></script>
+    <script src="./fadeline-draw.js" defer></script>
+    <style>
+    #pane {
+        background-color: whitesmoke;
+        position:absolute;
+        cursor:none;
+    }
+    #pane canvas {
+        border: 1px solid silver;
+    }
+    /* .noselect {
+        -webkit-touch-callout: none; 
+        -webkit-user-select: none; 
+        -khtml-user-select: none; 
+        -moz-user-select: none; 
+        -ms-user-select: none; 
+        user-select: none; 
+                            
+    } */
+    </style>
+</head>
+<body>
+    <h1>Fade line editor</h1>
+    <progress id="meter" max="1" value="0.1" ></progress>
+    <pre id="info">0 0</pre>
+    <pre><span id="infoPressureEvents">PresureEvents</span> <span id="infoPressure">pressure</span></pre>
+    <div id="pane" class="noselect"></div>
+
+</body>
+</html>

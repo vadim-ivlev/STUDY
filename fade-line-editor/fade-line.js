@@ -19,13 +19,18 @@ const points=[];
  * @param {String} pointer 
  */
 function pushPoint(ev,pointer){
-    points.push({
+     ev.preventDefault();
+    let p = {
         pointer,
+        type:ev.type,
         x: ev.offsetX,
         y: ev.offsetY,
         pressure: ev.pressure,
         time: Date.now()
-    });
+    };
+    inf(printPoint(p)+` N:${points.length}`);
+    meter.setAttribute('value',ev.pressure);
+    points.push(p);
 }
 
 
@@ -39,7 +44,7 @@ function printPoint(p){
     return s;
 }
 
-// pane.addEventListener('mousemove',mouse_move_handler);
+pane.addEventListener('mousemove'   ,move_handler);
 pane.addEventListener('pointermove' ,move_handler);
 pane.addEventListener('mousedown'   ,(ev)=>{down=true; pushPoint(ev,'down')});
 pane.addEventListener('mouseup'     ,(ev)=>{down=false; pushPoint(ev,'up')});
@@ -47,9 +52,11 @@ pane.addEventListener('mouseup'     ,(ev)=>{down=false; pushPoint(ev,'up')});
 
 
 function move_handler(ev){
-    if (!down) return;
-    pushPoint(ev);
-    meter.setAttribute('value',ev.pressure);
-    let p=points.slice(-1)[0];
-    inf(printPoint(p)+` N:${points.length}`);
+    if (down) 
+        pushPoint(ev);
+}
+
+
+pane.ontouchmove = function(event){
+   // event.preventDefault();
 }
