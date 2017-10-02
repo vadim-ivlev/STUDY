@@ -1,8 +1,11 @@
+
 function setup() {
-    var myCanvas = createCanvas(600, 400);
+    var myCanvas = createCanvas(windowWidth-80, windowHeight/2);
     myCanvas.parent('pane');
     noFill();
     curveTightness(-0.5);
+    // blendMode(DIFFERENCE);    
+    
     // frameRate(30);
     // noLoop();
 }
@@ -27,22 +30,22 @@ function redrawLastLines(timeSpan = 5000 ) {
         if (coords==null) continue;
 
         stroke(0, 0, 0, 256*a);
-        strokeWeight(a*6+1);
+        strokeWeight(2+a*2);
         // console.log(`len=${points.length} i=${i} a=${a} coords: ${coords}`);
         // line(...coords);
         curve(...coords);
     }
 }
 
-function getLineCoords(i){
-        let p1 = points[i];
-        if (p1.action != 'move'){ 
-            // console.log('!=move, ',i, p1);
-            return null;
-        }
-        let p2 = points[i - 1];
-        return [p1.x, p1.y, p2.x, p2.y];
-}
+// function getLineCoords(i){
+//         let p1 = points[i];
+//         if (p1.action != 'move'){ 
+//             // console.log('!=move, ',i, p1);
+//             return null;
+//         }
+//         let p2 = points[i - 1];
+//         return [p1.x, p1.y, p2.x, p2.y];
+// }
 
 function getCurveCoords(i){
         var p1 =points[i],p2,p3,p4;    

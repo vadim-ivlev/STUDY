@@ -10,16 +10,36 @@
     <script src="./js/jquery.event.move.js"></script>
     <script src="./node_modules/pressure/dist/jquery.pressure.min.js"></script>
     <script src="./js/p5.min.js"></script>
+    <script src="./js/jscolor.min.js"></script>
     <script src="./fadeline-jquery.js"  defer></script>
     <script src="./fadeline-draw.js" defer></script>
     <style>
+        body{
+            font-family:  sans-serif;
+        }
     #pane {
         background-color: whitesmoke;
         position:absolute;
+        left: 40px;
+        top:100px;
         /* cursor:none; */
     }
+    .tools{
+        background-color: white;
+        /* border: 1px solid silver; */
+        position:absolute;
+        left: 0px;
+        top:100px;
+    }
+.tools button {
+    border: 0px solid black;
+    /* border-radius: 18px; */
+    margin:4px;
+    width:36px;
+    height:36px;
+}
     #pane canvas {
-        border: 1px solid silver;
+        /* border: 1px solid silver; */
     }
     /* .noselect {
         -webkit-touch-callout: none; 
@@ -34,10 +54,23 @@
 </head>
 <body>
     <h1>Fade line editor</h1>
+    <div id="pane" class="noselect"></div>
+    <div class="tools">
+        <button class="cpicker 
+        jscolor {valueElement:null,value:'66ccff',
+        width:243, height:150, position:'right',
+        borderWidth:1, borderColor:'#DDD', insetColor:'transparent', 
+        backgroundColor:'white',shadow:false, borderRadius:0}" ></button>
+        <br>
+        <button onclick="saveCanvas('drawing','png')">save</button>
+    </div>
+<!-- 
     <progress id="meter" max="1" value="0.1" ></progress>
     <pre id="info">0 0</pre>
-    <pre><span id="infoPressureEvents">PresureEvents</span> <span id="infoPressure">pressure</span></pre>
-    <div id="pane" class="noselect"></div>
+    <pre><span id="infoPressureEvents">PresureEvents</span> 
+        <span id="infoPressure">pressure</span>
+    </pre> 
+-->
 
 </body>
 </html>

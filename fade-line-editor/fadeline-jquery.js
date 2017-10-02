@@ -103,8 +103,8 @@ function move_handler(event) {
 // BEGIN ============================================
 
 // prevent the page from dragging in iOS
-// $(document).on('touchmove',(event) => event.preventDefault());
-pane.on('touchmove', (event) => event.preventDefault());
+$(document).on('touchmove',(event) => event.preventDefault());
+// pane.on('touchmove', (event) => event.preventDefault());
 // document.ontouchmove = (e)=> e.preventDefault();
 
 
