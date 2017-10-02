@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<!-- saved from url=(0093)http://www.williammalone.com/articles/create-html5-canvas-javascript-drawing-app/#demo-simple -->
+<html class="gr__williammalone_com wf-fjallaone-n4-active wf-questrial-n4-active wf-fontawesome-n4-inactive wf-active"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>Create a Drawing App with HTML5 Canvas and JavaScript { William Malone }</title>
+
+<meta name="author" content="William Malone">
+<meta name="description" content="William Malone: This tutorial will take you step by step through the development of a simple web drawing application using HTML5 canvas and its partner JavaScript.">
+<meta name="keywords" content="william malone, html5, html 5, canvas, Javascript, drawing, tutorial">
+
+<meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1">
+
+<meta property="og:title" content="Create a Drawing App with HTML5 Canvas and JavaScript"><meta property="og:image" content="http://www.williammalone.com/articles/create-html5-canvas-javascript-drawing-app/images/thumbnail.jpg"><meta property="og:type" content="article"><meta name="twitter:site" content="@williammalone"><link rel="shortlink" href="http://wmalone.com/draw"><meta property="og:url" content="http://www.williammalone.com/articles/create-html5-canvas-javascript-drawing-app/">
+<link rel="index" title="William Malone" href="http://www.williammalone.com/">
+<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://feeds.feedburner.com/williamMalone">
+
+<link rel="stylesheet" media="screen, projection" type="text/css" href="./a_files/main.css">
+
+
+<link rel="stylesheet" href="./a_files/article.css" media="screen, projection"><link rel="stylesheet" href="./a_files/style.css" media="screen, projection">
+<link rel="stylesheet" href="./a_files/print.css" media="print">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>
+<script src="./a_files/analytics.js" async=""></script><script src="./a_files/typekit-web-font-loader.js" async=""></script><script>// Load fonts via Typekit Web Font Loader (https://github.com/typekit/webfontloader)
+WebFontConfig = {
+	google: {
+		families: ["Fjalla One", "Questrial"]
+	}, 
+	custom: {
+        families: ['fontawesome'],
+        urls: [ 'http://www.williammalone.com/css/font-awesome/4.2.0/css/font-awesome.min.css' ]
+   }
+};
+
+(function() {var wf = document.createElement('script');wf.src='http://sweet.watermelonduck.com/js/typekit-web-font-loader.js';wf.async=1;var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(wf, s);})();</script>
+
+<script>// Google Analytics
+var _gaq = _gaq || [];_gaq.push(['_setAccount', 'UA-9566612-1']);_gaq.push(['_trackPageview']);
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.src=g;a.async=1;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-9566612-1', 'auto');ga('send', 'pageview');</script>
+			
+<script>
+var WM;
+
+if (!WM) {
+	WM={};
+}
+
+WM.articleDescription = "This tutorial will take you step by step through the development of a simple web drawing application using HTML5 canvas and its partner JavaScript.;";
+WM.articleShortURL = "wmalone.com/draw;";
+WM.thumbnailurl = "http://www.williammalone.com/articles/create-html5-canvas-javascript-drawing-app/images/thumbnail.jpg;";
+WM.pageName = "Create a Drawing App with HTML5 Canvas and JavaScript";
+
+(function () {
+	var onWindowLoad = function () {
+		
+		var loadScript = function (src, callback) {
+		
+			var element = document.createElement("script");
+				element.src = src;
+				element.async = true;
+				document.body.appendChild(element);
+				
+				if (callback) {
+				
+					element.onreadystatechange = function () {
+						if (this.readyState === "loaded" || this.readyState === "complete") { 
+							callback();
+						}
+					};
+					element.onload = callback;
+				}
+		},
+		
+		loadArticleScript = function () {
+		loadScript("js/javascript.js");
+		};
+		loadScript("http://sweet.watermelonduck.com/js/main.js");
+			loadScript("http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js", loadArticleScript);
+		loadScript("http://sweet.watermelonduck.com/js/swfobject.js");
+	};
+
+	if (window.addEventListener) {
+		window.addEventListener("load", onWindowLoad, false);
+	} else if (window.attachEvent) {
+		window.attachEvent("onload", onWindowLoad);
+	} else {
+		window.onload = onWindowLoad;
+	}
+}());			
+</script><link rel="stylesheet" href="./a_files/css"><link rel="stylesheet" href="./a_files/font-awesome.min.css">
+<style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
+.en-markup-crop-options {
+    top: 18px !important;
+    left: 50% !important;
+    margin-left: -100px !important;
+    width: 200px !important;
+    border: 2px rgba(255,255,255,.38) solid !important;
+    border-radius: 4px !important;
+}
+
+.en-markup-crop-options div div:first-of-type {
+    margin-left: 0px !important;
+}
+</style></head>
+
+<body style="" data-gr-c-s-loaded="true">
+    <div id="page">
+    	
+        <header role="banner">
+
+<div class="promotion-container"><a target="_blank" href="http://wmalone.com/mondaymoon"><aside class="promotion-banner"><p>Explore Space in My New Kids Game</p></aside></a></div>	        
+	        
+            
+            <a href="http://www.williammalone.com/" id="william-malone-logo" rel="me home" title="William Malone"></a>
+
+			<nav role="navigation">
+	            <ul id="nav">
+	                <li id="home-link" class="nav-link"><a href="http://www.williammalone.com/" rel="home">home</a></li><li id="articles-link-down" class="nav-link nav-down"><a href="http://www.williammalone.com/articles/">articles</a></li><li id="works-link" class="nav-link"><a href="http://www.williammalone.com/works/">works</a></li><li id="about-link" class="nav-link"><a href="http://www.williammalone.com/about/">about</a></li><li id="contact-link" class="nav-link"><a href="http://www.williammalone.com/contact/">contact</a></li>	            </ul>
+	            
+	            <div id="nav-down-icon" style="margin-left: 384px; visibility: visible;"></div>
+				<div id="nav-over-icon" style="visibility: visible; opacity: 0; margin-top: 0px; margin-left: 264px;"></div>
+			</nav>
+		</header>      
+
+
+            <div id="content-wrapper" role="main">
+            	<aside id="aside" role="complementary">
+            		<a class="img william-malone-photo" href="http://www.williammalone.com/about/" title="William Malone"></a>
+            			<div id="follow-me-on-twitter">
+							<a href="https://twitter.com/williamMalone" target="_blank">
+								<div id="follow-me-on-twitter-icon"><i class="fa fa-twitter"></i></div>
+							</a>
+						</div>
+						<div id="add-me-to-google-plus">
+							<a href="https://plus.google.com/+WilliamMalone" target="_blank">
+								<div id="add-me-to-google-plus-icon"><i class="fa fa-google-plus"></i></div>
+							</a>
+						</div>
+                
+<div id="related-container"><section id="related-articles">
+	<div class="aside-label">
+		<span class="aside-label-word-odd">related</span><span class="aside-label-word-negative">articles</span>
+	</div><ul><li class="related-article bubble"><a href="http://www.williammalone.com/articles/how-to-make-sweet-html5-game" title="Sweet HTML5 Game" class="subtle-link relatedArticleTitle">Sweet HTML5 Game</a><a href="http://www.williammalone.com/articles/how-to-make-sweet-html5-game" title="Sweet HTML5 Game"><img src="./a_files/thumbnail.jpg"></a></li><li class="related-article bubble"><a href="http://www.williammalone.com/articles/create-html5-canvas-javascript-sprite-animation" title="HTML5 Sprite Animation Tutorial" class="subtle-link relatedArticleTitle">HTML5 Sprite Animation Tutorial</a><a href="http://www.williammalone.com/articles/create-html5-canvas-javascript-sprite-animation" title="HTML5 Sprite Animation Tutorial"><img src="./a_files/thumbnail(1).jpg"></a></li><li class="related-article bubble"><a href="http://www.williammalone.com/articles/create-html5-canvas-javascript-game-character" title="HTML5 Game Character" class="subtle-link relatedArticleTitle">HTML5 Game Character</a><a href="http://www.williammalone.com/articles/create-html5-canvas-javascript-game-character" title="HTML5 Game Character"><img src="./a_files/thumbnail(2).jpg"></a></li></ul></section><section id="related-briefs">
+	<div class="aside-label">
+		<span class="aside-label-word-odd">related</span><span class="aside-label-word-negative">briefs</span>
+	</div><ul><li class="relatedBrief bubble"><div class="briefQuestionMark"><i class="fa fa-question-circle"></i></div><a href="http://www.williammalone.com/briefs/how-to-draw-rectangle-html5-canvas" title="How do you draw a rectangle on HTML5 canvas?" class="subtle-link briefListing">How do you draw a rectangle on HTML5 canvas?</a></li></ul></section></div>				
+
+</aside>
+<div id="content">
+<article role="article" itemscope="" itemtype="http://schema.org/BlogPosting">      
+
+           
+                                     		<h1>Create a Drawing App with HTML5 Canvas and JavaScript</h1>
+                    <div class="author"><span id="by">by</span> William Malone</div>
+                    <p></p>
+                    <div class="image">
+                    	<img src="./a_files/html5-drawing-tool-example.png" width="490px" height="220px" alt="html5 drawing tool example crayon">
+                    </div>
+                    <p>This tutorial will take you step by step through the development of a simple web drawing application using HTML5 canvas and its partner JavaScript. The aim of this article is to explore the process of creating a simple app along the way learn:</p>
+                    <ul class="standardList">
+                    	<li>How to draw dynamically on HTML5 canvas</li>
+                    	<li>The future possiblities of HTML5 canvas</li>                        
+                    	<li>The current browser compatibility of HTML5 canvas</li>
+                    </ul>
+                    <p>Each step includes a working demo; if you want to skip ahead:</p>
+                    <ul class="standardList">
+                    	<li><a href="http://www.williammalone.com/articles/create-html5-canvas-javascript-drawing-app/#demo-simple">Simple Demo</a></li>
+                    	<li><a href="http://www.williammalone.com/articles/create-html5-canvas-javascript-drawing-app/#demo-colors">Colors Demo</a></li>                    
+                    	<li><a href="http://www.williammalone.com/articles/create-html5-canvas-javascript-drawing-app/#demo-sizes">Sizes Demo</a></li>
+                        <li><a href="http://www.williammalone.com/articles/create-html5-canvas-javascript-drawing-app/#demo-tools">Tools Demo</a></li>
+                        <li><a href="http://www.williammalone.com/articles/create-html5-canvas-javascript-drawing-app/#demo-outline">Outline Demo</a></li>
+                        <li><a href="http://www.williammalone.com/articles/create-html5-canvas-javascript-drawing-app/#demo-complete">Complete Demo</a></li>
+                    </ul>
+                    <h2>Define Our Objective</h2>
+                    
+					<p>Let's create a web app where the user can dynamically draw on an HTML5 canvas. What will our users use? A coloring book comes to mind; that means crayons. Our first tool is a crayon. Although the real world doesn't agree, I think we should be able to erase crayons. Our second tool will be an eraser (sorry reality). And because I have always have been a Sharpie® fan our final tool will be a marker.</p>
+                    <p>Our tools could use colors (except maybe our eraser). Let's keep it simple, so we give our user 4 different colors to choose from.</p>
+                    <p>Similarly let's also give our user 4 different sizes to draw with, because we can. To recap our app should have the following:</p>
+                    <ul class="standardList">
+                    	<li>3 tools: crayon, marker, eraser</li>
+                    	<li>4 colors to choose from (except eraser)</li>
+                    	<li>4 sizes to choose from</li>                       
+                    </ul>
+                    <p>Like a coloring book, let's give our user something to "color". I have chosen a favorite of mine: <a href="http://www.watermelonduck.com/" class="watermelonDuck" rel="me" title="Watermelon Duck" target="_blank">Watermelon Duck</a> by Rachel Cruthirds.</p>
+                    <h2>Prepare HTML5 Canvas: Markup</h2>
+                    
+					<p>We only need a line of markup; everything else will be in scripting.</p>
+					<pre class="code html">&lt;canvas id="canvasInAPerfectWorld" width="490" height="220"&gt;&lt;/canvas&gt;</pre>
+                    <p><em>Wait</em>... HTML5 is still new and some browsers (pssst... that means you Internet Explorer) don't support the canvas tag, so let's use this line of markup instead:</p>
+					<pre class="code html">&lt;div id="canvasDiv"&gt;&lt;/div&gt;</pre>
+                    <h2>Prepare HTML5 Canvas: Scripting</h2>
+                    
+                    <p>To prepare our canvas, we would hope to use:</p>
+                    <pre class="code js">context = document.getElementById('canvasInAPerfectWorld').getContext("2d");</pre>
+                    <p>However <abbr title="Internet Explorer">IE</abbr> doesn't know what the canvas tag means, and if we used that in our markup, <abbr title="Internet Explorer">IE</abbr> would serve us an entrée of error. Instead we create a canvas element in JavaScript and append it to our div we called <code>canvasDiv</code>.</p>
+					<pre class="code js">var canvasDiv = document.getElementById('canvasDiv');
+canvas = document.createElement('canvas');
+canvas.setAttribute('width', canvasWidth);
+canvas.setAttribute('height', canvasHeight);
+canvas.setAttribute('id', 'canvas');
+canvasDiv.appendChild(canvas);
+if(typeof G_vmlCanvasManager != 'undefined') {
+	canvas = G_vmlCanvasManager.initElement(canvas);
+}
+context = canvas.getContext("2d");</pre>
+					<p>For Internet Explorer compatibility we will also have to include an additional script: <a href="http://code.google.com/p/explorercanvas/" class="subtleLink" title="HTML5 Canvas for Internet Explorer" target="_self">ExplorerCanvas</a>.</p>
+                    <h2>Create a Simple Drawing "Canvas"</h2>
+                    
+                    <p>Before we add any options, let's tackle the basics of dynamically drawing on an HTML5 canvas. It will consist of 4 mouse events and two functions: <code>addClick</code> to record mouse data and <code>redraw</code> which will draw that data.</p>
+                    <p><em>Mouse Down Event:</em> When the user clicks on canvas we record the position in an array via the <code>addClick</code> function. We set the boolean <code>paint</code> to true (we will see why in a sec). Finally we update the canvas with the function <code>redraw</code>.</p>
+                    <pre class="code js">$('#canvas').mousedown(function(e){
+  var mouseX = e.pageX - this.offsetLeft;
+  var mouseY = e.pageY - this.offsetTop;
+		
+  paint = true;
+  addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop);
+  redraw();
+});</pre>
+					<p><em>Mouse Move Event:</em> Just like moving the tip of a marker on a sheet of paper, we want to draw on the canvas when our user is pressing down. The boolean <code>paint</code> will let us know if the virtual marker is pressing down on the paper or not. If <code>paint</code> is true, then we record the value. Then redraw.</p>
+                    <pre class="code js">$('#canvas').mousemove(function(e){
+  if(paint){
+    addClick(e.pageX - this.offsetLeft, e.pageY - this.offsetTop, true);
+    redraw();
+  }
+});</pre>
+					<p><em>Mouse Up Event:</em> Marker is off the paper; <code>paint</code> boolean will remember!</p>
+                    <pre class="code js">$('#canvas').mouseup(function(e){
+  paint = false;
+});</pre>
+					<p><em>Mouse Leave Event:</em> If the marker goes off the paper, then forget you!</p>
+                    <pre class="code js">$('#canvas').mouseleave(function(e){
+  paint = false;
+});</pre>
+                    <p>Here is the <code>addClick</code> function that will save the click position:</p>
+                    <pre class="code js">var clickX = new Array();
+var clickY = new Array();
+var clickDrag = new Array();
+var paint;
+
+function addClick(x, y, dragging)
+{
+  clickX.push(x);
+  clickY.push(y);
+  clickDrag.push(dragging);
+}</pre>	
+					<p>The <code>redraw</code> function is where the magic happens. Each time the function is called the canvas is cleared and everything is redrawn. We could be more efficient and redraw only certain aspects that have been changed, but let's keep it simple.</p>
+                    <p>We set a few stroke properties for the color, shape, and width. Then for every time we recorded as a marker on paper we are going to draw a line.</p>
+                    <pre class="code js">function redraw(){
+  context.clearRect(0, 0, context.canvas.width, context.canvas.height); // Clears the canvas
+  
+  context.strokeStyle = "#df4b26";
+  context.lineJoin = "round";
+  context.lineWidth = 5;
+			
+  for(var i=0; i &lt; clickX.length; i++) {		
+    context.beginPath();
+    if(clickDrag[i] &amp;&amp; i){
+      context.moveTo(clickX[i-1], clickY[i-1]);
+     }else{
+       context.moveTo(clickX[i]-1, clickY[i]);
+     }
+     context.lineTo(clickX[i], clickY[i]);
+     context.closePath();
+     context.stroke();
+  }
+}</pre>
+
+                    <a name="demo-simple"></a>
+					<h2>Simple Drawing Canvas Demo</h2>
+                    
+					<p>Give it a try:</p>
+                    <p class="demoToolList">Clear the canvas: <button id="clearCanvasSimple" type="button">Clear</button></p>
+    				<div class="image">
+						<div id="canvasSimpleDiv"><canvas width="490" height="220" id="canvasSimple"></canvas></div>
+                    </div>
+                    <h2>Add Colors</h2>
+                    
+					<p>Let's give our user some color choices. To do so, all we need to do is add declare a few global variables and update our redraw function.</p>
+                    <p>Declare four color variables: <code>colorPurple</code>, <code>colorGreen</code>, <code>colorYellow</code>, <code>colorBrown</code> with corresponding hex color values, a variable to store the current color: <code>curColor</code>, and an array to match the chosen color when the user clicked the canvas <code>clickColor</code>.</p>
+                        <pre class="code js"><code class="highlight">var colorPurple = "#cb3594";
+var colorGreen = "#659b41";
+var colorYellow = "#ffcf33";
+var colorBrown = "#986928";
+
+var curColor = colorPurple;
+var clickColor = new Array();</code></pre>
+
+                    <p>The <code>addClick</code> function needs to be updated to record the chosen color when the user clicks.</p>
+                    <pre class="code js">function addClick(x, y, dragging)
+{
+  clickX.push(x);
+  clickY.push(y);
+  clickDrag.push(dragging);
+  <code class="highlight">clickColor.push(curColor);</code>
+}</pre>
+                    <p>Since the color can vary now, we need to update the <code>redraw</code> function so it references the color that was active when the user clicked. We move the line about <code>strokeStyle</code> into the for loop and assign it to color value in the new array <code>clickColor</code> that corresponds to the user's clickage.</p>
+                    <pre class="code js">function redraw(){
+  <code class="highlight delete">/* context.strokeStyle = "#df4b26"; */</code>
+  context.lineJoin = "round";
+  context.lineWidth = 5;
+			
+  for(var i=0; i &lt; clickX.length; i++)
+  {		
+    context.beginPath();
+    if(clickDrag[i] &amp;&amp; i){
+      contex.moveTo(clickX[i-1], clickY[i-1]);
+    }else{
+      context.moveTo(clickX[i]-1, clickY[i]);
+    }
+    context.lineTo(clickX[i], clickY[i]);
+    context.closePath();
+    <code class="highlight">context.strokeStyle = clickColor[i];</code>
+    context.stroke();
+  }
+}</pre>
+
+                    <a name="demo-colors"></a>
+                    <h2>Demo Colors</h2>
+                    
+					<p>Try it with color choices:</p>
+                    <ul class="demoToolList">
+                    	<li>Clear the canvas: <button id="clearCanvasSimpleColors" type="button">Clear</button></li>
+                    	<li><span class="highlight">Choose a color: </span><button id="choosePurpleSimpleColors" type="button">Purple</button><button id="chooseGreenSimpleColors" type="button">Green</button><button id="chooseYellowSimpleColors" type="button">Yellow</button><button id="chooseBrownSimpleColors" type="button">Brown</button></li>
+                    </ul>
+    				<div class="image">
+						<div id="canvasSimpleColorsDiv"><canvas width="490" height="220" id="canvasSimpleColors"></canvas></div>
+                    </div>
+                    <h2>Add Sizes</h2>
+                    
+                    <p>Just like we added colors, let's add some sizes to chose from: "small", "normal", "large", and "huge".</p>
+                    <p>We need a couple more global variables: <code>clickSize</code> and <code>curSize</code>.</p>
+                    <pre class="code js"><code class="highlight">var clickSize = new Array();
+var curSize = "normal";</code></pre>
+
+                    <p>The <code>addClick</code> function needs to be updated to record the chosen size when the user clicks.</p>
+                    <pre class="code js">function addClick(x, y, dragging)
+{
+  clickX.push(x);
+  clickY.push(y);
+  clickDrag.push(dragging);
+  clickColor.push(curColor);
+  <code class="highlight">clickSize.push(curSize);
+</code>
+}</pre>
+                    <p>Update the <code>redraw</code> function to handle the new sizes.</p>
+                    <pre class="code js">function redraw(){
+  context.lineJoin = "round";
+  <code class="highlight delete">/* context.lineWidth = 5; */</code>
+  for(var i=0; i &lt; clickX.length; i++)
+  {		
+    context.beginPath();
+    if(clickDrag[i] &amp;&amp; i){
+      context.moveTo(clickX[i-1], clickY[i-1]);
+    }else{
+      context.moveTo(clickX[i]-1, clickY[i]);
+    }
+    context.lineTo(clickX[i], clickY[i]);
+    context.closePath();
+    context.strokeStyle = clickColor[i];
+    <code class="highlight">context.lineWidth = radius;</code>
+    context.stroke();
+  }
+}</pre>
+                    <a name="demo-sizes"></a>
+                    <h2>Demo Sizes</h2>
+                    
+					<p>Try it with different sizes:</p>
+                    <ul class="demoToolList">
+                    	<li>Clear the canvas: <button id="clearCanvasSimpleSizes" type="button">Clear</button></li>
+                    	<li>Choose a color: <button id="choosePurpleSimpleSizes" type="button">Purple</button><button id="chooseGreenSimpleSizes" type="button">Green</button><button id="chooseYellowSimpleSizes" type="button">Yellow</button><button id="chooseBrownSimpleSizes" type="button">Brown</button></li>
+                        <li><span class="highlight">Choose a size: </span><button id="chooseSmallSimpleSizes" type="button">Small</button><button id="chooseNormalSimpleSizes" type="button">Normal</button><button id="chooseLargeSimpleSizes" type="button">Large</button><button id="chooseHugeSimpleSizes" type="button">Huge</button></li>	
+                    </ul>
+    				<div class="image">
+						<div id="canvasSimpleSizesDiv"><canvas width="490" height="220" id="canvasSimpleSizes"></canvas></div>
+                    </div>
+                    <h2>Add Tools</h2>
+                    
+					<p>Crayon, Marker, Eraser. Three tools. Let's make them.</p>
+                    <p>The two global variables we need are: <code>clickTool</code> and <code>curTool</code>.</p>
+                    <pre class="code js"><code class="highlight">var clickTool = new Array();
+var curTool = "crayon";</code></pre>
+                    <p>The <code>addClick</code> function needs to be updated to record the chosen tool when the user clicks.</p>
+                    <pre class="code js">function addClick(x, y, dragging)
+{
+  clickX.push(x);
+  clickY.push(y);
+  clickDrag.push(dragging);
+  <code class="highlight">if(curTool == "eraser"){</code>
+    <code class="highlight">clickColor.push("white");</code>
+  <code class="highlight">}else{</code>
+    clickColor.push(curColor);
+  <code class="highlight">}</code>
+  clickColor.push(curColor);
+  clickSize.push(curSize);
+}</pre>
+
+                    <p>Update the <code>redraw</code> function to handle the new tools.</p>
+                    <pre class="code js">function redraw(){
+  context.lineJoin = "round";
+  for(var i=0; i &lt; clickX.length; i++)
+  {		
+    context.beginPath();
+    if(clickDrag[i] &amp;&amp; i){
+      context.moveTo(clickX[i-1], clickY[i-1]);
+    }else{
+      context.moveTo(clickX[i]-1, clickY[i]);
+    }
+    context.lineTo(clickX[i], clickY[i]);
+    context.closePath();
+    context.strokeStyle = clickColor[i];
+    context.lineWidth = radius;
+    context.stroke();
+  }
+  <code class="highlight">if(curTool == "crayon") {</code>
+    <code class="highlight">context.globalAlpha = 0.4;</code>
+    <code class="highlight">context.drawImage(crayonTextureImage, 0, 0, canvasWidth, canvasHeight);</code>
+  <code class="highlight">}</code>
+  <code class="highlight">context.globalAlpha = 1;</code>
+}</pre>
+
+                    <a name="demo-tools"></a>
+                    <h2>Demo Tools</h2>
+                    
+					<p>Try it with different tools:</p>
+                    <ul class="demoToolList">
+                    	<li>Clear the canvas: <button id="clearCanvasSimpleTools" type="button">Clear</button></li>
+                    	<li>Choose a color: <button id="choosePurpleSimpleTools" type="button">Purple</button><button id="chooseGreenSimpleTools" type="button">Green</button><button id="chooseYellowSimpleTools" type="button">Yellow</button><button id="chooseBrownSimpleTools" type="button">Brown</button></li>
+                        <li>Choose a size: <button id="chooseSmallSimpleTools" type="button">Small</button><button id="chooseNormalSimpleSizes" type="button">Normal</button><button id="chooseLargeSimpleTools" type="button">Large</button><button id="chooseHugeSimpleTools" type="button">Huge</button></li>
+                        <li><span class="highlight">Choose a tool: </span><button id="chooseCrayonSimpleTools" type="button">Crayon</button><button id="chooseMarkerSimpleTools" type="button">Marker</button><button id="chooseEraserSimpleTools" type="button">Eraser</button></li>
+                    </ul>
+    				<div class="image">
+						<div id="canvasSimpleToolsDiv"><canvas width="490" height="220" id="canvasSimpleTools"></canvas></div>
+                    </div>
+                    <h2>Add Outline</h2>
+                    
+					<p>Coloring books provide an outline of something to color: a cute puppy or a hopping bunny. I chose a watermelon duck.</p>
+                    <p>First declare a variable <code>outlineImage</code>.</p>
+                    <pre class="code js"><code class="highlight">var outlineImage = new Image();</code></pre>
+
+                    <p>Load the outline image.</p>
+                    <pre class="code js">function prepareCanvas(){
+  ...
+  
+  <code class="highlight">outlineImage.src = "images/watermelon-duck-outline.png";</code>
+}</pre>
+                    <p>Update the <code>redraw</code> function to draw the outline image using the canvas context's <code>drawImage</code> method. Its parameters are the image object we loaded, the position we want to draw the image, and the dimensions of the image.</p>
+
+                    <pre class="code js">function redraw(){
+  ...
+  
+  <code class="highlight">context.drawImage(outlineImage, drawingAreaX, drawingAreaY, drawingAreaWidth, drawingAreaHeight);</code>
+}</pre>
+                    <a name="demo-outline"></a>
+                    <h2>Demo Outline</h2>
+                    
+					<p>Give it try:</p>
+                    <ul class="demoToolList">
+                    	<li>Clear the canvas: <button id="clearCanvasSimpleOutline" type="button">Clear</button></li>
+                    	<li>Choose a color: <button id="choosePurpleSimpleOutline" type="button">Purple</button><button id="chooseGreenSimpleOutline" type="button">Green</button><button id="chooseYellowSimpleOutline" type="button">Yellow</button><button id="chooseBrownSimpleOutline" type="button">Brown</button></li>
+                        <li>Choose a size: <button id="chooseSmallSimpleOutline" type="button">Small</button><button id="chooseNormalSimpleSizes" type="button">Normal</button><button id="chooseLargeSimpleOutline" type="button">Large</button><button id="chooseHugeSimpleOutline" type="button">Huge</button></li>
+                        <li>Choose a tool: <button id="chooseCrayonSimpleOutline" type="button">Crayon</button><button id="chooseMarkerSimpleOutline" type="button">Marker</button><button id="chooseEraserSimpleOutline" type="button">Eraser</button></li>
+                    </ul>
+    				<div class="image">
+						<div id="canvasSimpleOutlineDiv"><canvas width="490" height="220" id="canvasSimpleOutline"></canvas></div>
+                    </div>
+                    <h2>Final Details</h2>
+                    
+					<p>We are almost there! These last details are optional: restrict the drawing area to a rectangle on the canvas and use the rest of the canvas for our <abbr title="graphic user interface">gui</abbr> (aka buttons).</p>
+                    <p>Let's mask the canvas so all drawing is within a the drawing area. We use the <code>clip</code> method with the <code>save</code> and <code>restore</code> methods. This method is not currently supported by Internet Explorer.</p>
+                    <pre class="code js">function redraw()
+{
+  ...
+  
+  <code class="highlight">context.save();</code>
+  <code class="highlight">context.beginPath();</code>
+  <code class="highlight">context.rect(drawingAreaX, drawingAreaY, drawingAreaWidth, drawingAreaHeight);</code>
+  <code class="highlight">context.clip();</code>
+  
+  var radius;
+  var i = 0;
+  for(; i &lt; clickX.length; i++)
+  {
+    ... 
+  }
+  <code class="highlight">context.restore();</code>
+  ...
+} // end redraw function</pre>
+
+                    <p>The last detail is to move all those buttons on our canvas. It involves loading images and displaying them based on our user interaction. I used standard JavaScript techniques so I won't bore you with the details (but it is included in the source code if you are interested). And there you have it!</p>
+                    <a name="demo-complete"></a>
+                    <h2>Complete Demo</h2>
+                    
+                    <p>Now that we have created an HTML5 canvas drawing app, lets take a break and draw!</p>
+					<div class="image">
+						<div id="canvasDiv"><canvas width="490" height="220" id="canvas"></canvas></div>
+                    </div>
+                    <h2>Download Source Code</h2>
+                    
+                    <ul>
+                        <li>Download HTML5 Canvas Drawing App (zip format): <a href="http://www.williammalone.com/articles/create-html5-canvas-javascript-drawing-app/downloads/html5-canvas-drawing-app.zip" title="Download HTML5 Canvas Drawing App">html5-canvas-drawing-app.zip</a></li>
+                    </ul>
+
+                    <h2>Updates</h2>
+                    <ul>
+                    	<li class="update">Download an updated version (slightly different from the article) that includes touch support on GitHub: <a href="https://github.com/williammalone/Simple-HTML5-Drawing-App" title="Download HTML5 Canvas Drawing App at github" target="_blank">github.com/williammalone/Simple-HTML5-Drawing-App</a></li>
+                    	<li class="update">A paint bucket tool was added to this app. Demo and source code is available <a href="http://www.williammalone.com/projects/html5-canvas-javascript-drawing-app-with-bucket-tool/" title="HTML5 Canvas Javascript Drawing App with Bucket Tool">here</a>.</li>
+                    </ul>
+                    
+                    <h2>Examples In Action</h2>
+                    <p>If you built something using this article and want to share, <a href="http://www.williammalone.com/contact/" title="contact">please let me know</a>! There are a lot of great applications out there including:</p>
+                    <ul>
+                    	<li>The Fred Rogers Company's <a href="http://pbskids.org/daniel/stories/something-special-for-dad/" title="Daniel Tiger&#39;s Neighborhood" target="_blank">Daniel Tiger's Neighborhood</a></li>
+                    	<li><a href="http://kids.sapo.pt/brincar/desenhos_para_colorir/" title="SAPO Kids" target="_blank">SAPO Kids</a></li>
+                    </ul>
+
+
+
+                            <h2>Share This Article</h2>
+                            <ul id="contentShareList">
+                            
+								<li class="twitterShare shareListItem">
+									<a class="subtle-link" href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fwmalone.com%2Fdraw&amp;text=Create+a+Drawing+App+with+HTML5+Canvas+and+JavaScript" target="_blank" title="Share on Twitter"> 
+										<div class="brand-circle">
+											<div class="brand-circle-icon"><i class="fa fa-twitter"></i></div>
+										</div>
+									</a>
+								</li>
+
+								<li class="facebookShare shareListItem">
+									<a class="subtle-link" href="http://www.facebook.com/sharer.php?u=http%3A%2F%2Fwmalone.com%2Fdraw&amp;t=Create+a+Drawing+App+with+HTML5+Canvas+and+JavaScript" target="_blank" title="Share on Facebook"> 
+										<div class="brand-circle">
+											<div class="brand-circle-icon"><i class="fa fa-facebook"></i></div>
+										</div>
+									</a>
+								</li>
+								
+								<li class="diggShare shareListItem">
+									<a class="subtle-link" href="http://digg.com/submit?url=http%3A%2F%2Fwmalone.com%2Fdraw&amp;title=Create+a+Drawing+App+with+HTML5+Canvas+and+JavaScript" target="_blank" title="Share on Digg">
+										<div class="brand-circle">
+											<div class="brand-circle-icon"><i class="fa fa-digg"></i></div>
+										</div>
+									</a>
+								</li>
+								
+								<li class="deliciousShare shareListItem">
+									<a class="subtle-link" href="http://delicious.com/save?v=5&amp;noui&amp;jump=close&amp;url=http%3A%2F%2Fwmalone.com%2Fdraw&amp;title=Create+a+Drawing+App+with+HTML5+Canvas+and+JavaScript" target="_blank" title="Share on Delicious">
+										<div class="brand-circle">
+											<div class="brand-circle-icon"><i class="fa fa-delicious"></i></div>
+										</div>
+									</a>
+								</li>
+								
+								<li class="redditShare shareListItem">
+									<a class="subtle-link" href="http://reddit.com/submit?url=http%3A%2F%2Fwmalone.com%2Fdraw&amp;title=Create+a+Drawing+App+with+HTML5+Canvas+and+JavaScript" target="_blank" title="Share on Reddit">
+										<div class="brand-circle">
+											<div class="brand-circle-icon"><i class="fa fa-reddit"></i></div>
+										</div>
+									</a>
+								</li>
+								
+								<li class="googlePlusOneShare shareListItem">
+									<a class="subtle-link" href="https://plus.google.com/share?url=http%3A%2F%2Fwmalone.com%2Fdraw&amp;title=Create+a+Drawing+App+with+HTML5+Canvas+and+JavaScript" target="_blank" title="Share on Google+">
+										<div class="brand-circle">
+											<div class="brand-circle-icon"><i class="fa fa-google-plus"></i></div>
+										</div>
+									</a>
+								</li>
+                            </ul>
+									<h2>Related Articles</h2>
+									
+									<div id="related-containerEOD">
+
+									<ul><li class="related-article bubble"><a href="http://www.williammalone.com/articles/how-to-make-sweet-html5-game" title="Sweet HTML5 Game" class="subtle-link related-article-title">Sweet HTML5 Game</a><a href="http://www.williammalone.com/articles/how-to-make-sweet-html5-game" title="Sweet HTML5 Game"><img src="./a_files/thumbnail.jpg"></a></li><li class="related-article bubble"><a href="http://www.williammalone.com/articles/create-html5-canvas-javascript-sprite-animation" title="HTML5 Sprite Animation Tutorial" class="subtle-link related-article-title">HTML5 Sprite Animation Tutorial</a><a href="http://www.williammalone.com/articles/create-html5-canvas-javascript-sprite-animation" title="HTML5 Sprite Animation Tutorial"><img src="./a_files/thumbnail(1).jpg"></a></li><li class="related-article bubble"><a href="http://www.williammalone.com/articles/create-html5-canvas-javascript-game-character" title="HTML5 Game Character" class="subtle-link related-article-title">HTML5 Game Character</a><a href="http://www.williammalone.com/articles/create-html5-canvas-javascript-game-character" title="HTML5 Game Character"><img src="./a_files/thumbnail(2).jpg"></a></li></ul></div>                        </article></div>
+                    </div>
+					<footer>
+
+
+			<ul id="footer-icon-nav">
+				<li class="footer-icon">
+					<a href="http://www.twitter.com/williamMalone/" target="_blank" rel="me" title="William Malone&#39;s Status on Twitter">
+						<div class="brand-circle">
+							<div class="brand-circle-icon footerIcon" id="twitter">
+								<i class="fa fa-twitter"></i>
+							</div>
+						</div>
+					</a>
+				</li>
+				<li class="footer-icon">
+					<a href="http://www.linkedin.com/in/williammalone/" target="_blank" rel="me" title="William Malone&#39;s Profile on LinkedIn">
+						<div class="brand-circle">
+							<div class="brand-circle-icon footerIcon" id="linkedIn">
+								<i class="fa fa-linkedin"></i>
+							</div>
+						</div>
+					</a>
+				</li>
+				<li class="footer-icon">
+					<a href="http://www.flickr.com/williamMalone/" target="_blank" rel="me" title="William Malone&#39;s Photos on flickr">
+						<div class="brand-circle">
+							<div class="brand-circle-icon footerIcon" id="flickr">
+								<i class="fa fa-flickr"></i>
+							</div>
+						</div>
+					</a>
+				</li>
+				<li class="footer-icon">
+					<a href="https://github.com/williammalone" target="_blank" rel="me" title="William Malone&#39;s github Repos">
+						<div class="brand-circle">
+							<div class="brand-circle-icon footerIcon" id="github">
+								<i class="fa fa-github"></i>
+							</div>
+						</div>
+					</a>
+				</li>
+				<li class="footer-icon">
+					<a href="https://plus.google.com/u/0/118308667806315333482?rel=author" target="_blank" rel="me" title="William Malone&#39;s Google Profile">
+						<div class="brand-circle">
+							<div class="brand-circle-icon footerIcon" id="googlePlus">
+								<i class="fa fa-google-plus"></i>
+							</div>
+						</div>
+					</a>
+				</li>
+				<li class="footer-icon">
+					<a href="http://feeds.feedburner.com/williamMalone" target="_blank" rel="me" title="William Malone&#39;s RSS">
+						<div class="brand-circle">
+							<div class="brand-circle-icon footerIcon" id="rss">
+								<i class="fa fa-rss"></i>
+							</div>
+						</div>
+					</a>
+				</li>
+			</ul>          
+<nav id="footer-text-nav">
+	<a href="http://www.williammalone.com/" class="footer-text-link subtle-link mobile-button" rel="me home" title="Home">Home</a><a href="http://www.williammalone.com/articles/" class="footer-text-link subtle-link mobile-button" rel="tag" title="Articles">Articles</a><a href="http://www.williammalone.com/briefs/" class="footer-text-link subtle-link mobile-button" rel="tag" title="Briefs">Briefs</a><a href="http://www.williammalone.com/posts/" class="footer-text-link subtle-link mobile-button" rel="tag" title="Posts">Posts</a><a href="http://www.williammalone.com/works/" class="footer-text-link subtle-link mobile-button" rel="tag" title="Works">Works</a><a href="http://www.williammalone.com/resume/" class="footer-text-link subtle-link mobile-button" rel="tag" title="Resume">Resume</a><a href="http://www.williammalone.com/about/" class="footer-text-link subtle-link mobile-button" rel="tag" title="About">About</a><a href="http://www.williammalone.com/contact/" class="footer-text-link subtle-link mobile-button" rel="tag" title="Contact">Contact</a><a href="http://feeds.feedburner.com/williamMalone" class="footer-text-link subtle-link mobile-button" rel="tag me" target="_blank" title="RSS">RSS</a><a href="http://www.williammalone.com/sitemap/" class="footer-text-link subtle-link mobile-button" rel="sitemap tag" title="Sitemap">Sitemap</a>
+</nav>
+
+<small id="copyright" role="contentinfo">This site <a href="http://www.williammalone.com/" class="subtle-link" rel="home" title="Home">williammalone.com</a> and its contents <a href="http://creativecommons.org/licenses/by-sa/3.0/" class="subtle-link" title="Creative Commons — Attribution-Share Alike 3.0 Unported" rel="license">copyright</a> © 2014 <a href="http://www.williammalone.com/about/" class="subtle-link" title="William Malone">William Malone</a>. It is not affiliated with, sponsored by, or endorsed by any entity other than yours truely: <a href="http://www.williammalone.com/about/" class="subtle-link" title="William Malone">William Malone</a>.</small>
+
+</footer>
+
+
+
+
+
+
+                
+</div><script src="./a_files/main.js" async=""></script><script src="./a_files/jquery.js" async=""></script><script src="./a_files/swfobject.js" async=""></script><div style="clear: both;"></div><script src="./a_files/javascript.js" async=""></script></body></html>
