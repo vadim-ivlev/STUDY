@@ -4,19 +4,14 @@
 
 // shows if pointer is down
 let pointerDown = false;
+// pointer pressure while drawing
 let press = 0;
 // array of points to draw
 const points = [];
 
-
 // registers  touch evs
 const pane = $('#pane');
-// shows the force
-const meter = $('#meter');
-// to show messages
-const inf = (s = '') => $('#info').html(s);
-const infP = (s = '') => $('#infoPressure').html(s);
-const infPE = (s = '') => $('#infoPressureEvents').html(s);
+
 
 /**
  * Creates a record about pointer event and adds it
@@ -84,6 +79,19 @@ function move_handler(event) {
 }
 
 
+/**
+ * Quick fix.
+ * add missing offxetX and offstY to the event
+ * https://github.com/stephband/jquery.event.move
+ * @param {*} ev 
+ */
+function fixOffsets(ev){
+    if (ev.offsetX || ev.offsetY) return;
+    let offset =pane.offset();
+    ev.offsetX = ((ev.pageX || 0) - offset.left) ;//+ $(window).scrollLeft();
+    ev.offsetY = ((ev.pageY || 0) - offset.top) ;//+ $(window).scrollTop();
+}
+
 // BEGIN ============================================
 
 // prevent the page from dragging in iOS
@@ -91,19 +99,15 @@ function move_handler(event) {
 pane.on('touchmove', (event) => event.preventDefault());
 
 
-
-
-
 /**
  * Initializes pressurejs. 
  */
-//TODO: cgange pane to element covering all the space??
 $('#pane').pressure({
     change: force_handler,
     start: function (event) {},
     end: function () {},
     }, 
-    { preventSelect: true }
+    { preventSelect: true, polyfillSpeedUp: 300 }
 );
 
 
@@ -115,27 +119,15 @@ pane.on('mouseout', mouseout_handler);
 // pane.on('mousemove', move_handler)
 
 //pointer events
-//pane.on('pointermove' ,move_handler);
+//pane.on('pointermove' ,pointermove_handler);
 
 
-
-
-//move events abstract away the defaults 
-//that need attention on dufferent devices.
-//https://github.com/stephband/jquery.event.move
-
-
-
+/**
+ * move events abstract away the defaults 
+ * that need attention on dufferent devices.
+ * https://github.com/stephband/jquery.event.move
+ */
 pane.on('movestart', movestart_handler);
 pane.on('moveend', moveend_handler);
 pane.on('move', move_handler);
 
-//Quick fix.
-// add missing offxetX and offstY to the event
-//https://github.com/stephband/jquery.event.move
-function fixOffsets(ev){
-    if (ev.offsetX || ev.offsetY) return;
-    let offset =pane.offset();
-    ev.offsetX = ((ev.pageX || 0) - offset.left) ;//+ $(window).scrollLeft();
-    ev.offsetY = ((ev.pageY || 0) - offset.top) ;//+ $(window).scrollTop();
-}

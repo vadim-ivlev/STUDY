@@ -1,4 +1,12 @@
 
+// globals ===========================================
+let rgba={r:0,g:0,b:0,a:255}; // max values: 255
+let strWeight=2; //pixels
+let fadingTime=10000; //msec
+let sig_k=15; 
+
+
+
 function setup() {
     var myCanvas = createCanvas(windowWidth, windowHeight/2);
     myCanvas.parent('pane');
@@ -11,7 +19,7 @@ function setup() {
 
 function draw() {
     clear();
-    redrawLastLines(5000);
+    redrawLastLines(fadingTime);
 }
 
 function redrawLastLines(timeSpan = 5000 ) {
@@ -23,26 +31,16 @@ function redrawLastLines(timeSpan = 5000 ) {
             return;
         }
 
-
         // let coords = getLineCoords(i);
         let coords = getCurveCoords(i);
         if (coords==null) continue;
 
-        stroke(0, 0, 0, 256*a);
-        strokeWeight(2+a*2);
+        stroke(rgba.r, rgba.g, rgba.b, 256*rgba.a);
+        strokeWeight(strWeight+a*strWeight);
         curve(...coords);
     }
 }
 
-// function getLineCoords(i){
-//         let p1 = points[i];
-//         if (p1.action != 'move'){ 
-//             // console.log('!=move, ',i, p1);
-//             return null;
-//         }
-//         let p2 = points[i - 1];
-//         return [p1.x, p1.y, p2.x, p2.y];
-// }
 
 function getCurveCoords(i){
     var p1 =points[i],p2,p3,p4;    
@@ -62,15 +60,34 @@ function getAlpha(timeSpan, i) {
     let p1 = points[i];
     let now=Date.now() ;
     let dt=(now - p1.time);
-    let fading = 1.0 - dt/timeSpan;
-    let alpha=fading * p1.pressure;
+    // let fading = lin(dt, timeSpan);
+    let fading = sigmoid(dt, sig_k, timeSpan);
+    let alpha = fading * p1.pressure;
+
     // console.log(`now:${now} p.time:${p1.time} dt:${dt} alpha:${alpha}`)
     return alpha;
 }
 
+/**
+ * Linear fading function. Changes from 1 to 0
+ * when x changes from 0 to n.
+ * @param {*} x 
+ * @param {*} n 
+ */
+function lin(x,n) {return 1.0-x/n;} 
+
+
+/**
+ * Sigmoid fading function. Works well when k~10
+ * @param {*} x 
+ * @param {*} k 
+ * @param {*} n 
+ */
+function sigmoid(x, k, n ) { return 1 / (Math.exp((k * (x - 0.5 * n)) / n) + 1); }
+
+
 // TODO. 
 // Leave the last 30 sec only of drawing;
 // All points in one line make the same time.
-// A line that begins to dissapear changes its color and alpha charply. Zigmoid function
 // The user can change time before the lines start fading.
 // Att texture to lines.

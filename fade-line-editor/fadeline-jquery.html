@@ -14,31 +14,18 @@
     <script src="./fadeline-jquery.js"  defer></script>
     <script src="./fadeline-draw.js" defer></script>
     <style>
-        body{
-            font-family:  sans-serif;
+        body {
+            font-family: sans-serif;
         }
-    #pane {
-        background-color: whitesmoke;
-        position:absolute;
-        left: 0px;
-        top: 0px;
-        /* cursor:none; */
-    }
-    .tools{
-        background-color: white;
-        /* border: 1px solid silver; */
-        position:fixed;
-        left: 0px;
-        top:100px;
-    }
-    .tools button {
-        border: 0px solid black;
-        /* border-radius: 18px; */
-        margin:4px;
-        width:36px;
-        height:36px;
-    }
-    /* .noselect {
+
+        #pane {
+            background-color: whitesmoke;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            /* cursor:none; */
+        }
+        /* .noselect {
         -webkit-touch-callout: none; 
         -webkit-user-select: none; 
         -khtml-user-select: none; 
@@ -50,14 +37,5 @@
 </head>
 <body>
     <div id="pane" class="noselect"></div>
-    <div class="tools">
-        <button class="cpicker 
-        jscolor {valueElement:null,value:'66ccff',
-        width:243, height:150, position:'right',
-        borderWidth:1, borderColor:'#DDD', insetColor:'transparent', 
-        backgroundColor:'white',shadow:false, borderRadius:0}" ></button>
-        <br>
-        <button onclick="saveCanvas('drawing','png')">save</button>
-    </div>
 </body>
 </html>
