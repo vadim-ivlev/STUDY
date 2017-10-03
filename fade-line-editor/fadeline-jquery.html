@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/> -->
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Fade line editor</title>
     <script src="./node_modules/jquery/dist/jquery.min.js"></script>
     <script src="./js/jquery.event.move.js"></script>
     <script src="./node_modules/pressure/dist/jquery.pressure.min.js"></script>
@@ -20,26 +20,23 @@
     #pane {
         background-color: whitesmoke;
         position:absolute;
-        left: 40px;
-        top:100px;
+        left: 0px;
+        top: 0px;
         /* cursor:none; */
     }
     .tools{
         background-color: white;
         /* border: 1px solid silver; */
-        position:absolute;
+        position:fixed;
         left: 0px;
         top:100px;
     }
-.tools button {
-    border: 0px solid black;
-    /* border-radius: 18px; */
-    margin:4px;
-    width:36px;
-    height:36px;
-}
-    #pane canvas {
-        /* border: 1px solid silver; */
+    .tools button {
+        border: 0px solid black;
+        /* border-radius: 18px; */
+        margin:4px;
+        width:36px;
+        height:36px;
     }
     /* .noselect {
         -webkit-touch-callout: none; 
@@ -48,12 +45,10 @@
         -moz-user-select: none; 
         -ms-user-select: none; 
         user-select: none; 
-                            
     } */
     </style>
 </head>
 <body>
-    <h1>Fade line editor</h1>
     <div id="pane" class="noselect"></div>
     <div class="tools">
         <button class="cpicker 
@@ -64,13 +59,5 @@
         <br>
         <button onclick="saveCanvas('drawing','png')">save</button>
     </div>
-<!-- 
-    <progress id="meter" max="1" value="0.1" ></progress>
-    <pre id="info">0 0</pre>
-    <pre><span id="infoPressureEvents">PresureEvents</span> 
-        <span id="infoPressure">pressure</span>
-    </pre> 
--->
-
 </body>
 </html>

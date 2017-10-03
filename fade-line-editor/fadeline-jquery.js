@@ -38,23 +38,7 @@ function pushPoint(ev, action) {
     };
     points.push(p);
 
-    // let info=printPoint(p) + ` N:${points.length}`;
-    // inf(info);
-    // meter.val(p.pressure);
-    // // if (p.action !=='move'){ console.log(info);  }
 }
-
-
-/**
- * Returns a string representing the point
- * @param {*} p 
- */
-function printPoint(p) {
-    let s = ''
-    for (let i in p) s += `${i}: ${p[i]} `;
-    return s;
-}
-
 
 
 // Handlers ================================
@@ -103,9 +87,8 @@ function move_handler(event) {
 // BEGIN ============================================
 
 // prevent the page from dragging in iOS
-$(document).on('touchmove',(event) => event.preventDefault());
-// pane.on('touchmove', (event) => event.preventDefault());
-// document.ontouchmove = (e)=> e.preventDefault();
+// $(document).on('touchmove',(event) => event.preventDefault());
+pane.on('touchmove', (event) => event.preventDefault());
 
 
 
@@ -156,9 +139,3 @@ function fixOffsets(ev){
     ev.offsetX = ((ev.pageX || 0) - offset.left) ;//+ $(window).scrollLeft();
     ev.offsetY = ((ev.pageY || 0) - offset.top) ;//+ $(window).scrollTop();
 }
-
-/**
- * The next step is to draw the points array in such a way,
- * that the earlier points were drawn more transparent than the latest.
- * That's how the fading line illusion happens. 
- */
