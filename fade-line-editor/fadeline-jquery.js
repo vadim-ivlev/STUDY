@@ -43,11 +43,6 @@ function pushPoint(ev, action) {
 // on any device
 
 
-function force_handler(force, event) {
-    press = force;
-}
-
-
 function mouseover_handler(event) {
     if (event.buttons)
         pointerDown = true;
@@ -103,12 +98,15 @@ pane.on('touchmove', (event) => event.preventDefault());
  * Initializes pressurejs. 
  */
 $('#pane').pressure({
-    change: force_handler,
+    change: (force, event) => { press = force; },
     start: function (event) {},
     end: function () {},
     }, 
     { preventSelect: true, polyfillSpeedUp: 300 }
 );
+// function force_handler(force, event) { press = force; }
+
+
 
 
 // mouse events

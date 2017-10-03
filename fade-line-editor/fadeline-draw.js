@@ -35,7 +35,7 @@ function redrawLastLines(timeSpan = 5000 ) {
         let coords = getCurveCoords(i);
         if (coords==null) continue;
 
-        stroke(rgba.r, rgba.g, rgba.b, 256*rgba.a);
+        stroke(rgba.r, rgba.g, rgba.b, a * rgba.a);
         strokeWeight(strWeight+a*strWeight);
         curve(...coords);
     }
@@ -60,10 +60,11 @@ function getAlpha(timeSpan, i) {
     let p1 = points[i];
     let now=Date.now() ;
     let dt=(now - p1.time);
-    // let fading = lin(dt, timeSpan);
-    let fading = sigmoid(dt, sig_k, timeSpan);
+    let fading = lin(dt, timeSpan);
+    // let fading = sigmoid(dt, sig_k, timeSpan);
     let alpha = fading * p1.pressure;
 
+    if (fading>-0.1) console.log(points.length,fading);
     // console.log(`now:${now} p.time:${p1.time} dt:${dt} alpha:${alpha}`)
     return alpha;
 }
