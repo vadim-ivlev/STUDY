@@ -1,4 +1,5 @@
-
+// import '../node_modules/jquery/dist/jquery.min.js'
+// import './fadeline-jquery.js'
 // globals ===========================================
 let rgba={r:0,g:0,b:0,a:255}; // max values: 255
 let strWeight=2; //pixels
@@ -8,7 +9,7 @@ let sig_k=15;
 
 
 function setup() {
-    var myCanvas = createCanvas(windowWidth, windowHeight/2);
+    var myCanvas = createCanvas(windowWidth, windowHeight * 0.5);
     myCanvas.parent('pane');
     noFill();
     curveTightness(-0.5);
@@ -27,7 +28,7 @@ function redrawLastLines(timeSpan = 5000 ) {
         let a = getAlpha(timeSpan, i);
         if (a < 0) {
             //truncate poins?
-            console.log('alpha <0'); 
+            // console.log('alpha <0'); 
             return;
         }
 
@@ -64,7 +65,7 @@ function getAlpha(timeSpan, i) {
     // let fading = sigmoid(dt, sig_k, timeSpan);
     let alpha = fading * p1.pressure;
 
-    if (fading>-0.1) console.log(points.length,fading);
+    // if (fading>-0.1) console.log(points.length,fading);
     // console.log(`now:${now} p.time:${p1.time} dt:${dt} alpha:${alpha}`)
     return alpha;
 }
@@ -87,8 +88,9 @@ function lin(x,n) {return 1.0-x/n;}
 function sigmoid(x, k, n ) { return 1 / (Math.exp((k * (x - 0.5 * n)) / n) + 1); }
 
 
-// TODO. 
+// TODO 
 // Leave the last 30 sec only of drawing;
 // All points in one line make the same time.
 // The user can change time before the lines start fading.
-// Att texture to lines.
+// Add texture to lines.
+// Browserify all outer js dependancies through one lib.js

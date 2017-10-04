@@ -4,12 +4,22 @@
   "description": "",
   "main": "fade-line.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+
+    "live-server": "live-server --watch=*.html,*.css,lib --port=9090 --wait=200",
+    "build": "babel src -d lib",
+    "babelbundle":  "babel    src --out-file lib/bundle.js --source-maps",
+    "uglifybundle": "uglifyjs -c lib/bundle.js -o lib/bundle-u.js",
+    "babelbundle-w":"babel -w src --out-file lib/bundle.js --source-maps"
   },
   "author": "Vadim Ivlev",
   "license": "ISC",
   "dependencies": {
     "jquery": "^3.2.1",
     "pressure": "^2.1.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "babelify": "^7.3.0"
   }
 }
