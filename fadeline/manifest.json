@@ -1,0 +1,7 @@
+{
+  "name": "fadeline",
+  "short_name": "fadeline",
+  "description": "drawing app with fading lines",
+  "start_url": "/",
+  "display": "standalone"
+}

@@ -1,0 +1,33 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<dom-module id="fadeline-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+        border: 1px solid black;
+      }
+    </style>
+    <h2>Hello [[prop1]]!</h2>
+  </template>
+
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class FadelineApp extends Polymer.Element {
+      static get is() { return 'fadeline-app'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'fadeline-app'
+          }
+        };
+      }
+    }
+
+    window.customElements.define(FadelineApp.is, FadelineApp);
+  </script>
+</dom-module>
