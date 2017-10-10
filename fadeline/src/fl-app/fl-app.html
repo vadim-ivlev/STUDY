@@ -1,6 +1,7 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../fl-toolbar/fl-toolbar.html">
 
+
 <dom-module id="fl-app">
   <template>
     <style>
@@ -8,7 +9,7 @@
         display: block;
       }
     </style>
-    <fl-toolbar></fl-toolbar>
+    <fl-toolbar color="#000" flow="230" size="3" on-color-changed="colorChanged"></fl-toolbar>
   </template>
 
   <script>
@@ -18,6 +19,11 @@
      */
     class FlApp extends Polymer.Element {
       static get is() { return 'fl-app'; }
+
+      colorChanged(ev){
+        console.log('colorChanged in fl-app');
+        console.log(ev);
+      }
     }
 
     window.customElements.define(FlApp.is, FlApp);
