@@ -3,7 +3,6 @@
 <link rel="import" href="../../bower_components/iron-input/iron-input.html">
 <link rel="import" href="./range-sliders-style.html">
 <link rel="import" href="./fl-toolbar-style.html">
-<script src="./js/test.js"></script>
 
 <dom-module id="fl-toolbar">
   <template>
@@ -15,7 +14,7 @@
     <!-- <div class="label">[[color]]</div> -->
 
     <!-- 
-      if notify is not set,
+      if notify is not set for the color property,
       colorChanged is needed to change color property,
       on-color-changed="colorChanged" 
     -->
@@ -24,7 +23,7 @@
 
     <!-- <div class="label">flow</div> -->
     <!-- <div class="label">[[flow]]</div> -->
-    <div class="sample">
+    <div id="div000" class="sample">
       <div style="align-self: flex-end; width:100%; height:[[flowP]]%; background-color:[[color]]; border-top:1px solid black;"></div> 
     </div>
     <div class="slider-wrapper">
@@ -52,6 +51,7 @@
   </template>
 
   <script>
+    //FIXME: get rid of mouse ghosts
     /**
      * @customElement
      * @polymer
@@ -88,6 +88,7 @@
         return 100*flow/255;
       }
 
+
 /* 
       colorChanged(ev) {
         this.color = ev.detail.value;
@@ -99,7 +100,6 @@
     }
 
     window.customElements.define(FlToolbar.is, FlToolbar);
-
 
   </script>
 </dom-module>

@@ -5,7 +5,6 @@
   "dependencies": {
     "polymer": "Polymer/polymer#^2.0.0",
     "paper-swatch-picker": "^2.0.1",
-    "jquery": "^3.2.1",
     "iron-input": "^2.0.1"
   },
   "devDependencies": {

@@ -1,0 +1,240 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="./fl-draw-style.html">
+
+
+<script src="../../node_modules/jquery/dist/jquery.min.js"></script>
+<script src="../../node_modules/pressure/dist/jquery.pressure.min.js"></script>
+<script src="../../node_modules/p5/lib/p5.min.js"></script> 
+<script src="./js/jquery.event.move.js"></script>
+    
+
+<!-- <script src="./src/fadeline-jquery.js"  defer></script> -->
+<script src="./src/flsketch.js" ></script>
+
+<dom-module id="fl-draw">
+  <template>
+    <style include="fl-draw-style"></style>
+
+    <div id="pane" class="noselect"></div>
+
+
+  </template>
+
+  <script>
+    /**
+     * Globals
+     */
+    let pane;
+    let dpane;
+    let flSketchRet;
+    // array of points to draw
+    const points = [];
+
+    /**
+     * @customElement
+     * @polymer
+     */
+    class FlDraw extends Polymer.Element {
+      static get is() { return 'fl-draw'; }
+
+      static get properties() {
+        return {
+          flow:   { type: Number, value: 255,    notify: true },
+          width:  { type: Number, value: 400,    notify: true },
+          height: { type: Number, value: 300,    notify: true },
+          size:   { type: Number, value: 3,      notify: true },
+          color:  { type: String, value: "#F00", notify: true },
+          flowP:  { type: Number, reflectToAttribute:false, computed: "computeFlowP(flow)"
+          }
+        };
+      }
+      
+      computeFlowP(flow){
+        return 100*flow/255;
+      }
+
+/* 
+      colorChanged(ev) {
+        this.color = ev.detail.value;
+        // var cp=this.shadowRoot.getElementById('cPick');
+        // cp.style.backgroundColor=cp.color;
+        // this.color=cp.color;
+      }
+ */
+      ready (){
+        super.ready();
+        // console.log('draw ready');
+        pane=$('#pane',this.shadowRoot);
+        // console.log('pane', pane);
+        dpane=this.shadowRoot.getElementById('pane');
+        dpane.style.width=`${this.width}px`;
+        dpane.style.height=`${this.height}px`;
+        // console.log('dpane', dpane);
+
+        flSketchRet = FlSketch(dpane,this.width,this.height,points);
+        attachEventHandlers(this.shadowRoot);
+        
+
+      }
+    }
+
+    // window.customElements.define(FlDraw.is, FlDraw);
+    window.customElements.define(FlDraw.is, FlDraw);
+    
+
+//TODO: move the code into separate files
+
+
+// DEFS --------------------------------------------
+
+// shows if pointer is down
+let pointerDown = false;
+// pointer pressure while drawing
+let press = 0;
+
+// registers  touch evs
+// let pane ;//= $('#pane');
+
+
+/**
+ * Creates a record about pointer event and adds it
+ * to the global array points[]. 
+ * pointer param describes what happend 
+ * to the pointer device: "down", "up" 
+ * @param {event} ev
+ * @param {String} pointer 
+ */
+function pushPoint(ev, action) {
+    fixOffsets(ev);
+    let p = {
+        action,
+        eventType: ev.type,
+        x: (ev.offsetX),
+        y: (ev.offsetY),
+        pressure: press,
+        time: Date.now()
+    };
+    points.push(p);
+    // console.log('pushPoint ',points)
+
+}
+
+
+// Handlers ================================
+// there are several place where you can add event handlers.
+// pointer events, mouse events, pressurejs events, touch events.
+// It's hard to tell what is the right choince if we want the app work
+// on any device
+
+
+function mouseover_handler(event) {
+    if (event.buttons)
+        pointerDown = true;
+    pushPoint(event, 'mouseover')
+}
+
+
+function mouseout_handler(event) {
+    pointerDown = false;
+    pushPoint(event, 'mouseout')
+}
+
+
+function movestart_handler(event) {
+    pointerDown = true;
+    pushPoint(event, 'movestart')
+}
+
+
+function moveend_handler(event={type:'up'}) {
+    pointerDown = false;
+    pushPoint(event, 'moveend')
+}
+
+
+function move_handler(event) {
+    if (pointerDown)
+        pushPoint(event, 'move');
+}
+
+
+/**
+ * Quick fix.
+ * add missing offxetX and offstY to the event
+ * https://github.com/stephband/jquery.event.move
+ * @param {*} ev 
+ */
+function fixOffsets(ev){
+    if (ev.offsetX || ev.offsetY) return;
+    let offset =pane.offset();
+    ev.offsetX = ((ev.pageX || 0) - offset.left) ;//+ $(window).scrollLeft();
+    ev.offsetY = ((ev.pageY || 0) - offset.top) ;//+ $(window).scrollTop();
+}
+
+// BEGIN ============================================
+
+function attachEventHandlers(root) {
+
+    // registers  touch evs
+    pane = $('#pane',root);
+
+    // prevent the page from dragging in iOS
+    // $(document).on('touchmove',(event) => event.preventDefault());
+    pane.on('touchmove', (event) => event.preventDefault());
+
+    /**
+     * Initializes pressurejs. 
+     */
+    $('#pane',root).pressure({
+        change: (force, event) => { press = force; },
+        start: function (event) { },
+        end: function () { },
+    },
+        { preventSelect: true, polyfillSpeedUp: 300 }
+    );
+    // function force_handler(force, event) { press = force; }
+
+
+    // mouse events
+    pane.on('mouseover', mouseover_handler);
+    pane.on('mouseout', mouseout_handler);
+    pane.on('mousedown', movestart_handler);
+    pane.on('mouseup', moveend_handler);
+    pane.on('mousemove', move_handler)
+
+    //TODO: add touch event
+
+
+    //pointer events
+    //pane.on('pointermove' ,pointermove_handler);
+
+
+    /**
+     * move events abstract away the defaults 
+     * that need attention on dufferent devices.
+     * https://github.com/stephband/jquery.event.move
+     */
+    // pane.on('movestart', movestart_handler);
+    // pane.on('moveend', moveend_handler);
+    // pane.on('move', move_handler);
+}
+
+// when document is ready
+// $(this.shadowRoot).ready(attachEventHandlers);
+// attachEventHandlers();
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////
+
+
+  </script>
+
+</dom-module>

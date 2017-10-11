@@ -1,5 +1,6 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../fl-toolbar/fl-toolbar.html">
+<link rel="import" href="../fl-draw/fl-draw.html">
 
 
 <dom-module id="fl-app">
@@ -7,8 +8,28 @@
     <style>
       :host {
         display: block;
+        position:absolute;
       }
+      fl-toolbar {
+        border:1px solid silver;
+        position:absolute;
+        top:0px;
+        left:0px;
+        width:40px;
+        background-color:white;
+      }
+      fl-draw{
+
+        border:3px solid red;
+        position:absolute;
+        top:0px;
+        left:43px;
+        width:20px;
+        height:20px;
+      }
+
     </style>
+    <fl-draw width="800" height="400" ></fl-draw>
     <fl-toolbar color="#000" flow="230" size="3" on-color-changed="colorChanged"></fl-toolbar>
   </template>
 
