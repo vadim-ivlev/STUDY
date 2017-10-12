@@ -1,0 +1,186 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+BUILDDIR	bower_components/async/Makefile	/^BUILDDIR = dist$/;"	m
+ElementMetrics	bower_components/paper-ripple/paper-ripple.html	/^    function ElementMetrics(element) {$/;"	f
+GenerateClassFromInfo	bower_components/polymer/lib/legacy/class.html	/^    function GenerateClassFromInfo(info, Base) {$/;"	f
+HTMLTemplateElementExtension	bower_components/polymer/lib/utils/templatize.html	/^    function HTMLTemplateElementExtension() { return newInstance; }$/;"	f
+HTMLTemplateElementWithInfo	bower_components/polymer/externs/polymer-closure-types.html	/^  function HTMLTemplateElementWithInfo(){}$/;"	f
+IronMeta	bower_components/iron-meta/iron-meta.html	/^    function IronMeta(options) {$/;"	f
+KW	node_modules/esutils/test/keyword.coffee	/^KW = [$/;"	v
+ListenForResize	bower_components/iron-resizable-behavior/test/basic.html	/^    function ListenForResize(el, expectsResize) {$/;"	f
+MixinFunction	bower_components/polymer/lib/utils/mixin.html	/^  function MixinFunction(){}$/;"	f
+NodeInfo	bower_components/polymer/externs/polymer-closure-types.html	/^  function NodeInfo(){}$/;"	f
+PACKAGE	bower_components/async/Makefile	/^PACKAGE = asyncjs$/;"	m
+PASSIVE_TOUCH	bower_components/polymer/lib/utils/gestures.html	/^  function PASSIVE_TOUCH() {$/;"	f
+PATH	bower_components/async/Makefile	/^export PATH := .\/node_modules\/.bin\/:$(PATH):.\/bin\/$/;"	m
+PointStorage	src/fl-draw/fl-draw.html	/^    function PointStorage() {$/;"	f
+RemoveListeners	bower_components/iron-resizable-behavior/test/basic.html	/^    function RemoveListeners(listeners) {$/;"	f
+Ripple	bower_components/paper-ripple/paper-ripple.html	/^    function Ripple(element) {$/;"	f
+SRC	bower_components/async/Makefile	/^SRC = lib\/async.js$/;"	m
+SRW	node_modules/esutils/test/keyword.coffee	/^SRW = [$/;"	v
+SimpleElement	bower_components/webcomponentsjs/tests/imports/simple-element-es5.html	/^    function SimpleElement() {$/;"	f
+StampedTemplate	bower_components/polymer/externs/polymer-closure-types.html	/^  function StampedTemplate(){}$/;"	f
+TemplateInfo	bower_components/polymer/externs/polymer-closure-types.html	/^  function TemplateInfo(){}$/;"	f
+TestFixture	bower_components/test-fixture/test-fixture.html	/^      function TestFixture() {$/;"	f
+XCustom	bower_components/test-fixture/test/test-fixture.html	/^    function XCustom() {$/;"	f
+XYZ	bower_components/async/Makefile	/^XYZ = node_modules\/.bin\/xyz --repo git@github.com:caolan\/async.git$/;"	m
+_announce	bower_components/iron-a11y-announcer/demo/index.html	/^          function _announce() {$/;"	f
+_classCallCheck	bower_components/webcomponentsjs/tests/imports/simple-element-es5.html	/^  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }$/;"	f
+_inherits	bower_components/webcomponentsjs/tests/imports/simple-element-es5.html	/^  function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }$/;"	f
+_mixinBehaviors	bower_components/polymer/lib/legacy/class.html	/^    function _mixinBehaviors(behaviors, klass) {$/;"	f
+_possibleConstructorReturn	bower_components/webcomponentsjs/tests/imports/simple-element-es5.html	/^  function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }$/;"	f
+addBinding	bower_components/polymer/lib/mixins/property-effects.html	/^  function addBinding(constructor, templateInfo, nodeInfo, kind, target, parts, literal) {$/;"	f
+addEffectForBindingPart	bower_components/polymer/lib/mixins/property-effects.html	/^  function addEffectForBindingPart(constructor, templateInfo, binding, part, index) {$/;"	f
+addNotifyEffects	bower_components/polymer/lib/utils/templatize.html	/^    function addNotifyEffects(klass, template, templateInfo, options) {$/;"	f
+addNotifyListener	bower_components/polymer/lib/mixins/property-effects.html	/^  function addNotifyListener(node, inst, binding) {$/;"	f
+addPropagateEffects	bower_components/polymer/lib/utils/templatize.html	/^    function addPropagateEffects(template, templateInfo, options) {$/;"	f
+applyBindingValue	bower_components/polymer/lib/mixins/property-effects.html	/^  function applyBindingValue(inst, node, binding, part, value) {$/;"	f
+applyEventListener	bower_components/polymer/lib/mixins/template-stamp.html	/^  function applyEventListener(inst, node, nodeInfo) {$/;"	f
+applyIdToMap	bower_components/polymer/lib/mixins/template-stamp.html	/^  function applyIdToMap(inst, map, node, nodeInfo) {$/;"	f
+applyTemplateContent	bower_components/polymer/lib/mixins/template-stamp.html	/^  function applyTemplateContent(inst, node, nodeInfo) {$/;"	f
+approxEqual	bower_components/paper-icon-button/test/basic.html	/^    function approxEqual(p1, p2) {$/;"	f
+assertAndSelect	bower_components/iron-selector/test/next-previous.html	/^    function assertAndSelect(method, expectedIndex) {$/;"	f
+assertInteractionAtLocationCausesRipple	bower_components/paper-behaviors/test/paper-ripple-behavior.html	/^        function assertInteractionAtLocationCausesRipple(host, node, location, expected, msg) {$/;"	f
+assertInteractionCausesRipple	bower_components/paper-behaviors/test/paper-ripple-behavior.html	/^        function assertInteractionCausesRipple(host, node, expected, msg) {$/;"	f
+assertTabIndexCounts	bower_components/iron-menu-behavior/test/iron-menu-behavior.html	/^            function assertTabIndexCounts(nodes, expected) {$/;"	f
+attachEventHandlers	src/fl-draw/fl-draw.html	/^        function attachEventHandlers(pane,root) {$/;"	f
+calcEditDistances	bower_components/polymer/lib/utils/array-splice.html	/^  function calcEditDistances(current, currentStart, currentEnd,$/;"	f
+calcSplices	bower_components/polymer/lib/utils/array-splice.html	/^  function calcSplices(current, currentStart, currentEnd,$/;"	f
+calculateSplices	bower_components/polymer/lib/utils/array-splice.html	/^  function calculateSplices(current, previous) {$/;"	f
+callMethod	bower_components/polymer/lib/utils/render-status.html	/^  function callMethod(info) {$/;"	f
+centerOf	bower_components/paper-icon-button/test/basic.html	/^    function centerOf(element) {$/;"	f
+characters	node_modules/esutils/test/code.coffee	/^            characters = [$/;"	v
+codes	node_modules/esutils/test/code.coffee	/^            codes = [$/;"	v
+computeBindingValue	bower_components/polymer/lib/mixins/property-effects.html	/^  function computeBindingValue(node, value, binding, part) {$/;"	f
+computeLinkedPaths	bower_components/polymer/lib/mixins/property-effects.html	/^  function computeLinkedPaths(inst, path, value) {$/;"	f
+createForwardHostPropEffect	bower_components/polymer/lib/utils/templatize.html	/^    function createForwardHostPropEffect(hostProp, userForwardHostProp) {$/;"	f
+createMethodEffect	bower_components/polymer/lib/mixins/property-effects.html	/^  function createMethodEffect(model, sig, type, effectFn, methodInfo, dynamicFn) {$/;"	f
+createNodeEventHandler	bower_components/polymer/lib/mixins/template-stamp.html	/^  function createNodeEventHandler(context, eventName, methodName) {$/;"	f
+createNotifyHostPropEffect	bower_components/polymer/lib/utils/templatize.html	/^    function createNotifyHostPropEffect() {$/;"	f
+createNotifyInstancePropEffect	bower_components/polymer/lib/utils/templatize.html	/^    function createNotifyInstancePropEffect(instProp, userNotifyInstanceProp) {$/;"	f
+createPropertyFromConfig	bower_components/polymer/lib/mixins/element-mixin.html	/^    function createPropertyFromConfig(proto, name, info, allProps) {$/;"	f
+createTemplatizerClass	bower_components/polymer/lib/utils/templatize.html	/^    function createTemplatizerClass(template, templateInfo, options) {$/;"	f
+dedupingMixin	bower_components/polymer/lib/utils/mixin.html	/^    function dedupingMixin(base) {$/;"	f
+dispatchNotifyEvent	bower_components/polymer/lib/mixins/property-effects.html	/^  function dispatchNotifyEvent(inst, eventName, value, path) {$/;"	f
+dispatchScroll	bower_components/iron-dropdown/test/iron-dropdown.html	/^    function dispatchScroll(target, scrollLeft, scrollTop) {$/;"	f
+divWithTabIndex	bower_components/iron-menu-behavior/test/iron-menu-behavior.html	/^            function divWithTabIndex(tabIndex) {$/;"	f
+elementIsVisible	bower_components/iron-dropdown/test/iron-dropdown.html	/^    function elementIsVisible(element) {$/;"	f
+ensureOwnEffectMap	bower_components/polymer/lib/mixins/property-effects.html	/^  function ensureOwnEffectMap(model, type) {$/;"	f
+equals	bower_components/polymer/lib/utils/array-splice.html	/^  function equals(currentValue, previousValue) {$/;"	f
+esutils	node_modules/esutils/test/code.coffee	/^esutils = require '..\/'$/;"	v
+esutils	node_modules/esutils/test/keyword.coffee	/^esutils = require '..\/'$/;"	v
+expect	node_modules/esutils/test/code.coffee	/^expect = require('chai').expect$/;"	v
+expect	node_modules/esutils/test/keyword.coffee	/^expect = require('chai').expect$/;"	v
+finalizeClass	bower_components/polymer/lib/mixins/element-mixin.html	/^    function finalizeClass(klass) {$/;"	f
+finalizeClassAndSuper	bower_components/polymer/lib/mixins/element-mixin.html	/^    function finalizeClassAndSuper(klass) {$/;"	f
+finalizeObservers	bower_components/polymer/lib/mixins/element-mixin.html	/^    function finalizeObservers(proto, observers, dynamicFns) {$/;"	f
+finalizeProperties	bower_components/polymer/lib/mixins/element-mixin.html	/^    function finalizeProperties(proto, properties) {$/;"	f
+finalizeTemplate	bower_components/polymer/lib/mixins/element-mixin.html	/^    function finalizeTemplate(proto, template, baseURI, is, ext) {$/;"	f
+findMethodHost	bower_components/polymer/lib/utils/templatize.html	/^    function findMethodHost(template) {$/;"	f
+findModule	bower_components/polymer/lib/elements/dom-module.html	/^  function findModule(id) {$/;"	f
+findTemplateNode	bower_components/polymer/lib/mixins/template-stamp.html	/^  function findTemplateNode(root, nodeInfo) {$/;"	f
+fireNativeInputEvent	bower_components/iron-input/test/iron-input.html	/^    function fireNativeInputEvent(input) {$/;"	f
+fireWheel	bower_components/iron-dropdown/test/iron-dropdown.html	/^    function fireWheel(node, deltaX, deltaY) {$/;"	f
+firstTouchAction	bower_components/polymer/lib/utils/gestures.html	/^  function firstTouchAction(ev) {$/;"	f
+fixOffsets	src/fl-draw/fl-draw.html	/^        function fixOffsets(ev) {$/;"	f
+flattenBehaviors	bower_components/polymer/lib/legacy/class.html	/^    function flattenBehaviors(behaviors, list, exclude) {$/;"	f
+flattenProperties	bower_components/polymer/lib/mixins/element-mixin.html	/^    function flattenProperties(flattenedProps, props) {$/;"	f
+flush	bower_components/polymer/lib/utils/render-status.html	/^  function flush() {$/;"	f
+flushDebouncers	bower_components/polymer/lib/utils/flush.html	/^  function flushDebouncers() {$/;"	f
+flushQueue	bower_components/polymer/lib/utils/render-status.html	/^  function flushQueue(queue) {$/;"	f
+forwardMethods	bower_components/polymer/lib/legacy/polymer.dom.html	/^  function forwardMethods(proto, methods) {$/;"	f
+forwardProperties	bower_components/polymer/lib/legacy/polymer.dom.html	/^  function forwardProperties(proto, properties) {$/;"	f
+forwardReadOnlyProperties	bower_components/polymer/lib/legacy/polymer.dom.html	/^  function forwardReadOnlyProperties(proto, properties) {$/;"	f
+getTextLocation	bower_components/paper-behaviors/test/paper-ripple-behavior.html	/^          function getTextLocation(ripple) {$/;"	f
+handleNotification	bower_components/polymer/lib/mixins/property-effects.html	/^  function handleNotification(event, inst, fromProp, toPath, negate) {$/;"	f
+hasClassFinalized	bower_components/polymer/lib/mixins/element-mixin.html	/^    function hasClassFinalized(klass) {$/;"	f
+hasIcon	bower_components/iron-icon/test/iron-icon.html	/^function hasIcon (node) {$/;"	f
+hasLeftMouseButton	bower_components/polymer/lib/utils/gestures.html	/^  function hasLeftMouseButton(ev) {$/;"	f
+iconElementFor	bower_components/iron-icon/test/iron-icon.html	/^function iconElementFor (node) {$/;"	f
+ignoreMouse	bower_components/polymer/lib/utils/gestures.html	/^  function ignoreMouse(e) {$/;"	f
+importModule	bower_components/polymer/lib/utils/style-gather.html	/^  function importModule(moduleId) {$/;"	f
+intersects	bower_components/iron-fit-behavior/test/iron-fit-behavior.html	/^      function intersects(r1, r2) {$/;"	f
+isMouseEvent	bower_components/polymer/lib/utils/gestures.html	/^  function isMouseEvent(name) {$/;"	f
+isSlot	bower_components/polymer/lib/utils/flattened-nodes-observer.html	/^  function isSlot(node) {$/;"	f
+isSyntheticClick	bower_components/polymer/lib/utils/gestures.html	/^  function isSyntheticClick(ev) {$/;"	f
+keyComboMatchesEvent	bower_components/iron-a11y-keys-behavior/iron-a11y-keys-behavior.html	/^    function keyComboMatchesEvent(keyCombo, event) {$/;"	f
+literalFromParts	bower_components/polymer/lib/mixins/property-effects.html	/^  function literalFromParts(parts) {$/;"	f
+makeScrolling	bower_components/iron-fit-behavior/test/iron-fit-behavior.html	/^      function makeScrolling(el) {$/;"	f
+marshalArgs	bower_components/polymer/lib/mixins/property-effects.html	/^  function marshalArgs(data, args, path, props) {$/;"	f
+microtaskFlush	bower_components/polymer/lib/utils/async.html	/^  function microtaskFlush() {$/;"	f
+mixinBehaviors	bower_components/polymer/lib/legacy/class.html	/^    function mixinBehaviors(behaviors, klass) {$/;"	f
+mouseout_handler	src/fl-draw/fl-draw.html	/^        function mouseout_handler(event) {$/;"	f
+mouseover_handler	src/fl-draw/fl-draw.html	/^        function mouseover_handler(event) {$/;"	f
+move_handler	src/fl-draw/fl-draw.html	/^        function move_handler(event) {$/;"	f
+moveend_handler	src/fl-draw/fl-draw.html	/^        function moveend_handler(event = { type: 'up' }) {$/;"	f
+movestart_handler	src/fl-draw/fl-draw.html	/^        function movestart_handler(event) {$/;"	f
+mutablePropertyChange	bower_components/polymer/lib/mixins/mutable-data.html	/^  function mutablePropertyChange(inst, property, value, old, mutableData) {$/;"	f
+newSplice	bower_components/polymer/lib/utils/array-splice.html	/^  function newSplice(index, removed, addedCount) {$/;"	f
+normalizedKeyForEvent	bower_components/iron-a11y-keys-behavior/iron-a11y-keys-behavior.html	/^    function normalizedKeyForEvent(keyEvent, noSpecialChars) {$/;"	f
+notifyPath	bower_components/polymer/lib/mixins/property-effects.html	/^  function notifyPath(inst, path, props) {$/;"	f
+notifySplice	bower_components/polymer/lib/mixins/property-effects.html	/^  function notifySplice(inst, array, path, index, addedCount, removed) {$/;"	f
+notifySplices	bower_components/polymer/lib/mixins/property-effects.html	/^  function notifySplices(inst, array, path, splices) {$/;"	f
+ownObserversForClass	bower_components/polymer/lib/mixins/element-mixin.html	/^    function ownObserversForClass(klass) {$/;"	f
+ownPropertiesForClass	bower_components/polymer/lib/mixins/element-mixin.html	/^    function ownPropertiesForClass(klass) {$/;"	f
+parseArg	bower_components/polymer/lib/mixins/property-effects.html	/^  function parseArg(rawArg) {$/;"	f
+parseArgs	bower_components/polymer/lib/mixins/property-effects.html	/^  function parseArgs(argList, sig) {$/;"	f
+parseEventString	bower_components/iron-a11y-keys-behavior/iron-a11y-keys-behavior.html	/^    function parseEventString(eventString) {$/;"	f
+parseKeyComboString	bower_components/iron-a11y-keys-behavior/iron-a11y-keys-behavior.html	/^    function parseKeyComboString(keyComboString) {$/;"	f
+parseMethod	bower_components/polymer/lib/mixins/property-effects.html	/^  function parseMethod(expression) {$/;"	f
+pathFromUrl	bower_components/polymer/lib/utils/resolve-url.html	/^    function pathFromUrl(url) {$/;"	f
+pathMatchesTrigger	bower_components/polymer/lib/mixins/property-effects.html	/^  function pathMatchesTrigger(path, trigger) {$/;"	f
+positionEquals	bower_components/iron-flex-layout/test/iron-flex-layout-classes.html	/^      function positionEquals(node, top, bottom, left, right) {$/;"	f
+positionEquals	bower_components/iron-flex-layout/test/iron-flex-layout.html	/^      function positionEquals(node, top, bottom, left, right) {$/;"	f
+propertiesForClass	bower_components/polymer/lib/mixins/element-mixin.html	/^    function propertiesForClass(klass) {$/;"	f
+propertyDefaultsForClass	bower_components/polymer/lib/mixins/element-mixin.html	/^    function propertyDefaultsForClass(klass) {$/;"	f
+pushPoint	src/fl-draw/fl-draw.html	/^        function pushPoint(ev, action) {$/;"	f
+refit	bower_components/iron-fit-behavior/demo/index.html	/^          function refit() {$/;"	f
+register	bower_components/webcomponentsjs/tests/ce-upgradedocumenttree.html	/^      function register() {$/;"	f
+resolve	bower_components/polymer/lib/utils/unresolved.html	/^  function resolve() {$/;"	f
+resolveCss	bower_components/polymer/lib/utils/resolve-url.html	/^    function resolveCss(cssText, baseURI) {$/;"	f
+resolveUrl	bower_components/polymer/lib/utils/resolve-url.html	/^    function resolveUrl(url, baseURI) {$/;"	f
+runAfterClose	bower_components/iron-overlay-behavior/test/iron-overlay-behavior.html	/^    function runAfterClose(overlay, callback) {$/;"	f
+runAfterOpen	bower_components/iron-dropdown/test/iron-dropdown.html	/^    function runAfterOpen(overlay, callback) {$/;"	f
+runAfterOpen	bower_components/iron-overlay-behavior/test/iron-overlay-backdrop.html	/^    function runAfterOpen(overlay, callback) {$/;"	f
+runAfterOpen	bower_components/iron-overlay-behavior/test/iron-overlay-behavior.html	/^    function runAfterOpen(overlay, callback) {$/;"	f
+runBindingEffect	bower_components/polymer/lib/mixins/property-effects.html	/^  function runBindingEffect(inst, path, props, oldProps, info, hasPaths, nodeList) {$/;"	f
+runComputedEffect	bower_components/polymer/lib/mixins/property-effects.html	/^  function runComputedEffect(inst, property, props, oldProps, info) {$/;"	f
+runComputedEffects	bower_components/polymer/lib/mixins/property-effects.html	/^  function runComputedEffects(inst, changedProps, oldProps, hasPaths) {$/;"	f
+runEffects	bower_components/polymer/lib/mixins/property-effects.html	/^  function runEffects(inst, effects, props, oldProps, hasPaths, extraArgs) {$/;"	f
+runEffectsForProperty	bower_components/polymer/lib/mixins/property-effects.html	/^  function runEffectsForProperty(inst, effects, dedupeId, prop, props, oldProps, hasPaths, extraArgs) {$/;"	f
+runMethodEffect	bower_components/polymer/lib/mixins/property-effects.html	/^  function runMethodEffect(inst, property, props, oldProps, info) {$/;"	f
+runNotifyEffect	bower_components/polymer/lib/mixins/property-effects.html	/^  function runNotifyEffect(inst, property, props, oldProps, info, hasPaths) {$/;"	f
+runNotifyEffects	bower_components/polymer/lib/mixins/property-effects.html	/^  function runNotifyEffects(inst, notifyProps, props, oldProps, hasPaths) {$/;"	f
+runObserverEffect	bower_components/polymer/lib/mixins/property-effects.html	/^  function runObserverEffect(inst, property, props, oldProps, info) {$/;"	f
+runQueue	bower_components/polymer/lib/utils/render-status.html	/^  function runQueue(queue) {$/;"	f
+runReflectEffect	bower_components/polymer/lib/mixins/property-effects.html	/^  function runReflectEffect(inst, property, props, oldProps, info) {$/;"	f
+saveAccessorValue	bower_components/polymer/lib/mixins/property-accessors.html	/^  function saveAccessorValue(model, property) {$/;"	f
+schedule	bower_components/polymer/lib/utils/render-status.html	/^  function schedule() {$/;"	f
+setupBindings	bower_components/polymer/lib/mixins/property-effects.html	/^  function setupBindings(inst, templateInfo) {$/;"	f
+setupCompoundStorage	bower_components/polymer/lib/mixins/property-effects.html	/^  function setupCompoundStorage(node, binding) {$/;"	f
+setupTeardownMouseCanceller	bower_components/polymer/lib/utils/gestures.html	/^  function setupTeardownMouseCanceller(setup) {$/;"	f
+sharedPrefix	bower_components/polymer/lib/utils/array-splice.html	/^  function sharedPrefix(current, old, searchLength) {$/;"	f
+sharedSuffix	bower_components/polymer/lib/utils/array-splice.html	/^  function sharedSuffix(current, old, searchLength) {$/;"	f
+shouldAddListener	bower_components/polymer/lib/mixins/property-effects.html	/^  function shouldAddListener(binding) {$/;"	f
+spliceOperationsFromEditDistances	bower_components/polymer/lib/utils/array-splice.html	/^  function spliceOperationsFromEditDistances(distances) {$/;"	f
+styleOutsideTemplateCheck	bower_components/polymer/lib/elements/dom-module.html	/^  function styleOutsideTemplateCheck(inst) {$/;"	f
+testImports	bower_components/webcomponentsjs/tests/ce-import-upgrade-async.html	/^        function testImports() {$/;"	f
+testSelectItem	bower_components/iron-selector/test/attr-for-selected.html	/^        function testSelectItem(i) {$/;"	f
+toggleClass	bower_components/iron-fit-behavior/demo/index.html	/^          function toggleClass(element, cssClass, condition) {$/;"	f
+trackDocument	bower_components/polymer/lib/utils/gestures.html	/^  function trackDocument(stateObj, movefn, upfn) {$/;"	f
+transformKey	bower_components/iron-a11y-keys-behavior/iron-a11y-keys-behavior.html	/^    function transformKey(key, noSpecialChars) {$/;"	f
+transformKeyCode	bower_components/iron-a11y-keys-behavior/iron-a11y-keys-behavior.html	/^    function transformKeyCode(keyCode) {$/;"	f
+transformKeyIdentifier	bower_components/iron-a11y-keys-behavior/iron-a11y-keys-behavior.html	/^    function transformKeyIdentifier(keyIdent) {$/;"	f
+untrackDocument	bower_components/polymer/lib/utils/gestures.html	/^  function untrackDocument(stateObj) {$/;"	f
+update	bower_components/iron-form-element-behavior/demo/index.html	/^      function update() {$/;"	f
+upgradeTemplate	bower_components/polymer/lib/utils/templatize.html	/^    function upgradeTemplate(template, constructor) {$/;"	f
+upper	bower_components/polymer/lib/mixins/property-effects.html	/^  function upper(name) {$/;"	f
+waitForIronItemsChanged	bower_components/iron-menu-behavior/test/iron-menu-behavior.html	/^      function waitForIronItemsChanged(selector, callback) {$/;"	f
+waitForIronItemsChanged	bower_components/iron-menu-behavior/test/iron-menubar-behavior.html	/^      function waitForIronItemsChanged(selector, callback) {$/;"	f
+whenImportsReady	bower_components/polymer/lib/utils/import-href.html	/^  function whenImportsReady(cb) {$/;"	f
+words	node_modules/esutils/test/keyword.coffee	/^            words = [$/;"	v
+wrapTemplateExtension	bower_components/polymer/lib/mixins/template-stamp.html	/^  function wrapTemplateExtension(node) {$/;"	f

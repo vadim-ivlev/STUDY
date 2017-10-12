@@ -15,12 +15,10 @@
  * @param {nbject[]} points - Array of poins to draw
  * @returns {object} - {sketch fn, dpane, canvas, p5 }
  */
-function FlSketch(dpane, width=600, height=400, points=[]){
-    // var pane=dpane;
+function PointSketch(dpane, width=600, height=400, points=[]){
+// globals ===========================================
     var canvas;
 
-
-// globals ===========================================
 let rgba={r:0,g:0,b:0,a:255}; // max values: 255
 let strWeight=2; //pixels
 let fadingTime=10000; //msec
@@ -86,7 +84,9 @@ var sketch = function (p) {
 
         p.createCanvas(width, height); //does it change canva's style only?
         //FIXME: fix visibility and size of canvas 
-        canvas = dpane.childNodes[0].style.visibility='visible';
+        canvas = dpane.childNodes[0];
+        canvas.style.visibility='visible';
+        // canvas.setAttribute("touch-action","none");
 
         p.noFill();
         p.curveTightness(-0.5);
