@@ -71,11 +71,9 @@
         dpane.style.height=`${this.height}px`;
 
         pStore= PointStorage(this);
-        pStore.attachEventHandlers(dpane); //join lines?
-        pSketch = PointSketch(dpane,this.width,this.height,pStore.points,this);
+        pStore.attachEventHandlers(dpane); 
+        pSketch = PointSketch(dpane,this.width,this.height,pStore.points);
 
-        //test(this.shadowRoot); !!!!!
-        // var painter = new Paint({el: this.shadowRoot.getElementById('pane1')});
       }
     }
 

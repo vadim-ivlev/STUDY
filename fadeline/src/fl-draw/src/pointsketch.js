@@ -13,12 +13,13 @@
  * @param {number} width  
  * @param {number} height 
  * @param {object[]} points - Array of poins to draw
- * @param {object} hostsThis - this of the host
- * @returns {object} - {sketch fn, dpane, canvas, p5 }
+ * @returns {object} - {canvas, p5 }
  */
-function PointSketch(dpane, width=600, height=400, points=[], hostsThis){
+function PointSketch(dpane, width=600, height=400, points=[] ){
 // globals ===========================================
-    var canvas;
+var canvas;
+var myp5;
+var dpane; 
 
 // let rgba={r:0,g:0,b:0,a:255}; // max values: 255
 // let strWeight=2; //pixels
@@ -83,18 +84,17 @@ var sketch = function (p) {
         //var myCanvas = createCanvas(windowWidth, windowHeight * 0.5);
         //myCanvas.parent('pane');
 
-        p.createCanvas(width, height); //does it change canva's style only?
-        canvas = dpane.childNodes[0];
+        canvas = p.createCanvas(width, height).canvas; //does it change canva's style only?
+        // canvas = dpane.childNodes[0];
         canvas.style.visibility='visible';
         // canvas.setAttribute("touch-action","none");
 
         p.noFill();
         p.curveTightness(-0.5);
+        p.strokeCap(p.SQUARE);
         // blendMode(DIFFERENCE);    
         // frameRate(30);
         // noLoop();
-        p.rect(0,0,70,70);
-        p.line(0,0,150,100);
     };
 
     p.draw = function() {
@@ -130,12 +130,9 @@ var sketch = function (p) {
     }
 };
 
+myp5 = new p5(sketch,dpane);  // do it in ready function
 
-var myp5 = new p5(sketch,dpane);  // do it in ready function
-    
 return {
-        sketch,
-        dpane,
         canvas,
         p5:myp5
     };
