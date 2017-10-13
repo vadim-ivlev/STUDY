@@ -1,7 +1,7 @@
 
 
 function PointStorage() {
-
+    var dpane;
     // DEFS --------------------------------------------
     // array of points to draw
     let points = [];
@@ -32,7 +32,7 @@ function PointStorage() {
             time: Date.now()
         };
         points.push(p);
-         console.log('pushPoint ',points)
+        //  console.log('pushPoint ',points)
 
     }
 
@@ -76,15 +76,16 @@ function PointStorage() {
      * @param {*} ev 
      */
     function fixOffsets(ev) {
-        if (ev.offsetX || ev.offsetY) return;
-        let offset = pane.offset();
-        ev.offsetX = ((ev.pageX || 0) - offset.left);//+ $(window).scrollLeft();
-        ev.offsetY = ((ev.pageY || 0) - offset.top);//+ $(window).scrollTop();
+        if (ev.offsetX || ev.offsetY) return; //FIXME: it could be 0
+        // FIXME: all way up
+        ev.offsetX = ((ev.pageX || 0) - dpane.offsetLeft);//+ $(window).scrollLeft();
+        ev.offsetY = ((ev.pageY || 0) - dpane.offsetTop);//+ $(window).scrollTop();
     }
 
     // BEGIN ============================================
 
-    function attachEventHandlers(pane, root) {
+    function attachEventHandlers(pane) {
+        dpane=pane; // will need it fixOffsets
 
         // prevent the page from dragging in iOS
         pane.addEventListener('touchmove', (event) => event.preventDefault());
@@ -137,6 +138,9 @@ function PointStorage() {
         // pane.on('movestart', movestart_handler);
         // pane.on('moveend', moveend_handler);
         // pane.on('move', move_handler);
+
+        // TODO: Gesture events?
+
     }
     return {
         points,
