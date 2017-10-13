@@ -21,7 +21,6 @@
         background-color:white;
       }
       fl-draw{
-
         border:0px solid red;
         position:absolute;
         top:0px;
@@ -31,8 +30,8 @@
       }
 
     </style>
-    <fl-draw width="800" height="400" ></fl-draw>
-    <fl-toolbar color="#000" flow="230" size="3" on-color-changed="colorChanged"></fl-toolbar>
+    <fl-draw    color="[[color]]" size="[[size]]" flow="[[flow]]" width="800" height="400" ></fl-draw>
+    <fl-toolbar color="{{color}}" size="{{size}}" flow="{{flow}}" ></fl-toolbar>
   </template>
 
   <script>
@@ -41,12 +40,20 @@
      * @polymer
      */
     class FlApp extends Polymer.Element {
+      
       static get is() { return 'fl-app'; }
+      
 
-      colorChanged(ev){
-        console.log('colorChanged in fl-app');
-        console.log(ev);
+      static get properties() {
+        return {
+          flow:   { type: Number, value: 230,    notify: true },
+          width:  { type: Number, value: 400,    notify: true },
+          height: { type: Number, value: 300,    notify: true },
+          size:   { type: Number, value: 3,      notify: true },
+          color:  { type: String, value: "#000000", notify: true }
+        }
       }
+      
     }
 
     window.customElements.define(FlApp.is, FlApp);

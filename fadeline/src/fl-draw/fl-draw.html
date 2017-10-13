@@ -25,7 +25,7 @@
     /**
      * Globals
      */
-    let pStore = PointStorage(); 
+    let pStore ; 
     let pSketch;
 
     // function test(document){
@@ -43,7 +43,7 @@
      */
     class FlDraw extends Polymer.Element {
 
-      
+       
 
       static get is() { return 'fl-draw'; }
 
@@ -53,7 +53,7 @@
           width:  { type: Number, value: 400,    notify: true },
           height: { type: Number, value: 300,    notify: true },
           size:   { type: Number, value: 3,      notify: true },
-          color:  { type: String, value: "#F00", notify: true },
+          color:  { type: String, value: "#000000", notify: true },
           flowP:  { type: Number, reflectToAttribute:false, computed: "computeFlowP(flow)"
           }
         };
@@ -70,10 +70,11 @@
         dpane.style.width=`${this.width}px`;
         dpane.style.height=`${this.height}px`;
 
-        pStore.attachEventHandlers(dpane);
-        pSketch = PointSketch(dpane,this.width,this.height,pStore.points);
+        pStore= PointStorage(this);
+        pStore.attachEventHandlers(dpane); //join lines?
+        pSketch = PointSketch(dpane,this.width,this.height,pStore.points,this);
 
-        //test(this.shadowRoot);
+        //test(this.shadowRoot); !!!!!
         // var painter = new Paint({el: this.shadowRoot.getElementById('pane1')});
       }
     }

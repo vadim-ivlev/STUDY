@@ -12,15 +12,16 @@
  * @param {domNode} dpane - Parent node to attach canvas
  * @param {number} width  
  * @param {number} height 
- * @param {nbject[]} points - Array of poins to draw
+ * @param {object[]} points - Array of poins to draw
+ * @param {object} hostsThis - this of the host
  * @returns {object} - {sketch fn, dpane, canvas, p5 }
  */
-function PointSketch(dpane, width=600, height=400, points=[]){
+function PointSketch(dpane, width=600, height=400, points=[], hostsThis){
 // globals ===========================================
     var canvas;
 
-let rgba={r:0,g:0,b:0,a:255}; // max values: 255
-let strWeight=2; //pixels
+// let rgba={r:0,g:0,b:0,a:255}; // max values: 255
+// let strWeight=2; //pixels
 let fadingTime=10000; //msec
 let sig_k=15; 
 
@@ -83,7 +84,6 @@ var sketch = function (p) {
         //myCanvas.parent('pane');
 
         p.createCanvas(width, height); //does it change canva's style only?
-        //FIXME: fix visibility and size of canvas 
         canvas = dpane.childNodes[0];
         canvas.style.visibility='visible';
         // canvas.setAttribute("touch-action","none");
@@ -113,10 +113,18 @@ var sketch = function (p) {
 
             // let coords = getLineCoords(i);
             let coords = getCurveCoords(i);
-            if (coords==null) continue;
+            if (coords == null) continue;
 
-            p.stroke(rgba.r, rgba.g, rgba.b, a * rgba.a);
-            p.strokeWeight(strWeight+a*strWeight);
+            // p.stroke(rgba.r, rgba.g, rgba.b, a * rgba.a);
+            
+            let pi = points[i];
+            let c = p.color(pi.color);
+            let s = parseFloat(pi.size);
+            let f = parseFloat(pi.flow);
+            let pr = parseFloat(pi.pressure);
+           
+            p.stroke(p.red(c), p.green(c), p.blue(c), a * f);
+            p.strokeWeight(1+s*pr);
             p.curve(...coords);
         }
     }
