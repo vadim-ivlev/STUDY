@@ -81,9 +81,6 @@ function sigmoid(x, k, n ) { return 1 / (Math.exp((k * (x - 0.5 * n)) / n) + 1);
 var sketch = function (p) {
 
     p.setup = function() {
-        //var myCanvas = createCanvas(windowWidth, windowHeight * 0.5);
-        //myCanvas.parent('pane');
-
         canvas = p.createCanvas(width, height).canvas; //does it change canva's style only?
         // canvas = dpane.childNodes[0];
         canvas.style.visibility='visible';
@@ -92,9 +89,6 @@ var sketch = function (p) {
         p.noFill();
         p.curveTightness(-0.5);
         p.strokeCap(p.SQUARE);
-        // blendMode(DIFFERENCE);    
-        // frameRate(30);
-        // noLoop();
     };
 
     p.draw = function() {

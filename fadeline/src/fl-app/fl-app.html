@@ -42,13 +42,12 @@
     class FlApp extends Polymer.Element {
       
       static get is() { return 'fl-app'; }
-      
 
       static get properties() {
         return {
-          flow:   { type: Number, value: 230,    notify: true },
           width:  { type: Number, value: 400,    notify: true },
           height: { type: Number, value: 300,    notify: true },
+          flow:   { type: Number, value: 230,    notify: true },
           size:   { type: Number, value: 3,      notify: true },
           color:  { type: String, value: "#000000", notify: true }
         }

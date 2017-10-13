@@ -11,18 +11,12 @@
 
 
     <!-- <div class="label">color</div> -->
-    <div class="label">[[color]]</div>
-
-    <!-- 
-      if notify is not set for the color property,
-      colorChanged is needed to change color property,
-      on-color-changed="colorChanged" 
-    -->
+    <!-- <div class="label">[[color]]</div> -->
     <paper-swatch-picker id="cPick" class="sample" noink="true" style="background-color:[[color]]" color="{{color}}"></paper-swatch-picker>
 
 
     <!-- <div class="label">flow</div> -->
-    <div class="label">[[flow]]</div>
+    <!-- <div class="label">[[flow]]</div> -->
     <div id="div000" class="sample">
       <div style="align-self: flex-end; width:100%; height:[[flowP]]%; background-color:[[color]]; border-top:1px solid black;"></div> 
     </div>
@@ -34,9 +28,8 @@
 
     <br>
 
-
     <!-- <div class="label">size</div> -->
-    <div class="label">[[size]]</div>
+    <!-- <div class="label">[[size]]</div> -->
     <div class="sample" style="border-width:0px">
       <div style="width:[[size]]px; height:[[size]]px; border-radius:[[size]]px; background-color:[[color]]; border:1px solid black;"></div> 
     </div>
@@ -60,29 +53,13 @@
 
       static get properties() {
         return {
-          flow: {
-            type: Number,
-            value: 255,
-            notify: true
-          },
-          flowP: {
-            type: Number,
-            reflectToAttribute:false,
-            computed: "computeFlowP(flow)"
-          },
-          size: {
-            type: Number,
-            value: 3,
-            notify: true
-          },
-          color: {
-            type: String,
-            value: "#F00",
-            notify: true
-          }
+          flow:  { type: Number, value: 255,    notify: true },
+          size:  { type: Number, value: 3,      notify: true },
+          color: { type: String, value: "#F00", notify: true },
+          flowP: { type: Number, reflectToAttribute:false, computed: "computeFlowP(flow)" }
         };
       }
-      
+
       computeFlowP(flow){
         return 100*flow/255;
       }
