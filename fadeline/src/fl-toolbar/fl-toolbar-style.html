@@ -4,10 +4,7 @@
             :host {
                 display: block;
                 border: 0px solid silver;
-                width: 50px;
-                overflow: hidden;
             }
-
 
             .slider-wrapper {
                 display: block;
@@ -15,6 +12,7 @@
                 height: 200px;
                 padding: 0;
                 border: 0px solid red;
+                overflow: hidden;
             }
 
             .slider-wrapper input {
@@ -30,7 +28,7 @@
                 font-family: Roboto;
                 font-size: smaller;
                 text-align: center;
-                width: 37px;
+                /* width: 37px; */
                 margin: 0px;
             }
 
@@ -39,11 +37,9 @@
 
                 width: 37px;
                 height: 37px;
-                /* background-color: whitesmoke; */
                 border: 1px solid #222;
                 border-radius: 19px;
                 overflow: hidden;
-                /* position: relative; */
 
                 display: -webkit-box;
                 display: -moz-box;
@@ -52,18 +48,8 @@
                 display: flex;
                 align-items:center;
                 justify-content: center;
-
             }
 
-
-            paper-swatch-picker {
-                --paper-swatch-picker-color-size: 20px;
-                /* --paper-swatch-picker-icon-size:2px; */
-                --paper-swatch-picker-icon:"{}";
-                border: 1px solid silver;
-                border-radius: 30px;
-                background-color: whitesmoke;
-            }
         </style>
     </template>
 </dom-module>

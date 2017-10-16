@@ -1,0 +1,50 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="./fl-color-picker-style.html">
+
+<dom-module id="fl-color-picker">
+  <template>
+    <style include="fl-color-picker-style"></style>
+
+    <!-- <div class="color-picker"> -->
+      <div class="color-sample" style="background-color:[[color]]" on-click="showSampler"></div>
+      <div class="color-sampler">
+        <template is="dom-repeat" items="{{colors}}">
+          <div class="color-sample" style="background-color:[[item]]" on-click="changeColor"></div>
+        </template>  
+      </div>
+      </div>
+    <!-- </div>  -->
+
+  </template>
+
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class FlColorPicker extends Polymer.Element {
+      static get is() { return 'fl-color-picker'; }
+
+      static get properties() {
+        return {
+          color: { type: String, value: "#F00", notify: true },
+          colors: { type: Array, value: ["#FFFFFF","#C0C0C0", "#808080", "#000000", "#FF0000", "#800000", "#FFFF00", "#808000", "#00FF00", "#008000", "#00FFFF", "#008080", "#0000FF", "#000080", "#FF00FF", "#800080"], notify: true }
+        };
+      }
+
+      changeColor(e) {
+        this.color=e.model.item;
+        this.shadowRoot.querySelector('.color-sampler').style.display='none';
+      }
+
+      showSampler(e) {
+        var s = this.shadowRoot.querySelector('.color-sampler');
+        s.style.display= s.style.display=='none'? 'block': 'none';
+      }
+
+    }
+
+    window.customElements.define(FlColorPicker.is, FlColorPicker);
+
+  </script>
+</dom-module>
