@@ -212,10 +212,6 @@
       "type": "script",
       "weight": 1
     },
-    "node_modules/p5/lib/p5.min.js": {
-      "type": "script",
-      "weight": 1
-    },
     "src/fl-draw/src/pointstorage.js": {
       "type": "script",
       "weight": 1
