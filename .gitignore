@@ -22,4 +22,4 @@ bower_components
 .node_repl_history
 
 #allow fadeline
-#!fadeline/build/**
+!fadeline/build/**
