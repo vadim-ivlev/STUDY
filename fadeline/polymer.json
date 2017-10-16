@@ -10,8 +10,7 @@
   "extraDependencies": [
     "manifest.json",
     "bower_components/webcomponentsjs/*.js",
-    "node_modules/jquery/dist/jquery.min.js",
-    "node_modules/pressure/dist/jquery.pressure.min.js",
+    "node_modules/pressure/dist/pressure.min.js",
     "node_modules/p5/lib/p5.min.js"
   ],
   "lint": {
@@ -19,6 +18,12 @@
   },
   "builds": [
     {
+      "preset": "es5-bundled",
+      "bundle": {
+        "excludes": ["node_modules/p5/lib/p5.min.js"]
+      }
+    }
+    ,{
       "preset": "es6-unbundled"
     }
   ]
