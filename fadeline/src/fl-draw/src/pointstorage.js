@@ -104,8 +104,8 @@ function PointStorage(hostsThis) {
 
 
         // mouse events
-        pane.addEventListener('mouseover', mouseover_handler);
-        pane.addEventListener('mouseout', mouseout_handler);
+        // pane.addEventListener('mouseover', mouseover_handler);
+        // pane.addEventListener('mouseout', mouseout_handler);
         pane.addEventListener('mousedown', movestart_handler);
         pane.addEventListener('mouseup', moveend_handler);
         pane.addEventListener('mousemove', move_handler)

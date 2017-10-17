@@ -38,13 +38,13 @@ function readFps(){
 }
 
 // points = [
-//     { x: 100, y: 100, action:'move', color:'#000000',size:3,flow:255, pressure:0.99, time:100000000000000 },
-//     { x: 200, y: 200, action:'move', color:'#ff0000',size:4,flow:255, pressure:0.2, time:100000000000000 },
+//     { x: 100, y: 100, action:'move', color:'#000000',size:5,flow:255, pressure:0.99, time:100000000000000 },
+//     { x: 200, y: 200, action:'move', color:'#ff0000',size:5,flow:255, pressure:0.1, time:100000000000000 },
 //     { x: 300, y: 100, action:'move', color:'#00ff00',size:5,flow:255, pressure:0.99, time:100000000000000 },
-//     { x: 400, y: 200, action:'move', color:'#0000ff',size:6,flow:255, pressure:0.2, time:100000000000000 },
-//     { x: 500, y: 100, action:'move', color:'#ffff00',size:7,flow:255, pressure:0.9, time:100000000000000 },
-//     { x: 600, y: 200, action:'move', color:'#00ffff',size:8,flow:255, pressure:0.1, time:100000000000000 },
-//     { x: 700, y: 100, action:'move', color:'#000000',size:9,flow:255, pressure:0.99, time:100000000000000 },
+//     { x: 400, y: 200, action:'move', color:'#0000ff',size:5,flow:255, pressure:0.1, time:100000000000000 },
+//     { x: 500, y: 100, action:'move', color:'#ffff00',size:5,flow:255, pressure:0.99, time:100000000000000 },
+//     { x: 600, y: 200, action:'move', color:'#00ffff',size:5,flow:255, pressure:0.1, time:100000000000000 },
+//     { x: 700, y: 100, action:'move', color:'#000000',size:5,flow:255, pressure:0.99, time:100000000000000 },
 // ];
 
 
@@ -170,62 +170,123 @@ function midPointBtw(p1, p2) {
     };
   }
 
-
-function drawFrame(timeSpan){
-    if (points.length <2 ){
-        return;
-    }
-    //!!!! Erase canvas. dirty hack enstead of clearRect 
-    // to prevent decrease in frameRate
+/**
+ * !!!! Erase canvas. dirty hack enstead of clearRect to prevent decrease in frameRate
+ */
+function clearCanvas(){
     canvas.width=width+1;
     canvas.width=width;
+}  
 
+
+/**
+ * Sets the style in accord with the p0 parameter and stroke.
+ * @param {object} p0 - point  
+ * @param {number} a - alpha  
+ */
+function doStroke(p0,a ){
+
+    let c = hexToRgb(p0.color);
+    let s = parseFloat(p0.size);
+    let f = parseFloat(p0.flow);
+    let pr = parseFloat(p0.pressure);
+    let color='rgba('+c+','+ a +')';
+    // console.log('color=', color);
+    ctx.lineWidth=s+s*pr;
+    ctx.strokeStyle=color;
+    // ctx.lineCap = "round";
+    // ctx.closePath(); 
+    ctx.stroke();
+}
+
+
+function drawFrame(timeSpan){ 
+    if (points.length <2 ){ return; }
+    clearCanvas();
 
     let p0 = points[points.length-1];
     let p1 ;//= points[points.length-2];
     ctx.moveTo(p0.x, p0.y);
 
-    // for (let i=0, l=points.length-2; i<l; i++){
-    for (let i=points.length-1; i>0; i--){
-        p0 = points[i];
-        p1 = points[i-1];
+    for (let i=points.length; i>0; i--){
+        p0 = points[i]; p1 = points[i-1];
 
+        // to draw, at least one of the points have to have action="move"
+        if (p0.action !='draw' && p1.action !='move') continue;  
+        
         let a = getAlpha(timeSpan, i);
-        if (a < 0) {
-            console.log('truncate');
-            return; //truncate?
-        }
 
-        // check if we should draw
-        if (p0.action !='draw' && p1.action !='move'){ continue; } 
+        if (a < 0.0001) {
+            console.log('truncate');
+            return; //truncate? stop?
+        } 
 
         let p01 = midPointBtw(p0, p1)
         
         ctx.beginPath();
         ctx.quadraticCurveTo(p0.x, p0.y, p1.x, p1.y);
-        // ctx.lineTo(p1.x, p1.y);
-        // console.log(p0.x, p0.y, p1.x, p1.y);
-        
-        
-        let c = hexToRgb(p0.color);
-        let s = parseFloat(p0.size);
-        let f = parseFloat(p0.flow);
-        let pr = parseFloat(p0.pressure);
-        let color='rgba('+c+','+ (a) +')';
-        // console.log('color=', color);
-        ctx.lineWidth=s+s*pr;
-        ctx.strokeStyle=color;
-        // ctx.lineCap = "round";
-        ctx.stroke();
+        doStroke(p0,a);
     }
 
     // Draw last line as a straight line while
-    // we wait for the next point to be able to calculate
-    // the bezier control point
-
     // ctx.lineTo(p1.x, p1.y);
     // ctx.stroke();
 }
+
+function p(i){
+    var l=points.length;
+    if (i > l-1) return  [points[l-1].x, points[l-1].y];
+    if (i < 0 )  return  [points[0].x, points[0].y];
+    return [points[i].x, points[i].y];
+}
+function mp(i,j){
+    var pi=p(i), pj=p(j);
+    return [ (pi[0]+pj[0])/2, (pi[1]+pj[1])/2 ];
+}
+
+function getPoint(i){
+    var l=points.length;
+    if (i > l-1) return  points[l-1];
+    if (i < 0 )  return  points[0];
+    return points[i];
+}
+
+function drawFrame2(timeSpan){ 
+    if (points.length <2 ){ return; }
+    clearCanvas();
+
+    let p0 = points[points.length-1];
+    let p1 ;//= points[points.length-2];
+    // ctx.moveTo(p0.x, p0.y);
+    let lastEnd=[p0.x, p0.y];
+
+    for (let i=points.length-1; i>0; i--){
+        p0 = getPoint(i); p1 = getPoint(i-1);
+
+        // to draw, at least one of the points have to have action="move"
+        if (p0.action !='move' || p1.action !='move') continue;  
+        
+        let a = getAlpha(timeSpan, i-1);
+
+        if (a < 0.0001) {
+            console.log('truncate2');
+            return; //truncate? stop?
+        } 
+        
+
+        let c0=p(i);
+        let c1=p(i-1);
+        let c01 = mp(i, i-1);
+        // if (i==5) debugger;
+
+        ctx.beginPath();
+        ctx.moveTo(...lastEnd);
+        ctx.quadraticCurveTo(...c0, ...c01);
+        lastEnd=[c01[0],c01[1]];
+        doStroke(p1,a);
+    }
+}
+
 
 function hexToRgb(hex) {
     if (hex[0]=='#') hex=hex.substr(1);
@@ -236,39 +297,26 @@ function hexToRgb(hex) {
     return r + "," + g + "," + b;
 }
 
+
 function draw() {
     let now = Date.now();
     if ( now - then > 1000./fps ){
         then=now;
         fpsCounter++;
-        drawFrame(fadingTime);
+        drawFrame2(fadingTime);
     }
     start();
 }
 
-// shim layer with setTimeout fallback
-// window.requestAnimFrame = (function () {
-//     return window.requestAnimationFrame ||
-//         window.webkitRequestAnimationFrame ||
-//         window.mozRequestAnimationFrame ||
-//         function (callback) {
-//             window.setTimeout(callback, 1000 / 60);
-//         };
-// })();
 
-
-function start(){
-    frameID = window.requestAnimationFrame(draw);
-}
-
-
-function stop(){
-    window.cancelAnimationFrame(frameID) ;
-}
+//start and stop animation
+function start(){ frameID = window.requestAnimationFrame(draw); }
+function stop(){ window.cancelAnimationFrame(frameID) ; }
 
 
 // myp5 = new p5(sketch,dpane);  // do it in ready function
 setup(dpane, width, height); start();
+
 
 return {
         canvas,
