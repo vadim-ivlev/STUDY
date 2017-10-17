@@ -2,9 +2,9 @@
 
 function PointStorage(hostsThis) {
     var dpane;
-    // DEFS --------------------------------------------
     // array of points to draw
     let points = [];
+    window.points=points;
 
     // shows if pointer is down
     let pointerDown = false;
@@ -14,20 +14,19 @@ function PointStorage(hostsThis) {
     let press = 0;
 
     /**
-     * Creates a record about pointer event and adds it
-     * to the global array points[]. 
-     * pointer param describes what happend 
+     * adds a record to the global array points[]. 
+     * 'action' describes what happend 
      * to the pointer device: "down", "up" 
      * @param {event} ev
      * @param {String} pointer 
      */
     function pushPoint(ev, action) {
-        fixOffsets(ev);
+        var bounds = event.target.getBoundingClientRect();
         let p = {
             action,
             eventType: ev.type,
-            x: (ev.offsetX),
-            y: (ev.offsetY),
+            x: ev.detail.x - bounds.x,
+            y: ev.detail.y - bounds.y,
             pressure: press,
             size:hostsThis.size,
             color:hostsThis.color,
@@ -35,16 +34,10 @@ function PointStorage(hostsThis) {
             time: Date.now()
         };
         points.push(p);
-        //  console.log('pushPoint ',points)
-
     }
 
 
-    // Handlers ================================
-    // there are several place where you can add event handlers.
-    // pointer events, mouse events, pressurejs events, touch events.
-    // It's hard to tell what is the right choince if we want the app work
-    // on any device
+    // Handlers =================================================
 
     function mouseover_handler(event) {
         if (event.buttons)
@@ -72,28 +65,12 @@ function PointStorage(hostsThis) {
             pushPoint(event, 'move');
     }
 
+   
     /**
-     * Quick fix.
-     * add missing offxetX and offstY to the event
-     * https://github.com/stephband/jquery.event.move
-     * @param {*} ev 
+     * Initializes pressurejs.
+     * @param {*} pane 
      */
-    function fixOffsets(ev) {
-        if (ev.offsetX || ev.offsetY) return; //FIXME: it could be 0
-        // FIXME: we have to go all way up the tree, including shadow dom
-        ev.offsetX = ((ev.pageX || 0) - dpane.offsetLeft);//+ $(window).scrollLeft();
-        ev.offsetY = ((ev.pageY || 0) - dpane.offsetTop);//+ $(window).scrollTop();
-    }
-
-    // BEGIN ============================================
-
-    function attachEventHandlers(pane) {
-        dpane=pane; // will need it fixOffsets
-
-        // prevent the page from dragging in iOS
-        pane.addEventListener('touchmove', (event) => event.preventDefault());
-
-        // Initializes pressurejs.
+    function attachPressureHandlers(pane){
         Pressure.set(pane, {
             change: (force, event) => { press = force; },
             start: function (event) { },
@@ -101,53 +78,75 @@ function PointStorage(hostsThis) {
         },
             { preventSelect: true, polyfillSpeedUp: 300 }
         );
+    }
+
+    /**
+     * prevent the page from dragging in iOS
+     * @param {*} pane 
+     */
+    function preventPageFromDragging(pane) {
+        pane.addEventListener('touchmove', (event) => event.preventDefault());
+    }
 
 
-        // mouse events
+    function attachMouseHandlers(pane){
         // pane.addEventListener('mouseover', mouseover_handler);
         // pane.addEventListener('mouseout', mouseout_handler);
         pane.addEventListener('mousedown', movestart_handler);
         pane.addEventListener('mouseup', moveend_handler);
         pane.addEventListener('mousemove', move_handler)
+    }
 
-        //touch events
+    function attachTouchHandlers(pane){
         pane.addEventListener('touchstart', movestart_handler);
-        pane.addEventListener('touchend', moveend_handler);
-        pane.addEventListener('touchmove', move_handler);
+        pane.addEventListener('touchend'  , moveend_handler);
+        pane.addEventListener('touchmove' , move_handler);
+    }
+
+    /**
+     * Polyfill of pointer events
+     * requires PEP.js from https://github.com/jquery/PEP
+     * 
+     * pointermove: a pointer moves, similar to touchmove or mousemove.
+     * pointerdown: a pointer is activated, or a device button held.
+     * pointerup: a pointer is deactivated, or a device button released.
+     * pointerover: a pointer has moved onto an element.
+     * pointerout: a pointer is no longer on an element it once was.
+     * pointerenter: a pointer enters the bounding box of an element.
+     * pointerleave: a pointer leaves the bounding box of an element.
+     * pointercancel: a pointer will no longer generate events.
+     * @param {*} pane 
+     */
+    function attachPointerHandlers(pane){
+        pane.addEventListener('pointerover', mouseover_handler);
+        pane.addEventListener('pointerout', mouseout_handler);
+        pane.addEventListener('pointerdown', movestart_handler);
+        pane.addEventListener('pointerup', moveend_handler);
+        pane.addEventListener('pointermove', move_handler)
+    }
 
 
-        //TODO: add touch event, or polyfill of pointer events
-        //https://github.com/jquery/PEP
-/* 
-        pointermove: a pointer moves, similar to touchmove or mousemove.
-        pointerdown: a pointer is activated, or a device button held.
-        pointerup: a pointer is deactivated, or a device button released.
-        pointerover: a pointer has moved onto an element.
-        pointerout: a pointer is no longer on an element it once was.
-        pointerenter: a pointer enters the bounding box of an element.
-        pointerleave: a pointer leaves the bounding box of an element.
-        pointercancel: a pointer will no longer generate events.
- */
-        // pane.addEventListener('pointerover', mouseover_handler);
-        // pane.addEventListener('pointerout', mouseout_handler);
-        // pane.addEventListener('pointerdown', movestart_handler);
-        // pane.addEventListener('pointerup', moveend_handler);
-        // pane.addEventListener('pointermove', move_handler)
+    function attachGestureHandlers(pane){
+        Polymer.Gestures.addListener(hostsThis,'down' , movestart_handler);
+        Polymer.Gestures.addListener(hostsThis,'up'   , moveend_handler);
+        Polymer.Gestures.addListener(hostsThis,'track', move_handler);
+    }
 
 
+    function attachEventHandlers(pane) {
+        dpane=pane; // will need it fixOffsets
+        preventPageFromDragging(pane);
+        attachPressureHandlers(pane);
 
-        /**
-         * move events abstract away the defaults 
-         * that need attention on dufferent devices.
-         * https://github.com/stephband/jquery.event.move
-         */
-        // pane.on('movestart', movestart_handler);
-        // pane.on('moveend', moveend_handler);
-        // pane.on('move', move_handler);
+        // attachMouseHandlers(pane);
+        // attachTouchHandlers(pane);
 
-        // TODO: Gesture events?
+        //for polymer only
+        attachGestureHandlers(pane);
 
     }
+
+
     return {
         points,
         attachEventHandlers

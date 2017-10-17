@@ -28,7 +28,6 @@ let fpsCounter=0;
 
 let fadingTime=10000; //msec
 let sig_k=15;
-window.ppp=points; 
 
 let timer=setInterval(readFps,1000)
 function readFps(){

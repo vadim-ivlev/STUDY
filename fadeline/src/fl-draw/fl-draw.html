@@ -1,4 +1,5 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/polymer/lib/mixins/gesture-event-listeners.html">
 <link rel="import" href="./fl-draw-style.html">
 
 <script src="../../node_modules/pressure/dist/pressure.min.js"></script>
@@ -18,7 +19,8 @@
     var pStore ; 
     var pSketch;
 
-    class FlDraw extends Polymer.Element {
+    //class FlDraw extends Polymer.Element {
+    class FlDraw extends Polymer.GestureEventListeners(Polymer.Element) {
 
       static get is() { return 'fl-draw'; }
 
