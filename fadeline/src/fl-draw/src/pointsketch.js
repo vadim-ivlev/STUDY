@@ -29,10 +29,10 @@ let fpsCounter=0;
 let fadingTime=10000; //msec
 let sig_k=15;
 
+// Measuring real fps
 let timer=setInterval(readFps,1000)
 function readFps(){
     thisHost._setRealFps(fpsCounter);
-    // console.log('fps = ', fpsCounter);
     fpsCounter=0;
 }
 
@@ -46,108 +46,38 @@ function readFps(){
 //     { x: 700, y: 100, action:'move', color:'#000000',size:5,flow:255, pressure:0.99, time:100000000000000 },
 // ];
 
-
-function getCurveCoords(i){
-    var p1 =points[i],p2,p3,p4;    
-    p1 = points[i];
-    if (p1.action != 'move') return null; 
-    p2 = points[i - 1];
-    if (p2.action != 'move') return [p1.x, p1.y, p1.x, p1.y, p2.x, p2.y, p2.x, p2.y]; 
-    p3 = points[i - 2];
-    if (p3.action != 'move') return [p1.x, p1.y, p2.x, p2.y, p2.x, p2.y, p3.x, p3.y]; 
-    p4 = points[i - 3];
-    return [p1.x, p1.y, p2.x, p2.y, p3.x, p3.y, p4.x, p4.y];
-}
-
-
-
 function getAlpha(timeSpan, i) {
     let p1 = points[i];
     let now=Date.now() ;
     let dt=(now - p1.time);
-    // let fading = lin(dt, timeSpan);
-    let fading = sigmoid(dt, sig_k, timeSpan);
-    let alpha = fading * p1.pressure;
+    if (dt > timeSpan) 
+        return 0;
 
-    // if (fading>-0.1) console.log(points.length,fading);
-    // console.log(`now:${now} p.time:${p1.time} dt:${dt} alpha:${alpha}`)
-    return alpha;
+    let fading = 1;
+    fading = sigmoid(dt, timeSpan, sig_k); //lin(dt, timeSpan);
+
+    return fading * p1.pressure;
 
     /**
      * -----------------------------------------------------
      * Linear fading function. Changes from 1 to 0
      * when x changes from 0 to n.
-     * @param {*} x 
-     * @param {*} n 
+     * @param {*} x - value  
+     * @param {*} n - max value when fading -> 0
      */
-    function lin(x,n) {return 1.0-x/n;} 
+    function lin(x,n) {return (x > n? 0.: 1.0-x/n);} 
 
 
     /**
      * ------------------------------------------------------
      * Sigmoid fading function. Works well when k~10
-     * @param {*} x 
-     * @param {*} k 
-     * @param {*} n 
+     * @param {*} x - value   
+     * @param {*} n - max value when fading -> 0 
+     * @param {*} k - coefficient how fast is fading
      */
-    function sigmoid(x, k, n ) { return 1 / (Math.exp((k * (x - 0.5 * n)) / n) + 1); }
+    function sigmoid(x, n, k ) { return 1 / (Math.exp((k * (x - 0.5 * n)) / n) + 1); }
 
 }
-
-
-/**
- * To initialize p5 later.
- * https://github.com/processing/p5.js/wiki/p5.js-overview#instantiation--namespace
- */
-
-var sketch = function (p) {
-
-    p.setup = function() {
-        canvas = p.createCanvas(width, height).canvas; //does it change canva's style only?
-        // canvas = dpane.childNodes[0];
-        canvas.style.visibility='visible';
-        // canvas.setAttribute("touch-action","none");
-
-        p.noFill();
-        p.curveTightness(-0.5);
-        p.strokeCap(p.SQUARE);
-    };
-
-    p.draw = function() {
-        p.clear();
-        redrawLastLines(fadingTime);
-    };
-
-    function redrawLastLines(timeSpan = 5000 ) {
-        fpsCounter++;
-
-        for (let i =points.length  - 1; i > 2; i--) {
-            let a = getAlpha(timeSpan, i);
-            if (a < 0) {
-                console.log('truncate');
-                return; //truncate?
-            }
-
-            // let coords = getLineCoords(i);
-            let coords = getCurveCoords(i);
-            // console.log('coords=',coords);
-            if (coords == null) continue;
-
-            
-            let pi = points[i];
-            let c = p.color(pi.color);
-            let s = parseFloat(pi.size);
-            let f = parseFloat(pi.flow);
-            let pr = parseFloat(pi.pressure);
-           
-            p.stroke(p.red(c), p.green(c), p.blue(c), a * f);
-            // console.log(p.red(c), p.green(c), p.blue(c), a * f,a,f)
-            p.strokeWeight(1+s*pr);
-            p.curve(...coords);
-        }
-    }
-};
-
 
 
 function setup(dpane, width=600, height=400) {
@@ -162,12 +92,6 @@ function setup(dpane, width=600, height=400) {
     ctx.lineJoin = "round";
 }
 
-function midPointBtw(p1, p2) {
-    return {
-      x: p1.x + (p2.x - p1.x) / 2,
-      y: p1.y + (p2.y - p1.y) / 2
-    };
-  }
 
 /**
  * !!!! Erase canvas. dirty hack enstead of clearRect to prevent decrease in frameRate
@@ -198,46 +122,13 @@ function doStroke(p0,a ){
     ctx.stroke();
 }
 
-
-function drawFrame(timeSpan){ 
-    if (points.length <2 ){ return; }
-    clearCanvas();
-
-    let p0 = points[points.length-1];
-    let p1 ;//= points[points.length-2];
-    ctx.moveTo(p0.x, p0.y);
-
-    for (let i=points.length; i>0; i--){
-        p0 = points[i]; p1 = points[i-1];
-
-        // to draw, at least one of the points have to have action="move"
-        if (p0.action !='draw' && p1.action !='move') continue;  
-        
-        let a = getAlpha(timeSpan, i);
-
-        if (a < 0.0001) {
-            console.log('truncate');
-            return; //truncate? stop?
-        } 
-
-        let p01 = midPointBtw(p0, p1)
-        
-        ctx.beginPath();
-        ctx.quadraticCurveTo(p0.x, p0.y, p1.x, p1.y);
-        doStroke(p0,a);
-    }
-
-    // Draw last line as a straight line while
-    // ctx.lineTo(p1.x, p1.y);
-    // ctx.stroke();
-}
-
 function p(i){
     var l=points.length;
     if (i > l-1) return  [points[l-1].x, points[l-1].y];
     if (i < 0 )  return  [points[0].x, points[0].y];
     return [points[i].x, points[i].y];
 }
+
 function mp(i,j){
     var pi=p(i), pj=p(j);
     return [ (pi[0]+pj[0])/2, (pi[1]+pj[1])/2 ];
@@ -254,23 +145,26 @@ function drawFrame2(timeSpan){
     if (points.length <2 ){ return; }
     clearCanvas();
 
+    // TODO: implement drawing by chunks.
     let p0 = points[points.length-1];
     let p1 ;//= points[points.length-2];
     // ctx.moveTo(p0.x, p0.y);
     let lastEnd=[p0.x, p0.y];
 
     for (let i=points.length-1; i>0; i--){
-        p0 = getPoint(i); p1 = getPoint(i-1);
+        p0 = getPoint(i); 
+        p1 = getPoint(i-1);
 
         // to draw, at least one of the points have to have action="move"
-        if (p0.action !='move' || p1.action !='move') continue;  
+        if (p0.action !='move') continue;
+        if (p1.action !='move') continue;  
         
+        if ( Date.now()-p0.time > timeSpan) {
+            console.log('truncate3');
+            return;
+        }
+    
         let a = getAlpha(timeSpan, i-1);
-
-        if (a < 0.0001) {
-            console.log('truncate2');
-            return; //truncate? stop?
-        } 
         
 
         let c0=p(i);
@@ -286,7 +180,7 @@ function drawFrame2(timeSpan){
     }
 }
 
-
+//TODO: Move  to toolbar
 function hexToRgb(hex) {
     if (hex[0]=='#') hex=hex.substr(1);
     var c = parseInt(hex, 16);
@@ -313,13 +207,12 @@ function start(){ frameID = window.requestAnimationFrame(draw); }
 function stop(){ window.cancelAnimationFrame(frameID) ; }
 
 
-// myp5 = new p5(sketch,dpane);  // do it in ready function
-setup(dpane, width, height); start();
+setup(dpane, width, height); 
+start();
 
 
 return {
-        canvas,
-        p5:myp5
+        canvas
     };
 }
 
