@@ -36,27 +36,18 @@ function readFps(){
     fpsCounter=0;
 }
 
-// points = [
-//     { x: 100, y: 100, action:'move', color:'#000000',size:5,flow:255, pressure:0.99, time:100000000000000 },
-//     { x: 200, y: 200, action:'move', color:'#ff0000',size:5,flow:255, pressure:0.1, time:100000000000000 },
-//     { x: 300, y: 100, action:'move', color:'#00ff00',size:5,flow:255, pressure:0.99, time:100000000000000 },
-//     { x: 400, y: 200, action:'move', color:'#0000ff',size:5,flow:255, pressure:0.1, time:100000000000000 },
-//     { x: 500, y: 100, action:'move', color:'#ffff00',size:5,flow:255, pressure:0.99, time:100000000000000 },
-//     { x: 600, y: 200, action:'move', color:'#00ffff',size:5,flow:255, pressure:0.1, time:100000000000000 },
-//     { x: 700, y: 100, action:'move', color:'#000000',size:5,flow:255, pressure:0.99, time:100000000000000 },
-// ];
 
-function getAlpha(timeSpan, i) {
-    let p1 = points[i];
-    let now=Date.now() ;
-    let dt=(now - p1.time);
+function getFading(dt,timeSpan) {
+    // let p1 = points[i];
+    // let now=Date.now() ;
+    // let dt=(now - p1.time);
     if (dt > timeSpan) 
         return 0;
 
     let fading = 1;
     fading = sigmoid(dt, timeSpan, sig_k); //lin(dt, timeSpan);
 
-    return fading * p1.pressure;
+    return fading;
 
     /**
      * -----------------------------------------------------
@@ -108,77 +99,38 @@ function clearCanvas(){
  * @param {number} a - alpha  
  */
 function doStroke(p0,a ){
-
     let c = hexToRgb(p0.color);
     let s = parseFloat(p0.size);
     let f = parseFloat(p0.flow);
     let pr = parseFloat(p0.pressure);
-    let color='rgba('+c+','+ a +')';
-    // console.log('color=', color);
+    let color='rgba('+c+','+ a*(f/255)*pr +')';
     ctx.lineWidth=s+s*pr;
     ctx.strokeStyle=color;
-    // ctx.lineCap = "round";
-    // ctx.closePath(); 
     ctx.stroke();
 }
 
-function p(i){
-    var l=points.length;
-    if (i > l-1) return  [points[l-1].x, points[l-1].y];
-    if (i < 0 )  return  [points[0].x, points[0].y];
+function p(i, min = 0, max = (points.length - 1)){
+    if (i > max) return  [points[max].x, points[max].y];
+    if (i < min )  return  [points[min].x, points[min].y];
     return [points[i].x, points[i].y];
 }
 
-function mp(i,j){
-    var pi=p(i), pj=p(j);
+function mp(i,j, min = 0, max = (points.length - 1)  ){
+    var pi=p(i, min, max), pj=p(j,min,max);
     return [ (pi[0]+pj[0])/2, (pi[1]+pj[1])/2 ];
 }
-
-function getPoint(i){
-    var l=points.length;
-    if (i > l-1) return  points[l-1];
-    if (i < 0 )  return  points[0];
+/**
+ * 
+ * @param {*} i - index 
+ * @param {*} min - min value of index
+ * @param {*} max - max value of index
+ */
+function getPoint(points, i, min = 0, max = (points.length - 1)) {
+    if (i > max) return  points[max];
+    if (i < min)  return  points[min];
     return points[i];
 }
 
-function drawFrame2(timeSpan){ 
-    if (points.length <2 ){ return; }
-    clearCanvas();
-
-    // TODO: implement drawing by chunks.
-    let p0 = points[points.length-1];
-    let p1 ;//= points[points.length-2];
-    // ctx.moveTo(p0.x, p0.y);
-    let lastEnd=[p0.x, p0.y];
-
-    for (let i=points.length-1; i>0; i--){
-        p0 = getPoint(i); 
-        p1 = getPoint(i-1);
-
-        // to draw, at least one of the points have to have action="move"
-        if (p0.action !='move') continue;
-        if (p1.action !='move') continue;  
-        
-        if ( Date.now()-p0.time > timeSpan) {
-            console.log('truncate3');
-            return;
-        }
-    
-        let a = getAlpha(timeSpan, i-1);
-        
-
-        let c0=p(i);
-        let c1=p(i-1);
-        let c01 = mp(i, i-1);
-        // if (i==5) debugger;
-
-        ctx.beginPath();
-        ctx.moveTo(...lastEnd);
-        ctx.quadraticCurveTo(...c0, ...c01);
-        lastEnd=[c01[0],c01[1]];
-        doStroke(p1,a);
-    }
-}
 
 //TODO: Move  to toolbar
 function hexToRgb(hex) {
@@ -196,7 +148,8 @@ function draw() {
     if ( now - then > 1000./fps ){
         then=now;
         fpsCounter++;
-        drawFrame2(fadingTime);
+        // drawFrame2(points,fadingTime);
+        drawFrame3(points,fadingTime);
     }
     start();
 }
@@ -205,6 +158,89 @@ function draw() {
 //start and stop animation
 function start(){ frameID = window.requestAnimationFrame(draw); }
 function stop(){ window.cancelAnimationFrame(frameID) ; }
+
+
+
+function print(m) { console.log(JSON.stringify(m).replace(/},/g,"},\n"));}
+
+/**
+ * Iterator. Returns chunks of points with action="move", not shorter then 2.
+ * @param {*} arr - array of points 
+ */
+function* getChunksIt(arr = []){
+    var a=arr;
+    var l=arr.length;
+    let i1=-1;
+    let i2=-1; 
+    for (let i=l-1; i>=0 ; i-- ) {
+        let p = a[i];
+        if (p.action != "move") {
+            if (i2-i1 > 0) {
+                yield {first:i1, last:i2};
+            }
+            i1=i2=-1;
+            continue;
+        } 
+        if (i2 == -1) {
+            i1=i2=i;
+            continue;
+        } 
+        i1=i;
+    }
+
+    if (i2 - i1 > 0) {
+        yield { first: i1, last: i2 };
+    } else {
+        yield null;
+    }
+
+}
+
+function drawChunk(points, chunk, timeSpan ){
+    if(chunk==null) {
+        return;
+    }
+
+
+    let p0 = points[chunk.last];
+    let p1 ;
+    let lastEnd=[p0.x, p0.y];
+
+    // TODO: move it out of loop to fade all line as a whole
+    let dt=Date.now()-p0.time;
+    if ( dt > timeSpan) { return; } // truncate
+    let a = getFading(dt,timeSpan);
+
+    for (let i=chunk.last; i>=chunk.first; i--){
+        p0 = getPoint(points, i, chunk.first, chunk.last); 
+        p1 = getPoint(points, i-1, chunk.first, chunk.last);
+
+
+        let c0=p(i, chunk.first, chunk.last);
+        let c1=p(i-1, chunk.first, chunk.last);
+        let c01 = mp(i, i-1, chunk.first, chunk.last);
+        drawQudraticCurve(lastEnd,c0,c01,p1,a);
+        lastEnd=[c01[0],c01[1]];
+    }
+}
+
+function drawQudraticCurve(lastEnd,c0,c01,p1,a) {
+        ctx.beginPath();
+        ctx.moveTo(...lastEnd);
+        ctx.quadraticCurveTo(...c0, ...c01);
+        doStroke(p1,a);
+}
+
+
+
+function drawFrame3(points,timeSpan){
+
+    clearCanvas();
+    let chunks = getChunksIt(points);
+    for (let chunk of chunks) {
+        drawChunk(points, chunk, timeSpan);
+    }
+}
 
 
 setup(dpane, width, height); 

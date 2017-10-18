@@ -27,11 +27,7 @@
       "html": {
         "minify": true
       },
-      "bundle": {
-        "excludes": [
-          "node_modules/p5/lib/p5.min.js"
-        ]
-      },
+      "bundle": true,
       "addServiceWorker": true,
       "addPushManifest": true,
       "preset": "es5-bundled"

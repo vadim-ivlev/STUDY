@@ -55,7 +55,7 @@ function PointStorage(hostsThis) {
         pushPoint(event, 'movestart')
     }
 
-    function moveend_handler(event = { type: 'up' }) {
+    function moveend_handler(event) {
         pointerDown = false;
         pushPoint(event, 'moveend')
     }
