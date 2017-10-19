@@ -1,6 +1,7 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../../bower_components/iron-input/iron-input.html">
 <link rel="import" href="../fl-color-picker/fl-color-picker.html">
+<link rel="import" href="../fl-size-picker/fl-size-picker.html">
 <link rel="import" href="./range-sliders-style.html">
 <link rel="import" href="./fl-toolbar-style.html">
 
@@ -10,8 +11,10 @@
     <style include="fl-toolbar-style"></style>
 
     <fl-color-picker color={{color}}></fl-color-picker>
+    <fl-size-picker size={{size}}></fl-size-picker>
 
     <!-- <div class="label">[[flow]]</div> -->
+    <!--
     <div id="div000" class="sample">
       <div style="align-self: flex-end; width:100%; height:[[flowP]]%; background-color:[[color]]; border-top:1px solid black;"></div> 
     </div>
@@ -20,10 +23,12 @@
         <input type="range" min="10" max="255" step="1" value="[[flow]]">
       </iron-input>
     </div>
+    -->
 
     <br>
 
     <!-- <div class="label">[[size]]</div> -->
+    <!--
     <div class="sample" style="border-width:0px">
       <div style="width:[[size]]px; height:[[size]]px; border-radius:[[size]]px; background-color:[[color]]; border:1px solid black;"></div> 
     </div>
@@ -33,7 +38,7 @@
       </iron-input>
     </div>
     <br>
-
+    -->
 
   </template>
 

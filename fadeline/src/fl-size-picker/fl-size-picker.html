@@ -1,0 +1,71 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="./fl-size-picker-style.html">
+
+<dom-module id="fl-size-picker">
+  <template>
+    <style include="fl-size-picker-style"></style>
+
+    <div class="sample" on-click="showSampler">
+        <div style="width:[[size]]px; height:[[size]]px; border-radius:[[size]]px; 
+          background-color:black;">
+        </div>
+    </div>
+    <div class="sampler" tabindex="1" on-blur="hideSampler">
+      <template is="dom-repeat" items="{{sizes}}">
+        <div class="sample" on-click="changeSize">
+        <div style="width:[[item]]px; height:[[item]]px; border-radius:[[item]]px; 
+          background-color:black;">
+        </div>
+      </template>  
+    </div>
+    </div>
+
+  </template>
+
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    let sampler;
+
+    class FlSizePicker extends Polymer.Element {
+      static get is() { return 'fl-size-picker'; }
+
+      static get properties() {
+        return {
+          size: { type: String, value: 2, notify: true },
+          sizes: { type: Array, value: [2, 4, 6, 8, 10, 12, 14, 16], notify: true }
+        };
+      }
+
+
+      ready(){
+        super.ready();
+        sampler = this.shadowRoot.querySelector('.sampler');
+      }
+
+
+      changeSize(e) {
+        this.size=e.model.item;
+        this.hideSampler();
+      }
+
+
+      showSampler(e) {
+        sampler.style.display='block';
+        sampler.focus();
+      }
+
+
+      hideSampler(e) {
+        sampler.style.display='none';
+      }
+
+    }
+
+    window.customElements.define(FlSizePicker.is, FlSizePicker);
+
+  </script>
+</dom-module>
+
