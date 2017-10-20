@@ -1,0 +1,62 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../fl-toolbar/fl-toolbar.html">
+<link rel="import" href="../fl-draw/fl-draw.html">
+
+
+<dom-module id="fl-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+        position:absolute;
+        margin:0;
+        padding:0;
+      }
+
+      fl-toolbar {
+        border:0px solid silver;
+        position:absolute;
+        top:0px;
+        left:0px;
+        /* width:240px; */
+        background-color:rgba(255,255,255,0.7);
+      }
+
+      fl-draw{
+        border:0px solid red;
+        position:absolute;
+        top:0px;
+        left:0px;
+        /* width:20px; */
+        /* height:20px; */
+      }
+
+    </style>
+    <fl-draw    color="[[color]]" size="[[size]]" flow="[[flow]]" fading-time="[[fadingTime]]" width="800" height="400" fps="100" ></fl-draw>
+    <fl-toolbar color="{{color}}" size="{{size}}" flow="{{flow}}" fading-time="{{fadingTime}}"></fl-toolbar>
+  </template>
+
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class FlApp extends Polymer.Element {
+      
+      static get is() { return 'fl-app'; }
+
+      static get properties() {
+        return {
+          width:  { type: Number, value: 400,    notify: true },
+          height: { type: Number, value: 300,    notify: true },
+          flow:   { type: Number, value: 255,    notify: true },
+          size:   { type: Number, value: 1,      notify: true },
+          color:  { type: String, value: "#000000", notify: true }
+        }
+      }
+      
+    }
+
+    window.customElements.define(FlApp.is, FlApp);
+  </script>
+</dom-module>

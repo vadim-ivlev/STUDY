@@ -4,13 +4,12 @@
   "fragments": [
  ],
   "sources": [
-    "src/**/*",
-    "images/**/*"
+    "src/**/*"
   ],
   "extraDependencies": [
     "manifest.json",
     "bower_components/webcomponentsjs/*.js",
-    "bower_components/jquery/dist/jquery.min.js"
+    "node_modules/pressure/dist/pressure.min.js"
   ],
   "lint": {
     "rules": ["polymer-2"]
@@ -20,10 +19,10 @@
       "preset": "es5-bundled"
     }
     ,{
-      "preset": "es6-bundled"
+      "preset": "es6-unbundled"
     }
     ,{
-      "preset": "es6-unbundled"
+      "preset": "es6-bundled"
     }
   ]
 }

@@ -13,6 +13,7 @@
  * @param {number} width  
  * @param {number} height 
  * @param {object[]} points - Array of poins to draw
+ * @param {object} thisHost - this of the host component
  * @returns {object} - {canvas, p5 }
  */
 function PointSketch(dpane, width=600, height=400, points=[],thisHost ){

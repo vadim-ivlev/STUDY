@@ -1,0 +1,57 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/iron-input/iron-input.html">
+<link rel="import" href="../fl-color-picker/fl-color-picker.html">
+<link rel="import" href="../fl-size-picker/fl-size-picker.html">
+<link rel="import" href="./range-sliders-style.html">
+<link rel="import" href="./fl-toolbar-style.html">
+
+<dom-module id="fl-toolbar">
+  <template>
+    <style include="range-sliders-style"></style>
+    <style include="fl-toolbar-style"></style>
+
+    <fl-color-picker color={{color}}></fl-color-picker>
+    <fl-size-picker size={{size}}></fl-size-picker>
+
+
+    <br>
+
+    <div class="label">[[fadingTime]]<br>s</div> 
+    <div class="slider-wrapper">
+      <iron-input bind-value="{{fadingTime}}">
+        <input class="round-slider" type="range" min="1" max="120" value=[[fadingTime]]>
+      </iron-input>
+    </div>
+
+    <br>
+  </template>
+
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class FlToolbar extends Polymer.Element {
+      static get is() { return 'fl-toolbar'; }
+
+      static get properties() {
+        return {
+          fadingTime:  { type: Number, value: 10,     notify: true },
+          flow:        { type: Number, value: 255,    notify: true },
+          size:        { type: Number, value: 1,      notify: true },
+          color:       { type: String, value: "#F00", notify: true },
+          flowP:       { type: Number, reflectToAttribute:false, computed: "computeFlowP(flow)" }
+        };
+      }
+
+      computeFlowP(flow){
+        return 100*flow/255;
+      }
+      
+
+    }
+
+    window.customElements.define(FlToolbar.is, FlToolbar);
+
+  </script>
+</dom-module>
