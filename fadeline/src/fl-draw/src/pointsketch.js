@@ -34,16 +34,8 @@ function readFps(){
 
 
 function getFading(dt,timeSpan) {
-    // let p1 = points[i];
-    // let now=Date.now() ;
-    // let dt=(now - p1.time);
-    if (dt > timeSpan) 
-        return 0;
-
-    let fading = 1;
-    fading = sigmoid(dt, timeSpan, sig_k); //lin(dt, timeSpan);
-
-    return fading;
+    if (dt > timeSpan) return 0;
+    return sigmoid(dt, timeSpan, sig_k); //lin(dt, timeSpan);
 
     /**
      * -----------------------------------------------------

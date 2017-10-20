@@ -16,19 +16,14 @@
 
     <br>
 
-    <div class="label">[[fadingTime]]</div> 
-    <!--
-    <div class="sample" style="border-width:0px">
-      <div style="width:[[size]]px; height:[[size]]px; border-radius:[[size]]px; background-color:[[color]]; border:1px solid black;"></div> 
-    </div>
-    -->
+    <div class="label">[[fadingTime]]<br>s</div> 
     <div class="slider-wrapper">
       <iron-input bind-value="{{fadingTime}}">
         <input class="round-slider" type="range" min="1" max="120" value=[[fadingTime]]>
       </iron-input>
     </div>
-    <br>
 
+    <br>
   </template>
 
   <script>
@@ -43,7 +38,7 @@
         return {
           fadingTime:  { type: Number, value: 10,     notify: true },
           flow:        { type: Number, value: 255,    notify: true },
-          size:        { type: Number, value: 3,      notify: true },
+          size:        { type: Number, value: 1,      notify: true },
           color:       { type: String, value: "#F00", notify: true },
           flowP:       { type: Number, reflectToAttribute:false, computed: "computeFlowP(flow)" }
         };

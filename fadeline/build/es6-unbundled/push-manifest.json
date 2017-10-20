@@ -92,6 +92,10 @@
       "type": "document",
       "weight": 1
     },
+    "bower_components/polymer/lib/mixins/dir-mixin.html": {
+      "type": "document",
+      "weight": 1
+    },
     "bower_components/polymer/lib/utils/import-href.html": {
       "type": "document",
       "weight": 1
@@ -189,6 +193,14 @@
       "weight": 1
     },
     "src/fl-color-picker/fl-color-picker-style.html": {
+      "type": "document",
+      "weight": 1
+    },
+    "src/fl-size-picker/fl-size-picker.html": {
+      "type": "document",
+      "weight": 1
+    },
+    "src/fl-size-picker/fl-size-picker-style.html": {
       "type": "document",
       "weight": 1
     },

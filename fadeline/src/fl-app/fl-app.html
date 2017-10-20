@@ -14,21 +14,21 @@
       }
 
       fl-toolbar {
-        border:1px solid silver;
+        border:0px solid silver;
         position:absolute;
         top:0px;
         left:0px;
         /* width:240px; */
-        /* background-color:white; */
+        background-color:rgba(255,255,255,0.7);
       }
 
       fl-draw{
         border:0px solid red;
         position:absolute;
-        top:20px;
-        left:100px;
-        width:20px;
-        height:20px;
+        top:0px;
+        left:0px;
+        /* width:20px; */
+        /* height:20px; */
       }
 
     </style>
@@ -49,8 +49,8 @@
         return {
           width:  { type: Number, value: 400,    notify: true },
           height: { type: Number, value: 300,    notify: true },
-          flow:   { type: Number, value: 230,    notify: true },
-          size:   { type: Number, value: 3,      notify: true },
+          flow:   { type: Number, value: 255,    notify: true },
+          size:   { type: Number, value: 1,      notify: true },
           color:  { type: String, value: "#000000", notify: true }
         }
       }
