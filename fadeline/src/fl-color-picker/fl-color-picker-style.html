@@ -6,13 +6,13 @@
                 border: 0px solid silver;
             }
 
-            /* .color-picker {
+            /* .picker {
                 border: 1px solid red;
                 margin-bottom: 10px;
                 position: relative;
             } */
 
-            .color-sampler {
+            .sampler {
                 border: 0px solid blue;
                 background-color: #eee;
                 padding:0;
@@ -24,8 +24,13 @@
                 background-color: white;
                 display: none;
             }
+
+            .sampler:focus {
+                box-shadow: 5px 5px 40px #ccc;
+                outline:0;
+            }
             
-            .color-sample {
+            .sample {
                 display: inline-block;
                 width:34px;
                 height:34px;
@@ -38,7 +43,7 @@
                 border:1px solid transparent;
             }
 
-            .color-sample:first-child {
+            .sample:first-child {
                 border:1px solid silver;
             }
 

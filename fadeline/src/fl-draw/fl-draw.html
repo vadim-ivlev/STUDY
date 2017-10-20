@@ -26,13 +26,14 @@
 
       static get properties() {
         return {
-          width:  { type: Number, value: 400,    notify: true },
-          height: { type: Number, value: 300,    notify: true },
-          color:  { type: String, value: "#000000", notify: true },
-          flow:   { type: Number, value: 255,    notify: true },
-          size:   { type: Number, value: 3,      notify: true },
-          fps:    { type: Number, value: 60,      notify: true },
-          realFps:{ type: Number, value: 0,      notify: true , readOnly:true},
+          fadingTime:   { type: Number, value: 10,     notify: true },
+          width:        { type: Number, value: 400,    notify: true },
+          height:       { type: Number, value: 300,    notify: true },
+          color:        { type: String, value: "#000000", notify: true },
+          flow:         { type: Number, value: 255,    notify: true },
+          size:         { type: Number, value: 3,      notify: true },
+          fps:          { type: Number, value: 60,     notify: true },
+          realFps:      { type: Number, value: 0,      notify: true , readOnly:true},
           
         };
       }

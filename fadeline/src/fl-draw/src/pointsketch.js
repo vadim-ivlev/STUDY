@@ -20,16 +20,12 @@ function PointSketch(dpane, width=600, height=400, points=[],thisHost ){
 let canvas;
 let ctx;
 var frameID;
-let myp5;
-// let dpane; 
 let then=Date.now();
-let fps=thisHost.fps;
-let fpsCounter=0;
 
-let fadingTime=10000; //msec
 let sig_k=15;
 
 // Measuring real fps
+let fpsCounter=0;
 let timer=setInterval(readFps,1000)
 function readFps(){
     thisHost._setRealFps(fpsCounter);
@@ -145,11 +141,10 @@ function hexToRgb(hex) {
 
 function draw() {
     let now = Date.now();
-    if ( now - then > 1000./fps ){
+    if ( now - then > 1000./thisHost.fps ){
         then=now;
         fpsCounter++;
-        // drawFrame2(points,fadingTime);
-        drawFrame3(points,fadingTime);
+        drawFrame3(points,(thisHost.fadingTime * 1000));
     }
     start();
 }

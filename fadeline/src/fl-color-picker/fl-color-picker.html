@@ -5,15 +5,12 @@
   <template>
     <style include="fl-color-picker-style"></style>
 
-    <!-- <div class="color-picker"> -->
-      <div class="color-sample" style="background-color:[[color]]" on-click="showSampler"></div>
-      <div class="color-sampler">
+      <div class="sample" style="background-color:[[color]]" on-click="showSampler"></div>
+      <div class="sampler" tabindex="1" on-blur="hideSampler">
         <template is="dom-repeat" items="{{colors}}">
-          <div class="color-sample" style="background-color:[[item]]" on-click="changeColor"></div>
+          <div class="sample" style="background-color:[[item]]" on-click="changeColor"></div>
         </template>  
       </div>
-      </div>
-    <!-- </div>  -->
 
   </template>
 
@@ -32,14 +29,27 @@
         };
       }
 
-      changeColor(e) {
-        this.color=e.model.item;
-        this.shadowRoot.querySelector('.color-sampler').style.display='none';
+
+      ready(){
+        super.ready();
+        this.sampler = this.shadowRoot.querySelector('.sampler');
       }
 
+
+      changeColor(e) {
+        this.color=e.model.item;
+        this.hideSampler();
+      }
+
+
       showSampler(e) {
-        var s = this.shadowRoot.querySelector('.color-sampler');
-        s.style.display= s.style.display=='none'? 'block': 'none';
+        this.sampler.style.display='block';
+        this.sampler.focus();
+      }
+
+
+      hideSampler(e) {
+        this.sampler.style.display='none';
       }
 
     }
