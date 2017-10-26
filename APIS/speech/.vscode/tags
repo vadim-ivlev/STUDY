@@ -1,0 +1,16 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+audio	../speech-recognition.py	/^    audio = r.listen(source)$/;"	kind:variable	line:37
+engine	../speech-recognition.py	/^engine = pyttsx.init()$/;"	kind:variable	line:31
+json	../speech-recognition.py	/^import json #to print$/;"	kind:namespace	line:24
+print	../speech-recognition.py	/^import json #to print$/;"	kind:namespace	line:24
+pyttsx	../speech-recognition.py	/^import pyttsx$/;"	kind:namespace	line:23
+r	../speech-recognition.py	/^r = sr.Recognizer()$/;"	kind:variable	line:27
+s	../speech-recognition.py	/^    s = r.recognize_google(audio)$/;"	kind:variable	line:45
+speech-recognition.py	../speech-recognition.py	1;"	kind:file	line:1
+sr	../speech-recognition.py	/^import speech_recognition as sr$/;"	kind:namespace	line:22
+to	../speech-recognition.py	/^import json #to print$/;"	kind:namespace	line:24
