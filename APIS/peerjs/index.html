@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>testing peerjs</title>
+    <script src="./peer.js"></script>
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+        
+        #err {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="pid"></div>
+
+    <!-- connect area  -->
+    <span>connect to: </span>
+    <input type="text" id="inpconnect">
+    <button id="btnconnect">connect</button>
+    <div id="info"> </div>
+
+    <!-- chat area  -->
+    <div id="chat">
+        <br>
+        <textarea name="" id="txtmessages" cols="40" rows="12"></textarea>
+        <br>
+        <span>message: </span>
+        <input type="text" id="inpmessage">
+        <button id="btnmessage">send</button>
+    </div>
+
+    <!-- error area -->
+    <div id="err"></div>
+
+
+
+
+    <script>
+        const pid = document.getElementById('pid');
+        const inpconnect = document.getElementById('inpconnect');
+        const btnconnect = document.getElementById('btnconnect');
+        const info = document.getElementById('info');
+        const chat = document.getElementById('chat');
+        const txtmessages = document.getElementById('txtmessages');
+        const inpmessage = document.getElementById('inpmessage');
+        const btnmessage = document.getElementById('btnmessage');
+        const err = document.getElementById('err');
+
+        function showErrorMessage(msg){
+            console.log(msg);
+            err.innerText = msg;
+        }
+
+
+        function addMessageToTextArea(msg) {
+            txtmessages.value += `${msg}\n`;
+        }
+
+
+        function adjustGuiToConnection(c) {
+            console.log('connected\n', c);
+            info.innerText = `connected to: ${conn.peer}`;
+            chat.style.display = 'block';
+            showErrorMessage('');
+        }
+
+
+        function addListenersToConnection(c) {
+            c.on('data', data => addMessageToTextArea(data));
+            c.on('close', data => info.innerText = 'disconnected');
+            c.on('error', e => showErrorMessage(e));
+        }
+
+
+        btnconnect.addEventListener('click', ev => {
+            conn = peer.connect(inpconnect.value);
+            adjustGuiToConnection(conn);
+            addListenersToConnection(conn);
+        });
+
+
+        btnmessage.addEventListener('click', ev => {
+            if (conn && inpmessage.value) {
+                conn.send(inpmessage.value);
+                addMessageToTextArea(inpmessage.value);
+                inpmessage.value = '';
+            }
+        });
+
+
+        var peerID;
+        var peer = new Peer({ key: '94rai0h1w4jkyb9' });
+        var conn = null;
+
+        peer.on('open', function (id) {
+            peerID = id;
+            pid.innerText = 'My peer ID is: ' + peerID;
+        });
+
+        peer.on('connection', function (cnn) {
+            conn = cnn;
+            adjustGuiToConnection(conn);
+            addListenersToConnection(conn);
+        });
+
+        peer.on('error', err => showErrorMessage(err));
+
+
+    </script>
+</body>
+
+</html>

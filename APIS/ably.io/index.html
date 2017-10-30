@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Abbly.io</h1>
+
+    <input type="text" id="txt">
+    <button id="btn">publish</button>
+    <ul id="ul"></ul>
+    
+<script src="//cdn.ably.io/lib/ably.min-1.js"></script>
+
+<script>
+var ably = new Ably.Realtime('15tlLA.OBXFQg:bqm8EW7Df1qfs0KM');
+var channel = ably.channels.get('test');
+
+var txt = document.getElementById("txt");
+var btn = document.getElementById("btn");
+var ul = document.getElementById("ul");
+var t0,t1,dt;
+
+// Publish a message to the test channel
+btn.addEventListener('click', ev => {
+    channel.publish('greeting', txt.value );
+    t0=Date.now();
+});
+
+// Subscribe to messages on channel
+channel.subscribe('greeting', function(message) {
+    t1= Date.now();
+    var li = document.createElement('li');
+    li.innerText = 0.001*(t1-t0)+' sec '+message.data;
+    document.getElementById("ul").appendChild(li); 
+});
+
+</script>
+</body>
+</html>
