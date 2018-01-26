@@ -4,13 +4,27 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
+audio	../APIS/speech/speech-recognition.py	/^        audio = r.listen(source)$/;"	kind:variable	line:29
 c	../machine-learning/machine-learning-1.py	/^c=c.fit(f,ls)$/;"	kind:variable	line:23
 c	../machine-learning/machine-learning-1.py	/^c=tree.DecisionTreeClassifier()$/;"	kind:variable	line:22
 f	../machine-learning/machine-learning-1.py	/^f=[[130,1], [140,1], [150,0], [170,0]]$/;"	kind:variable	line:19
 fs	../machine-learning/machine-learning-1.py	/^fs =  [ [130, 'smooth'], [140, 'smooth'], [150, 'bumby'], [170, 'bumpy'] ]$/;"	kind:variable	line:16
+gTTS	../APIS/speech/tts.py	/^from gtts import gTTS$/;"	kind:namespace	line:4
 iris	../machine-learning/machine-learning-1.py	/^iris = load_iris()$/;"	kind:variable	line:37
+json	../APIS/speech/speech-recognition.py	/^import json #to print$/;"	kind:namespace	line:15
 l	../machine-learning/machine-learning-1.py	/^l=[1, 1, 0, 0]$/;"	kind:variable	line:20
 load_iris	../machine-learning/machine-learning-1.py	/^from sklearn.datasets import load_iris$/;"	kind:namespace	line:36
 ls	../machine-learning/machine-learning-1.py	/^ls = ['apple', 'apple', 'orange', 'orange']$/;"	kind:variable	line:17
 machine-learning-1.py	../machine-learning/machine-learning-1.py	1;"	kind:file	line:1
+os	../APIS/speech/tts.py	/^import os$/;"	kind:namespace	line:5
+print	../APIS/speech/speech-recognition.py	/^import json #to print$/;"	kind:namespace	line:15
+r	../APIS/speech/speech-recognition.py	/^r = sr.Recognizer()$/;"	kind:variable	line:21
+s	../APIS/speech/speech-recognition.py	/^        s = r.recognize_google(audio)$/;"	kind:variable	line:36
+s	../APIS/speech/speech-recognition.py	/^s=''$/;"	kind:variable	line:25
+say	../APIS/speech/speech-recognition.py	/^from tts import say$/;"	kind:namespace	line:16
+say	../APIS/speech/tts.py	/^def say(s,l='en'):$/;"	kind:function	line:7
+speech-recognition.py	../APIS/speech/speech-recognition.py	1;"	kind:file	line:1
+sr	../APIS/speech/speech-recognition.py	/^import speech_recognition as sr$/;"	kind:namespace	line:14
+to	../APIS/speech/speech-recognition.py	/^import json #to print$/;"	kind:namespace	line:15
 tree	../machine-learning/machine-learning-1.py	/^from sklearn  import tree$/;"	kind:namespace	line:14
+tts.py	../APIS/speech/tts.py	1;"	kind:file	line:1
