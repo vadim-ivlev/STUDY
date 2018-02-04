@@ -395,9 +395,7 @@ DotsBoard.prototype = {
             var options = {
                 title: "All Divisions Combined, including Denver Public Schools",
                 titlePosition: 'none',
-                //width:500,
-                // height:400,
-                hAxis: { 
+                 hAxis: { 
                     // title: 'Year', 
                     titleTextStyle: { color: '#333' },
                     textStyle : {
@@ -413,14 +411,18 @@ DotsBoard.prototype = {
                 },
                 chartArea: { 
                     width: this.width 
-                    // , width:830
-                    // ,height: this.height 
                     ,left: 70
                     , top: 20 
                     , bottom: 30 
                     , right: 40 
                 },
-                colors: ['#c00'],
+                colors: [clr[9]], //defined in clr.js
+                animation:{
+                    "startup": true,
+                    duration: 1000,
+                    easing: 'out',
+                  },
+            
                 legend: { position: 'none' }
             };
 
