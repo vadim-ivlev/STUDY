@@ -416,7 +416,7 @@ DotsBoard.prototype = {
                     , bottom: 30 
                     , right: 40 
                 },
-                colors: [clr[9]], //defined in clr.js
+                colors: ['#FF0000'], //defined in clr.js
                 animation:{
                     "startup": true,
                     duration: 1000,
