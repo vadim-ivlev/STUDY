@@ -1,0 +1,145 @@
+@import 'debug.css';
+
+body {
+    font-family: 'PT Sans', sans-serif;
+}
+
+#main-block {
+    width: 900px;
+    /* text-align: center; */
+    margin: 40px auto;
+}
+
+.main-center {
+    /* width: 950px; */
+}
+
+.outer-pagination {
+    /* margin: 20px auto; */
+    /* display: block; */
+    /* width: 475px; */
+    /* height: 40px; */
+}
+
+#pagination {
+    height: 40px;
+    width: 442px;
+    margin: auto;
+}
+
+
+#pagination a {
+    color: black;
+    display: inline-block;
+    /* float: left; */
+    /* padding: 8px 16px; */
+    text-decoration: none;
+    transition: background-color .3s;
+    cursor: auto;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 20px;
+    cursor: default;
+}
+
+
+#pagination a.active {
+    background-color: #333;
+    color: white;
+    font-weight:bold;
+    /* font-size: 17px; */
+}
+
+#pagination a:hover:not(.active) {
+    background-color: #ddd;
+}
+
+
+#chart_div {
+    width: 900px;
+    height: 460px;
+}
+
+
+#page-title {
+    font-weight: bold;
+    font-size: 32px;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 30px;
+}
+
+#title {
+    /* width: 850px; */
+    min-height: 63px;
+    text-align: justify;
+    font-size: 17px;
+    /* color: #666; */
+    /* margin-left: 20px; */
+    /* font-weight: bold; */
+    display: block;
+    margin-bottom: 20px;
+}
+
+#additional-note {
+    text-align: justify;
+    /* margin-left: 20px; */
+    /* padding-bottom: 20px; */
+    display: block;
+}
+
+#sub-title {
+    /* text-align: left; */
+    font-weight: bold;
+    font-size: 17px;
+    /* margin-bottom:10px; */
+    /* margin-left: 20px; */
+}
+
+#below-text {
+    /* margin-left: 20px; */
+    /* margin-top: 10px; */
+    /* color: #666; */
+    font-size: 17px;
+    text-align: justify;
+    min-height: 134px;
+    padding-top: 30px;
+}
+/* 
+.divide-line {
+    width: 930px;
+    margin: 0 auto;
+    border-top: 1px solid #ccc;
+    display: block;
+} */
+
+/* #head-chart {
+    margin-bottom: 25px;
+    display: none;
+}
+
+#foot-chart {
+    margin-top: 70px; 
+    display: none;
+} */
+
+#canvas-area {
+    margin-top: 20px;
+}
+
+#graphCanvas {
+    background-color: rgb(243, 244, 248);
+    /* border: 1px solid rgb(204, 204, 204); */
+    padding-top: 4px;
+    padding-left: 3px;
+    cursor: pointer;
+    margin: auto;
+}
+
+hr {
+    margin-bottom: 20px;
+    margin-top:20px;
+}
+
