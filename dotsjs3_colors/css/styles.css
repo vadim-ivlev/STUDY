@@ -1,0 +1,104 @@
+body {
+    font-family: 'PT Sans', sans-serif;
+}
+
+#main-block {
+    width: 900px;
+    margin: 20px auto;
+}
+
+.main-center {
+}
+
+.outer-pagination {
+}
+
+#pagination {
+    height: 40px;
+    width: 442px;
+    margin: auto;
+}
+
+
+#pagination a {
+    color: black;
+    display: inline-block;
+    text-decoration: none;
+    transition: background-color .3s;
+    cursor: auto;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 20px;
+    cursor: default;
+}
+
+
+#pagination a.active {
+    background-color: #333;
+    color: white;
+    font-weight:bold;
+}
+
+#pagination a:hover:not(.active) {
+    background-color: #ddd;
+}
+
+
+#chart_div {
+    width: 900px;
+    height: 460px;
+}
+
+
+#page-title {
+    font-weight: bold;
+    font-size: 32px;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 30px;
+}
+
+#title {
+    min-height: 63px;
+    text-align: justify;
+    font-size: 17px;
+    display: block;
+    margin-bottom: 20px;
+}
+
+#additional-note {
+    text-align: justify;
+    display: block;
+}
+
+#sub-title {
+    font-weight: bold;
+    font-size: 17px;
+}
+
+#below-text {
+    font-size: 17px;
+    text-align: justify;
+    min-height: 110px;
+    padding-top: 25px;
+}
+
+#canvas-area {
+    margin-top: 20px;
+}
+
+#graphCanvas {
+    background-color: rgb(243, 244, 248);
+    padding-top: 4px;
+    padding-left: 3px;
+    cursor: pointer;
+    margin: auto;
+}
+
+hr {
+    margin-bottom: 20px;
+    margin-top:20px;
+}
+
