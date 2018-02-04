@@ -7,7 +7,7 @@ body {
 #main-block {
     width: 900px;
     /* text-align: center; */
-    margin: 40px auto;
+    margin: 20px auto;
 }
 
 .main-center {
@@ -104,8 +104,8 @@ body {
     /* color: #666; */
     font-size: 17px;
     text-align: justify;
-    min-height: 134px;
-    padding-top: 30px;
+    min-height: 110px;
+    padding-top: 25px;
 }
 /* 
 .divide-line {

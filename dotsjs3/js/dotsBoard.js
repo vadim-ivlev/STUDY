@@ -420,7 +420,7 @@ DotsBoard.prototype = {
                     , bottom: 30 
                     , right: 40 
                 },
-                colors: ['#FF0000'],
+                colors: ['#c00'],
                 legend: { position: 'none' }
             };
 
