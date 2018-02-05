@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .chart {
+            border: 1px solid #ccc;
+        }
+
+        .chart rect {
+          fill: steelblue;
+        }
+        .chart text {
+          fill: white;
+          font: 10px sans-serif;
+          text-anchor: end;
+        }
+    </style>
+</head>
+<body>
+  <h2>d3</h2> 
+  <svg class="chart"></svg>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <script>
+    var a=[1,2,3,4,5,6,7,8,9,10];
+    var width=300;
+    var height=200;
+    var w =20;
+    var h = 20;        
+    var x = d3.scaleLinear().domain([0,a.length]).range([0,width]);
+    var ww = d3.scaleLinear().domain([0,a.length]).range([0,width]);
+    var y = d3.scaleLinear().domain([0,d3.max(a)]).range([height,0]);
+    var hh = d3.scaleLinear().domain([0,d3.max(a)]).range([0,height]);
+
+    var chart = d3.select('.chart')
+        .attr("width",width)
+        .attr("height",height);
+
+    var bar = chart.selectAll("rect").data(a, d => d);
+    
+    bar.enter()
+        .append("rect")
+        .attr("width", ww(0.8))
+        .attr("height", d => hh(d))
+        .attr("x",(d,i) => x(i))
+        .attr("y",(d) => y(d) )
+
+    bar.exit()
+        .remove();
+    console.log( y(8), hh(8))    
+  </script>
+</body>
+</html>
