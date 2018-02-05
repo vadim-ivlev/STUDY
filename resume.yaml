@@ -1,0 +1,117 @@
+name: VADIM IVLEV
+Email: vadim.ivlev.a@gmail.com
+Phone: +7 925 521 9632   +1 415 800 4061   +44 20 3289 7326
+CV  :  https://www.zipped.space/vadim-ivlev-resume
+
+
+
+SUMMARY: >
+  Software engineer and manager experienced in writing robust 
+  production software. I have a broad successful experience 
+  in web-development, both client and server side, 
+  good at statistics, data analysis and algorithms. 
+  I have extensive experience in building clustered full text 
+  search engines. Strong scientific background. 
+
+  I am a great at coaching, at technical leadership 
+  and direction to peers and colleagues and at presenting 
+  new ideas and solutions.
+
+
+TOOLS:
+
+  LANGUAGES: Python, JavaScript, ES6, C, C#, Java, Prolog, ActionScript, SQL, HTML, CSS. 
+  DATABASES: SQL, NoSQL, MySQL, Oracle, MongoDB, Neo4J, Solr, Elasticsearch, Sphinx. 
+  TECHNOLOGIES: Angular, Vue, Polymer, jQuery, Ext JS, D3.js, Flash, Flex, 
+    Bootstrap, UX, Mathematica… and others.
+
+  SPECIALITIES: Algorithms, databases, data analysis, UX, minimalist GUI, 
+    Natural Language Processing, machine learning, NLP, Management, Agile, XP, SCRUM.
+  PRIORITIES: contribute to society and make things simpler.
+
+
+BACKGROUND: M.S. Physics,  Mathematics, statistics, computational algorithms, quantum optics.
+ 
+
+EXPERIENCE: >
+  Assistant director of science and new technologies. 2013-2017.
+  Electronic Archive Corp. Moscow http://www.elar.ru/ 
+
+  Managed  projects and was responsible for design and implementation of 
+
+  Memory of the people. https://pamyat-naroda.ru/. A clustered (40-node) database   and a search engine executing 10,000 full-text searches per second on a volume of data in a billion records while simultaneously indexing 20,000 new documents per second.
+
+  WW2 awards. http://podvignaroda.mil.ru/ . Database of 100 000 000 scanned and indexed documents on rewards in the Great Patriotic War.
+
+  Roads of war. Movement of parts of the Red Army during the Great Patriotic War.
+  10 000 scanned and recognized historical maps of the USSR General Staff tied to Google maps.
+
+
+  WW1. Database 10 000 000 scanned and indexed personal files of soldiers and officers of the of the Great War.
+
+
+
+  Assistant Director - Senior Software Developer. 2008-2013.
+  Moody’s Analytics UK Ltd. London,  http://www.moodysanalytics.com
+
+  Designed and implemented the client parts of Structured Finance Workstation,  a web based cash flow and valuation solution for structured securities.  More than four hundred new customers expressed their interest and made requests  about Moody’s Structured Finance services as a direct result of this work.
+  
+  Designed and implemented the client part of Performance Data Service,  a web-based monitoring platform for conducting trend and performance analysis across the full spectrum of deals. 
+  
+  Design and implementation of Moody’s Valuations service. 
+  Design and implementation of Marketing site of Wall Street Analytics services.
+  Designed, made tutorials, packaged, delivered and supported Wall Street analytics web-services SDK. Designed and implemented Javascript libraries as a part of the SDK.
+  
+  Chief software engineer. 2002-2008.
+  Electronic Archive Corp.Moscow  http://www.elar.ru/
+
+  Lead the project, architected data, middleware and client layers of Memorial. http://www.obd-memorial.ru. Documents about the killed soldiers during the Second World War and the subsequent conflicts (over 200 000 000 records, more than 40 Tb of scanned images in the storage). Thousands of people and organizations use the service daily. 
+  
+  Lead the Comintern project. A free online inventory to the complete Comintern Archives (55,000,000 pages, 105 languages). The main customers are IDC Publisher (Netherland) and Archidoc (Spain).  
+  
+  General Catalogue of Russian State Library. (http://www.rsl.ru/en), a catalog of Russian literature of XIX century. Used by visitors and libraries subscribed to the service. The same role.
+  
+  
+  Director 1994-2002.
+  Mostt ltd. Novosibirsk. 
+  
+  IT contractor for Navoi Mining & Metallurgy Combinat  (NMMC)  (http://www.nkmk.uz/en). Implemented payment systems between NMMC, Conversbank  and National Bank of Uzbekistan, that saved several hundred million dollars during first two years. I was responsible for requirements analysis, design and development.
+  
+  Scientific researcher. 1990-1992.
+  Siberian Branch of Russian Academy of Sciences.
+  Institute of Automation and Electrometry
+  Post-graduate study in Physics and CS. Raman spectroscopy of arsenic films.  Analyzed chemical changes under the influence of short wave coherent radiation. Have several publications in the branch-wise scientific magazines.
+ 
+
+OPEN SOURCE PROJECTS: >
+  Data architect. Consultant. 2014-2015 
+  PSCF - Public Sector Credit Solutions (open source). 
+  Was responsible for design and implementation of data layer of 
+  http://publicsectorcredit.org/sovdef/ The project provides a free online database of government revenue and expenditure data with default flags. Built on data from Reinhart and Rogoff, the Center for Financial Stability's Historical Financial Statistics, Eurostat, the IMF. Architected and implemented data layer (MongoDB, Mongolab) and API (DreamFactory).
+
+  INOTE. A personal project.  http://inote.vadimivlev.com/
+  A playground to test bits of code, outer Javascript libraries.
+  Javascript and CoffeScript interactive notebooks. 
+
+
+
+
+
+
+
+
+
+
+EDUCATION:
+  Novosibirsk State University, Novosibirsk, Russia
+  Master of Science. Physics,  1983-1990
+
+  Novosibirsk Math And Physics College, Novosibirsk, Russia
+  Advanced courses in mathematics and physics.
+  1980 – 1983
+
+
+cv:   https://www.zipped.space/vadim-ivlev-resume
+in:   https://www.linkedin.com/in/vadimivlev/
+git:  https://github.com/vadim-ivlev
+
