@@ -13,44 +13,143 @@
         .chart rect {
           fill: steelblue;
         }
-        .chart text {
-          fill: white;
-          font: 10px sans-serif;
-          text-anchor: end;
+
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: black;
+            shape-rendering: crispEdges;
         }
+
+        .axis text {
+            font-family: sans-serif;
+            font-size: 11px;
+        }
+
     </style>
 </head>
 <body>
-  <h2>d3</h2> 
-  <svg class="chart"></svg>
+  <p>d3</p>
+  <div id="sv"></div> 
+  <div>data.splice(<input type="number">)</div>
+  <!-- <svg class="chart"></svg> -->
+</body>
   <script src="https://d3js.org/d3.v4.min.js"></script>
   <script>
-    var a=[1,2,3,4,5,6,7,8,9,10];
-    var width=300;
-    var height=200;
-    var w =20;
-    var h = 20;        
-    var x = d3.scaleLinear().domain([0,a.length]).range([0,width]);
-    var ww = d3.scaleLinear().domain([0,a.length]).range([0,width]);
-    var y = d3.scaleLinear().domain([0,d3.max(a)]).range([height,0]);
-    var hh = d3.scaleLinear().domain([0,d3.max(a)]).range([0,height]);
+/*       
+    https://github.com/d3/d3-selection/issues/86
 
-    var chart = d3.select('.chart')
-        .attr("width",width)
-        .attr("height",height);
+    let circle = svg.selectAll("circle").data(data) // UPDATE
+        .style("fill", "blue");
 
-    var bar = chart.selectAll("rect").data(a, d => d);
+    circle.exit().remove(); // EXIT
+
+    circle.enter().append("circle") // ENTER
+        .style("fill", "green")
+        .merge(circle) // ENTER + UPDATE
+        .style("stroke", "black");
+
+ */
+
+    // var data=[1,2,3,4,5,6,7,8,9,10];
+    // var data=Array.from(Array(20).keys());
+    var data=Array.from(Array(30), (_,i) => i*i);
     
-    bar.enter()
-        .append("rect")
-        .attr("width", ww(0.8))
-        .attr("height", d => hh(d))
-        .attr("x",(d,i) => x(i))
-        .attr("y",(d) => y(d) )
+    var outerWidth = 550,
+        outerHeight = 350,
+        margin = {top: 40, right: 40, bottom: 40, left: 40},
+        width = outerWidth - margin.left - margin.right,
+        height = outerHeight - margin.top - margin.bottom;
 
-    bar.exit()
-        .remove();
-    console.log( y(8), hh(8))    
+    // scale functions
+    let x,ww,y,hh; 
+
+    let bar;
+    let svg;
+
+    function idd (datum){
+        return datum;
+    }
+    
+    function ins(data){
+        bar = svg.selectAll("rect");
+        bar.data(data, idd)
+            .enter().append("rect")
+            .attr("id0", d => `r${d}`)
+            .attr("width", d => ww(0.8))
+            .attr("x",(d,i) => x(i))
+            .attr("height", 0)
+            .attr("y",(d) => y(0))
+            .transition().duration(1000).delay(100)
+            //.on('end',function(d,i){ console.log(`ins ${d} ${i}`,this); })
+            .attr("height", d => hh(d))
+            .attr("y",(d) => y(d))
+    }
+
+    function upd(data){
+        bar = svg.selectAll("rect");
+        bar.data(data, idd)
+            .transition().duration(1000)
+            .attr("width", d => ww(0.8))
+            .attr("x",(d,i) => x(i))
+            .attr("height", d => hh(d))
+            .attr("y",(d) => y(d))
+    }
+
+    function del(data){
+        bar = svg.selectAll("rect");
+        bar.data(data, idd)
+            .exit()
+            .attr('opacity',1.0)
+            .transition().duration(1000) 
+            .attr("height", 0)
+            .attr('opacity',0.0)
+            .remove();
+    }
+
+    function buildAxes() {
+        // to add grid lines
+        // https://bl.ocks.org/d3noob/c506ac45617cf9ed39337f99f8511218
+        
+        svg.selectAll(".axis").remove();
+
+        var x_ = d3.axisBottom().scale(x);
+        svg.append("g")
+            .attr("transform", `translate(0,${height})`)
+            .attr("class", "axis")
+            .call(x_)
+
+            
+        var y_ = d3.axisLeft().scale(y);
+        svg.append("g")
+            .attr("class", "axis")
+            .call(y_)
+    } 
+
+    function refresh(data){
+        x = d3.scaleLinear().domain([0,data.length]).range([0,width]);
+        ww = d3.scaleLinear().domain([0,data.length]).range([0,width]);
+        let max=d3.max(data);
+        y = d3.scaleLinear().domain([0,max]).range([height,0]);
+        hh = d3.scaleLinear().domain([0,max]).range([0,height]);
+        del(data);
+        upd(data);
+        ins(data);
+        buildAxes();
+    }
+ 
+
+
+    svg = d3.select("#sv").append("svg")
+    .attr("class","chart")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+
+    refresh(data);
+       
   </script>
-</body>
+
 </html>
