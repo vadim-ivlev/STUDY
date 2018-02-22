@@ -8,4 +8,5 @@ def solution(A):
     return -1
 
 
+# final check
 print(solution([1, 2, 3, 4, 6]))
