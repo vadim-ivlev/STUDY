@@ -1,0 +1,13 @@
+{
+  "version": 3,
+  "file": "test.js",
+  "sourceRoot": "",
+  "sources": [
+    "test.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAAA,IAAA,CAAA,EAAA,EAAA,EAAA;;AAAA,CAAA,GAAE,QAAA,CAAC,CAAD,EAAG,CAAH,CAAA;EACE,CAAA,GAAE;SACF,CAAA,GAAE,CAAA,GAAE;AAFN;;AAIF,OAAO,CAAC,GAAR,CAAY,CAAA,CAAE,CAAF,EAAI,CAAJ,CAAZ;;AAEA,EAAA,GAAG;;AAEG;;;EAAN,MAAA,IAAA,CAAA;;EACI,WAAA,GAAa,QAAA,CAAA,CAAA;IACT,IAAC,CAAA,IAAD,GAAM;IACN,IAAC,CAAA,IAAD,GAAM;WACN;EAHS",
+  "sourcesContent": [
+    "a=(a,b) ->\n    a+b\n    a+2*b\n\nconsole.log a(5,4)\n\naa=[1..20]\n\nclass abc\n    constructor= ->\n        @prop=3\n        @prop=4\n        undefined"
+  ]
+}

@@ -5,6 +5,19 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Coffee",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceRoot}/test.coffee",
+            "cwd": "${workspaceRoot}",
+            "sourceMaps": true,
+            "stopOnEntry": true,
+            "outFiles": [
+                "${workspaceRoot}/**/*.js"
+            ],
+            "smartStep": false
+        },
+        {
             "type": "node",
             "request": "launch",
             "name": "Nodejs",
