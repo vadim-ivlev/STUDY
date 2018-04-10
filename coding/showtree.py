@@ -1,6 +1,6 @@
 #    Copyright (C) 2004-2018 by
 #    All rights reserved.
-#    BSD license.
+#    MIT license.
 #
 # Author: Vadim Ivlev
 
