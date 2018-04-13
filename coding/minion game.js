@@ -16,9 +16,9 @@ function minionGame(s) {
     } else if (kevinScore < stuartScore) {
         console.log('Stuart', stuartScore);
     } else {
-        console.log("Draw")
+        console.log("Draw");
     }
 }
 
-const S = 'ANA'
-minionGame(S)
+const S = 'ANA';
+minionGame(S);
