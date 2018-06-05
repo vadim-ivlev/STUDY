@@ -1,0 +1,12 @@
+body {
+    font-family: Roboto, sans-serif;
+}
+
+header {
+    background-color: sandybrown;
+}
+
+footer {
+    background-color: #333;
+    color: silver;
+}
